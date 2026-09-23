@@ -35,14 +35,6 @@
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.5;
-            opacity: 0;
-            filter: blur(10px);
-            transition: opacity 1.2s ease, filter 1.2s ease;
-        }
-
-        body.page-loaded {
-            opacity: 1;
-            filter: blur(0px);
         }
 
         /* --- BACKGROUND VIDEO SETUP --- */
@@ -60,7 +52,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.65) contrast(1.1);
+            filter: brightness(0.7) contrast(1.1);
         }
 
         .bg-overlay {
@@ -69,12 +61,12 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.3) 0%, rgba(8, 8, 10, 0.92) 100%);
+            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.3) 0%, rgba(8, 8, 10, 0.9) 100%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* --- GLASSMORPHISM CARD STYLES --- */
+        /* --- APPLE IPHONE GLASSMORPHISM --- */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(25px);
@@ -109,7 +101,6 @@
             align-items: center;
             justify-content: space-between;
             padding: 8px 14px;
-            position: relative;
         }
 
         .nav-logo {
@@ -132,9 +123,6 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            background: transparent;
-            border: none;
-            cursor: pointer;
         }
 
         .btn-header {
@@ -151,56 +139,6 @@
 
         .btn-header:hover {
             transform: scale(1.04);
-        }
-
-        /* --- MENU DROPDOWN MODAL --- */
-        .menu-modal {
-            position: absolute;
-            top: 60px;
-            left: 50%;
-            transform: translateX(-50%) scale(0.95);
-            width: 320px;
-            background: rgba(18, 18, 22, 0.85);
-            backdrop-filter: blur(30px);
-            -webkit-backdrop-filter: blur(30px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 20px;
-            padding: 20px;
-            display: none;
-            opacity: 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            z-index: 1001;
-        }
-
-        .menu-modal.active {
-            display: block;
-            opacity: 1;
-            transform: translateX(-50%) scale(1);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .menu-item {
-            padding: 12px 16px;
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: background 0.2s ease;
-            display: block;
-            text-align: center;
-        }
-
-        .menu-item:hover {
-            background: rgba(255, 255, 255, 0.12);
         }
 
         /* --- HERO SECTION --- */
@@ -272,7 +210,6 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s ease;
-            text-decoration: none;
         }
 
         .btn-glass:hover {
@@ -336,7 +273,7 @@
             letter-spacing: -1px;
         }
 
-        /* --- TEXT HIGHLIGHT ON SCROLL --- */
+        /* --- WHO WE ARE (TEXT HIGHLIGHT ON SCROLL) --- */
         .text-reveal-box {
             font-size: clamp(1.8rem, 3.8vw, 3rem);
             font-weight: 700;
@@ -344,15 +281,15 @@
             text-align: center;
             max-width: 950px;
             margin: 0 auto 60px auto;
-            color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.2); /* डिफ़ॉल्ट धुंधला/डार्क */
             transition: color 0.5s ease;
         }
 
         .text-reveal-box.active {
-            color: #ffffff;
+            color: #ffffff; /* स्क्रॉल होने पर सफ़ेद */
         }
 
-        /* --- MEDIA SHOWCASE CARD --- */
+        /* --- VIDEO MOCKUP CARD --- */
         .video-card {
             position: relative;
             width: 100%;
@@ -370,7 +307,7 @@
             background: #000;
         }
 
-        .video-card-screen video, .video-card-screen img {
+        .video-card-screen video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -398,12 +335,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-        }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
         }
 
         .card-inner {
@@ -449,56 +380,20 @@
 
         .bento-col-8 { grid-column: span 8; }
         .bento-col-4 { grid-column: span 4; }
+        .bento-col-6 { grid-column: span 6; }
+        .bento-col-12 { grid-column: span 12; }
 
         @media (max-width: 900px) {
-            .bento-col-8, .bento-col-4 { grid-column: span 12; }
+            .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
         }
 
-        /* --- SECURITY SECTION --- */
-        .cta-banner {
-            background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(59, 130, 246, 0.15));
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 40px;
-            border-radius: 28px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            margin-bottom: 60px;
-            flex-wrap: wrap;
-        }
-
-        /* --- PROCESS TIMELINE WITH SCROLL PROGRESS LINE --- */
-        .process-container {
-            position: relative;
-            max-width: 780px;
-            margin: 0 auto;
-            padding-left: 30px;
-        }
-
-        .process-line-bg {
-            position: absolute;
-            left: 50px;
-            top: 20px;
-            bottom: 20px;
-            width: 2px;
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .process-line-progress {
-            position: absolute;
-            left: 50px;
-            top: 20px;
-            width: 2px;
-            height: 0%;
-            background: linear-gradient(to bottom, #d8b4fe, #818cf8);
-            transition: height 0.1s ease-out;
-        }
-
+        /* --- PROCESS TIMELINE --- */
         .process-stack {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 16px;
+            max-width: 780px;
+            margin: 0 auto;
         }
 
         .process-row {
@@ -506,8 +401,6 @@
             display: flex;
             align-items: center;
             gap: 24px;
-            position: relative;
-            z-index: 2;
         }
 
         .process-num {
@@ -515,40 +408,12 @@
             height: 42px;
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
             font-size: 15px;
             flex-shrink: 0;
-        }
-
-        /* --- CASE STUDIES --- */
-        .case-card {
-            padding: 40px;
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 30px auto;
-        }
-
-        .metrics-grid {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .metric-item h4 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            color: #ffffff;
-        }
-
-        .metric-item p {
-            font-size: 13px;
-            color: var(--text-muted);
         }
 
         /* --- TECH ECOSYSTEM SPHERE --- */
@@ -645,58 +510,12 @@
             margin-top: 14px;
         }
 
-        /* --- CUSTOM CONTACT SECTION ("Let's Automate Your Growth") --- */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
-
-        @media (max-width: 850px) {
-            .contact-wrapper { grid-template-columns: 1fr; }
-        }
-
-        .contact-info {
-            padding: 20px;
-        }
-
-        .contact-info h2 {
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
-            font-weight: 800;
-            line-height: 1.15;
-            margin-bottom: 20px;
-        }
-
-        .contact-info p {
-            color: var(--text-muted);
-            font-size: 15px;
-            margin-bottom: 30px;
-        }
-
-        .contact-detail-item {
-            margin-bottom: 20px;
-        }
-
-        .contact-detail-item label {
-            font-size: 12px;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .contact-detail-item span {
-            font-size: 15px;
-            font-weight: 600;
-            color: #fff;
-        }
-
+        /* --- CONTACT LEAD FORM --- */
         .form-card {
-            padding: 40px 32px;
-            text-align: left;
+            max-width: 620px;
+            margin: 0 auto;
+            padding: 50px 36px;
+            text-align: center;
         }
 
         .field-input {
@@ -726,11 +545,6 @@
             border: none;
             cursor: pointer;
             margin-top: 10px;
-            transition: transform 0.2s ease;
-        }
-
-        .btn-submit-main:hover {
-            transform: translateY(-2px);
         }
 
         /* --- FOOTER --- */
@@ -745,19 +559,13 @@
         .footer-links {
             display: flex;
             justify-content: center;
-            gap: 24px;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
-            font-weight: 500;
-        }
-
-        .footer-links a:hover {
-            color: #fff;
         }
 
         /* --- SCROLL ANIMATION EFFECTS --- */
@@ -777,38 +585,25 @@
 
     <!-- 3D BACKGROUND VIDEO -->
     <div class="bg-video-wrapper">
-        <!-- यहाँ अपनी वीडियो का पाथ/URL डालें -->
         <video autoplay loop muted playsinline>
             <source src="images/bg-video.mp4" type="video/mp4">
         </video>
     </div>
     <div class="bg-overlay"></div>
 
-    <!-- FLOATING NAVBAR WITH POPUP MENU -->
+    <!-- FLOATING NAVBAR -->
     <header>
         <nav class="glass-pill">
             <div class="nav-logo">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 8 4 4-4 4M8 12h8"/></svg>
             </div>
-            <button class="nav-link" id="menuToggleBtn"><span>≡</span> Menu</button>
+            <a href="#" class="nav-link"><span>≡</span> Menu</a>
             <button class="btn-header">Get this Template</button>
-
-            <!-- FLOATING MENU POPUP -->
-            <div class="menu-modal" id="menuModal">
-                <div class="menu-grid">
-                    <a href="#hero" class="menu-item">Home</a>
-                    <a href="#case-studies" class="menu-item">Case Studies</a>
-                    <a href="#contact" class="menu-item">Contact</a>
-                    <a href="#" class="menu-item">404</a>
-                    <a href="#" class="menu-item">Terms</a>
-                    <a href="#" class="menu-item">Policy</a>
-                </div>
-            </div>
         </nav>
     </header>
 
     <!-- 1. HERO SECTION -->
-    <section class="hero" id="hero">
+    <section class="hero">
         <div class="badge-hero glass-pill reveal-on-scroll">✏️ UNICORN AI PARTNER</div>
         <h1 class="title-gradient reveal-on-scroll">Intelligent Automation</h1>
         <h1 class="title-white reveal-on-scroll">for Modern Teams</h1>
@@ -816,8 +611,8 @@
             We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.
         </p>
         <div class="hero-btns reveal-on-scroll">
-            <a href="#contact" class="btn-glass">Get this Template <span>→</span></a>
-            <a href="#contact" class="btn-glass">👥 Work with Us</a>
+            <button class="btn-glass">Get this Template <span>→</span></button>
+            <button class="btn-glass">👥 Work with Us</button>
         </div>
     </section>
 
@@ -837,7 +632,7 @@
         </div>
     </div>
 
-    <!-- 3. WHO WE ARE (TEXT HIGHLIGHT + MEDIA CARD) -->
+    <!-- 3. WHO WE ARE (TEXT HIGHLIGHT + VIDEO CARD) -->
     <section class="section">
         <span class="tag-sub reveal-on-scroll">001 • WHO WE ARE</span>
         <div class="text-reveal-box reveal-on-scroll" id="scrollHighlightText">
@@ -846,7 +641,6 @@
 
         <div class="video-card glass-card reveal-on-scroll">
             <div class="video-card-screen">
-                <!-- यहाँ अपनी कस्टम फोटो या वीडियो लगा सकते हैं -->
                 <video autoplay loop muted playsinline>
                     <source src="images/bg-video.mp4" type="video/mp4">
                 </video>
@@ -908,125 +702,38 @@
         </div>
     </section>
 
-    <!-- 6. SECURITY & STRATEGY CALL-TO-ACTION (ADDED SECTION) -->
-    <section class="section">
-        <div class="cta-banner reveal-on-scroll">
-            <div>
-                <h3 style="font-size: 1.5rem; font-weight:800; margin-bottom: 8px;">Not sure what to automate first?</h3>
-                <p style="color: var(--text-muted); font-size: 14px; max-width: 500px;">
-                    Book a free 30-minute AI strategy session. We'll analyze your current workflows and identify highest-ROI opportunities.
-                </p>
-            </div>
-            <button class="btn-header" style="padding: 14px 28px;">Schedule a Session →</button>
-        </div>
-
-        <span class="tag-sub reveal-on-scroll">SECURITY</span>
-        <h2 class="heading-main reveal-on-scroll">Your Data. Protected. Always.</h2>
-        <div class="grid-4">
-            <div class="glass-card card-inner reveal-on-scroll" style="padding:24px;">
-                <div class="icon-box" style="width:40px; height:40px;">🔒</div>
-                <h4 style="font-size:15px; margin-bottom:6px;">End-to-End Encryption</h4>
-                <p class="card-desc" style="font-size:12px;">Enterprise level encryption standard.</p>
-            </div>
-            <div class="glass-card card-inner reveal-on-scroll" style="padding:24px;">
-                <div class="icon-box" style="width:40px; height:40px;">🔀</div>
-                <h4 style="font-size:15px; margin-bottom:6px;">Secure API Integrations</h4>
-                <p class="card-desc" style="font-size:12px;">Sandboxed token-based connections.</p>
-            </div>
-            <div class="glass-card card-inner reveal-on-scroll" style="padding:24px;">
-                <div class="icon-box" style="width:40px; height:40px;">👤</div>
-                <h4 style="font-size:15px; margin-bottom:6px;">Role-Based Access Control</h4>
-                <p class="card-desc" style="font-size:12px;">Strict permission hierarchies.</p>
-            </div>
-            <div class="glass-card card-inner reveal-on-scroll" style="padding:24px;">
-                <div class="icon-box" style="width:40px; height:40px;">📊</div>
-                <h4 style="font-size:15px; margin-bottom:6px;">Data Minimization</h4>
-                <p class="card-desc" style="font-size:12px;">We process only what is required.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. HOW WE WORK (PROCESS TIMELINE WITH SCROLL LINE) -->
+    <!-- 6. HOW WE WORK (PROCESS) -->
     <section class="section">
         <span class="tag-sub reveal-on-scroll">004 • PROCESS</span>
         <h2 class="heading-main reveal-on-scroll">How We Work</h2>
-        
-        <div class="process-container" id="processContainer">
-            <div class="process-line-bg"></div>
-            <div class="process-line-progress" id="processProgress"></div>
-
-            <div class="process-stack">
-                <div class="glass-card process-row reveal-on-scroll">
-                    <div class="process-num">01</div>
-                    <div>
-                        <h3 style="font-size: 17px; font-weight:700;">Discovery & Audit</h3>
-                        <p style="color: var(--text-muted); font-size: 14px;">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
-                    </div>
+        <div class="process-stack">
+            <div class="glass-card process-row reveal-on-scroll">
+                <div class="process-num">01</div>
+                <div>
+                    <h3 style="font-size: 17px; font-weight:700;">Discovery & Audit</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
                 </div>
-                <div class="glass-card process-row reveal-on-scroll">
-                    <div class="process-num">02</div>
-                    <div>
-                        <h3 style="font-size: 17px; font-weight:700;">Automation Blueprint</h3>
-                        <p style="color: var(--text-muted); font-size: 14px;">We design a detailed automation architecture aligned with your KPIs.</p>
-                    </div>
+            </div>
+            <div class="glass-card process-row reveal-on-scroll">
+                <div class="process-num">02</div>
+                <div>
+                    <h3 style="font-size: 17px; font-weight:700;">Automation Blueprint</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">We design a detailed automation architecture aligned with your KPIs.</p>
                 </div>
-                <div class="glass-card process-row reveal-on-scroll">
-                    <div class="process-num">03</div>
-                    <div>
-                        <h3 style="font-size: 17px; font-weight:700;">Build & Integration</h3>
-                        <p style="color: var(--text-muted); font-size: 14px;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
-                    </div>
-                </div>
-                <div class="glass-card process-row reveal-on-scroll">
-                    <div class="process-num">04</div>
-                    <div>
-                        <h3 style="font-size: 17px; font-weight:700;">Testing & Optimization</h3>
-                        <p style="color: var(--text-muted); font-size: 14px;">Performance testing, data validation, and continuous refinement for peak ROI.</p>
-                    </div>
-                </div>
-                <div class="glass-card process-row reveal-on-scroll">
-                    <div class="process-num">05</div>
-                    <div>
-                        <h3 style="font-size: 17px; font-weight:700;">Deployment & Scaling</h3>
-                        <p style="color: var(--text-muted); font-size: 14px;">Launch, monitor, and continuously optimize systems to support scalable growth.</p>
-                    </div>
+            </div>
+            <div class="glass-card process-row reveal-on-scroll">
+                <div class="process-num">03</div>
+                <div>
+                    <h3 style="font-size: 17px; font-weight:700;">Build & Integration</h3>
+                    <p style="color: var(--text-muted); font-size: 14px;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 8. CASE STUDIES (ADDED SECTION) -->
-    <section class="section" id="case-studies">
-        <span class="tag-sub reveal-on-scroll">005 • CASE STUDIES</span>
-        <h2 class="heading-main reveal-on-scroll">Proven Client Results</h2>
-        
-        <div class="glass-card case-card reveal-on-scroll">
-            <span style="font-size: 12px; font-weight: 800; color: #a78bfa; letter-spacing: 1px;">LOGOIPSUM REALTY</span>
-            <h3 style="font-size: 1.5rem; font-weight: 800; margin: 10px 0;">AI Property Inquiry Chatbot for Real Estate Firms</h3>
-            <p style="color: var(--text-muted); font-size: 14px;">An intelligent chatbot that qualifies property inquiries, answers buyer questions, and schedules viewings automatically.</p>
-            
-            <div class="metrics-grid">
-                <div class="metric-item">
-                    <h4>3x</h4>
-                    <p>Lead Response</p>
-                </div>
-                <div class="metric-item">
-                    <h4>+40%</h4>
-                    <p>View Bookings</p>
-                </div>
-                <div class="metric-item">
-                    <h4>24/7</h4>
-                    <p>Engagement</p>
-                </div>
-            </div>
-
-            <button class="btn-glass" style="margin: 0 auto;">Explore all Case Studies →</button>
-        </div>
-    </section>
-
-    <!-- 9. TECHNOLOGY ECOSYSTEM -->
+    <!-- 7. TECHNOLOGY ECOSYSTEM -->
     <section class="section">
-        <span class="tag-sub reveal-on-scroll">006 • INTEGRATIONS</span>
+        <span class="tag-sub reveal-on-scroll">005 • INTEGRATIONS</span>
         <h2 class="heading-main reveal-on-scroll">Technology Ecosystem</h2>
         <div class="ecosystem-wrap reveal-on-scroll">
             <div class="eco-center-btn">
@@ -1036,9 +743,9 @@
         </div>
     </section>
 
-    <!-- 10. PRICING SECTION -->
+    <!-- 8. PRICING SECTION -->
     <section class="section">
-        <span class="tag-sub reveal-on-scroll">007 • PRICING</span>
+        <span class="tag-sub reveal-on-scroll">006 • PRICING</span>
         <h2 class="heading-main reveal-on-scroll">Built for Growth at Every Stage</h2>
         
         <div class="pricing-switch reveal-on-scroll">
@@ -1065,9 +772,9 @@
         </div>
     </section>
 
-    <!-- 11. FAQS -->
+    <!-- 9. FAQS -->
     <section class="section">
-        <span class="tag-sub reveal-on-scroll">008 • FAQS</span>
+        <span class="tag-sub reveal-on-scroll">007 • FAQS</span>
         <h2 class="heading-main reveal-on-scroll">Common Questions</h2>
         
         <div class="faq-stack">
@@ -1090,36 +797,19 @@
         </div>
     </section>
 
-    <!-- 12. CUSTOMIZED CONTACT SECTION ("Let's Automate Your Growth") -->
-    <section class="section" id="contact">
-        <div class="contact-wrapper">
-            <div class="contact-info reveal-on-scroll">
-                <h2>Let's Automate Your Growth</h2>
-                <p>Looking to streamline operations, reduce costs, or scale your business with AI? We're here to turn your vision into reality.</p>
-                
-                <div class="contact-detail-item">
-                    <label>Address</label>
-                    <span>Suite 502, Orion Tower</span>
-                </div>
-                <div class="contact-detail-item">
-                    <label>Office Hours</label>
-                    <span>Monday to Friday, 9:00am - 6:00pm</span>
-                </div>
-                <div class="contact-detail-item">
-                    <label>Email</label>
-                    <span>hello@conicorn.com</span>
-                </div>
-            </div>
-
-            <div class="glass-card form-card reveal-on-scroll">
-                <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
-                    <input type="text" placeholder="Your name*" class="field-input" required>
-                    <input type="text" placeholder="Your company name*" class="field-input" required>
-                    <input type="email" placeholder="Your business email*" class="field-input" required>
-                    <textarea placeholder="Share project details*" class="field-input" rows="4" required style="resize:none;"></textarea>
-                    <button type="submit" class="btn-submit-main">Send Your Request!</button>
-                </form>
-            </div>
+    <!-- 10. LEAD FORM CARD -->
+    <section class="section">
+        <div class="glass-card form-card reveal-on-scroll">
+            <div style="font-size:24px; margin-bottom:10px;">✦</div>
+            <h2 style="font-size: 2.2rem; font-weight:800; margin-bottom:10px;">Your Competitors Are Automating. Are You?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size:14px;">Stop wasting time on manual processes. Start building a self-running business.</p>
+            <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
+                <input type="text" placeholder="Your name*" class="field-input" required>
+                <input type="text" placeholder="Your company name*" class="field-input" required>
+                <input type="email" placeholder="Your business email*" class="field-input" required>
+                <textarea placeholder="Share project details*" class="field-input" rows="4" required style="resize:none;"></textarea>
+                <button type="submit" class="btn-submit-main">Send Your Request</button>
+            </form>
         </div>
     </section>
 
@@ -1130,22 +820,13 @@
             <a href="#">Instagram ↗</a>
             <a href="#">Facebook ↗</a>
             <a href="#">Twitter X ↗</a>
-            <a href="#">Contact</a>
-            <a href="#">404</a>
-            <a href="#">Terms</a>
-            <a href="#">Privacy</a>
         </div>
-        <p>© 2026 Conicorn AI. All rights reserved. | Built with Framer style smooth code.</p>
+        <p>© 2026 Conicorn AI. All rights reserved.</p>
     </footer>
 
     <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
     <script>
-        // 1. PAGE LOAD BLUR FADE-IN ANIMATION
-        window.addEventListener('load', () => {
-            document.body.classList.add('page-loaded');
-        });
-
-        // 2. LENIS SMOOTH SCROLLING
+        // 1. LENIS SMOOTH SCROLLING
         const lenis = new Lenis({
             duration: 1.4,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1158,22 +839,7 @@
         }
         requestAnimationFrame(raf);
 
-        // 3. MENU MODAL TOGGLE
-        const menuBtn = document.getElementById('menuToggleBtn');
-        const menuModal = document.getElementById('menuModal');
-
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menuModal.classList.toggle('active');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!menuModal.contains(e.target) && e.target !== menuBtn) {
-                menuModal.classList.remove('active');
-            }
-        });
-
-        // 4. SCROLL REVEAL & TEXT HIGHLIGHT EFFECT
+        // 2. SCROLL REVEAL & TEXT HIGHLIGHT EFFECT
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1189,25 +855,7 @@
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
         });
 
-        // 5. PROCESS TIMELINE VERTICAL LINE SCROLL ANIMATION
-        window.addEventListener('scroll', () => {
-            const container = document.getElementById('processContainer');
-            const progressLine = document.getElementById('processProgress');
-            if (!container || !progressLine) return;
-
-            const rect = container.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const totalHeight = rect.height;
-                const scrolled = windowHeight - rect.top;
-                let percentage = (scrolled / totalHeight) * 100;
-                percentage = Math.min(Math.max(percentage, 0), 100);
-                progressLine.style.height = `${percentage}%`;
-            }
-        });
-
-        // 6. PRICING TOGGLE
+        // 3. PRICING TOGGLE
         const toggle = document.getElementById('priceToggle');
         const p1 = document.getElementById('p1');
         const p2 = document.getElementById('p2');
@@ -1225,7 +873,7 @@
             }
         });
 
-        // 7. FAQ ACCORDION TOGGLE
+        // 4. FAQ ACCORDION TOGGLE
         document.querySelectorAll('.faq-box').forEach(box => {
             box.addEventListener('click', () => {
                 const isOpen = box.classList.contains('open');
