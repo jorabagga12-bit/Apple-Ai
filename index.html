@@ -5,8 +5,7 @@
     <!-- FORCED DESKTOP VIEWPORT FOR ALL DEVICES -->
     <meta name="viewport" content="width=1200, user-scalable=yes">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-    <title>haroli ai</title>
+      <title>Conicorn - AI Automation Agency</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -186,65 +185,145 @@
             50% { transform: scale(1.5); opacity: 0.5; }
         }
 
-        /* --- FLOATING HEADER / NAVBAR --- */
+        /* --- FLOATING HEADER / NAVBAR (UPDATED & COMPACT) --- */
         header {
             position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            width: 92%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 480px;
         }
 
         nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 16px;
+            padding: 6px 10px 6px 12px;
+            gap: 10px;
         }
 
+        /* 2-DIGIT COMPACT LOGO */
         .nav-logo {
             width: 38px;
             height: 38px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: -0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.25);
+            flex-shrink: 0;
+            cursor: pointer;
         }
 
-        .nav-link {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
+        .menu-trigger-btn {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 13px;
             font-weight: 600;
+            cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
-            transition: opacity 0.2s;
+            gap: 8px;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .nav-link:hover {
-            opacity: 0.8;
+        .menu-trigger-btn:hover {
+            background: rgba(255, 255, 255, 0.16);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .menu-trigger-btn .menu-icon {
+            font-size: 16px;
+            line-height: 1;
         }
 
         .btn-header {
             background: #ffffff;
             color: #000000;
             border: none;
-            padding: 10px 20px;
+            padding: 9px 18px;
             border-radius: 100px;
             font-weight: 700;
             font-size: 13px;
             cursor: pointer;
             transition: transform 0.2s ease;
+            white-space: nowrap;
         }
 
         .btn-header:hover {
             transform: scale(1.04);
+        }
+
+        /* --- INTERACTIVE ADVANCED AI DROPDOWN MENU --- */
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            right: 0;
+            background: rgba(12, 12, 16, 0.88) !important;
+            backdrop-filter: blur(35px) !important;
+            -webkit-backdrop-filter: blur(35px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 24px !important;
+            padding: 12px !important;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-12px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7) !important;
+            z-index: 999;
+        }
+
+        .nav-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .dropdown-link {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            padding: 11px 18px;
+            border-radius: 14px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-link:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            transform: translateX(4px);
+        }
+
+        .active-contact-link {
+            background: linear-gradient(135deg, rgba(216, 180, 254, 0.18), rgba(129, 140, 248, 0.18));
+            border: 1px solid rgba(167, 139, 250, 0.35);
+            color: #d8b4fe !important;
+            margin-top: 4px;
+        }
+
+        .active-contact-link:hover {
+            background: linear-gradient(135deg, rgba(216, 180, 254, 0.3), rgba(129, 140, 248, 0.3));
+            border-color: rgba(167, 139, 250, 0.6);
         }
 
         /* --- HERO SECTION --- */
@@ -390,7 +469,6 @@
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.9);
             color: #0f172a;
             
-            /* UPDATED: FULL WIDTH SO IT TOUCHES SIDES */
             width: 100%; 
             max-width: 100%;
             margin: 40px 0 60px 0; 
@@ -470,7 +548,6 @@
             perspective: 1000px;
         }
 
-        /* BOLD TEXT PASSING BEHIND VIDEO CARD (UPDATED) */
         .bg-bold-text-marquee {
             position: absolute;
             top: 50%;
@@ -480,8 +557,8 @@
             white-space: nowrap;
             font-size: clamp(3.5rem, 8vw, 6.5rem);
             font-weight: 900;
-            color: #000000; /* Solid Black */
-            opacity: 1; /* Fully Visible */
+            color: #000000;
+            opacity: 1;
             letter-spacing: 4px;
             pointer-events: none;
             z-index: 0;
@@ -519,24 +596,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-
-        .play-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 64px;
-            height: 64px;
-            background: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         /* GRID LAYOUTS */
@@ -819,16 +878,33 @@
     </div>
     <div class="bg-overlay"></div>
 
-    <!-- FLOATING NAVBAR -->
+    <!-- UPDATED FLOATING NAVBAR -->
     <header>
         <nav class="glass-pill">
-            <div class="nav-logo">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 8 4 4-4 4M8 12h8"/></svg>
+            <!-- 2-DIGIT COMPACT LOGO -->
+            <div class="nav-logo" title="Conicorn AI">
+                <span>CN</span>
             </div>
-            <a href="#" class="nav-link"><span>≡</span> Menu</a>
-            <a href="#contact" class="nav-link" style="margin-left: auto; margin-right: 8px;">Contact</a>
+
+            <!-- MENU TOGGLE BUTTON -->
+            <button class="menu-trigger-btn" id="menuToggle" aria-label="Toggle Navigation Menu">
+                <span class="menu-icon">≡</span>
+                <span>Menu</span>
+            </button>
+
+            <!-- ACTION BUTTON -->
             <button class="btn-header">Get this Template</button>
         </nav>
+
+        <!-- ADVANCED AI GLASS DROPDOWN MENU -->
+        <div class="nav-dropdown" id="navDropdown">
+            <a href="#" class="dropdown-link"><span class="pulse-dot"></span> Home</a>
+            <a href="#services" class="dropdown-link">Services</a>
+            <a href="#process" class="dropdown-link">Process</a>
+            <a href="#pricing" class="dropdown-link">Pricing</a>
+            <a href="#faqs" class="dropdown-link">FAQs</a>
+            <a href="#contact" class="dropdown-link active-contact-link">Contact Us ↗</a>
+        </div>
     </header>
 
     <!-- 1. HERO SECTION -->
@@ -885,10 +961,7 @@
                 </div>
                 <div class="video-card glass-card reveal-on-scroll" id="3dVideoCard">
                     <div class="video-card-screen">
-                        
-                        <!-- YAHAN APNI PHOTO LAGAO (Added id="money-photo") -->
                         <img id="money-photo" src="images/your-3d-image.jpg" alt="Photo Placeholder" style="width: 100%; height: 100%; object-fit: cover;">
-                        
                     </div>
                 </div>
             </div>
@@ -918,7 +991,7 @@
         </section>
 
         <!-- 5. OUR AI-DRIVEN SERVICES -->
-        <section class="section">
+        <section class="section" id="services">
             <span class="tag-sub reveal-on-scroll">003 • CAPABILITIES</span>
             <h2 class="heading-main reveal-on-scroll">Our AI-Driven Services</h2>
             <div class="bento-grid">
@@ -946,7 +1019,7 @@
         </section>
 
         <!-- 6. HOW WE WORK -->
-        <section class="section">
+        <section class="section" id="process">
             <span class="tag-sub reveal-on-scroll">004 • PROCESS</span>
             <h2 class="heading-main reveal-on-scroll">How We Work</h2>
             <div class="process-stack">
@@ -988,7 +1061,7 @@
         </section>
 
         <!-- 8. PRICING SECTION -->
-        <section class="section">
+        <section class="section" id="pricing">
             <span class="tag-sub reveal-on-scroll">006 • PRICING</span>
             <h2 class="heading-main reveal-on-scroll">Built for Growth at Every Stage</h2>
             
@@ -1017,7 +1090,7 @@
         </section>
 
         <!-- 9. FAQS -->
-        <section class="section">
+        <section class="section" id="faqs">
             <span class="tag-sub reveal-on-scroll">007 • FAQS</span>
             <h2 class="heading-main reveal-on-scroll">Common Questions</h2>
             
@@ -1081,8 +1154,8 @@
 
     <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
     <script>
-        // 1. SCROLL REVEAL & TEXT HIGHLIGHT EFFECT
         document.addEventListener("DOMContentLoaded", function() {
+            // 1. SCROLL REVEAL EFFECT
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1119,45 +1192,68 @@
                 window.addEventListener('scroll', () => {
                     const rect = videoCard.getBoundingClientRect();
                     const windowHeight = window.innerHeight;
-                    // Dist from center of viewport
                     const centerOffset = (rect.top + rect.height / 2) - (windowHeight / 2);
                     
-                    // Dynamic 3D Tilt calculation
                     const tiltX = Math.min(Math.max((centerOffset / windowHeight) * 35, -25), 25);
                     const scale = Math.max(0.88, 1 - Math.abs(centerOffset / windowHeight) * 0.2);
 
                     videoCard.style.transform = `rotateX(${tiltX}deg) scale(${scale})`;
                 });
             }
-        });
 
-        // 4. PRICING TOGGLE
-        const toggle = document.getElementById('priceToggle');
-        const p1 = document.getElementById('p1');
-        const p2 = document.getElementById('p2');
-        let isAnnual = false;
+            // 4. PRICING TOGGLE
+            const toggle = document.getElementById('priceToggle');
+            const p1 = document.getElementById('p1');
+            const p2 = document.getElementById('p2');
+            let isAnnual = false;
 
-        toggle.addEventListener('click', () => {
-            isAnnual = !isAnnual;
-            toggle.classList.toggle('active', isAnnual);
-            if (isAnnual) {
-                p1.innerHTML = '$399<span style="font-size: 15px; color: #64748b;">/mo</span>';
-                p2.innerHTML = '$1099<span style="font-size: 15px; color: #64748b;">/mo</span>';
-            } else {
-                p1.innerHTML = '$499<span style="font-size: 15px; color: #64748b;">/mo</span>';
-                p2.innerHTML = '$1199<span style="font-size: 15px; color: #64748b;">/mo</span>';
+            if (toggle) {
+                toggle.addEventListener('click', () => {
+                    isAnnual = !isAnnual;
+                    toggle.classList.toggle('active', isAnnual);
+                    if (isAnnual) {
+                        p1.innerHTML = '$399<span style="font-size: 15px; color: #64748b;">/mo</span>';
+                        p2.innerHTML = '$1099<span style="font-size: 15px; color: #64748b;">/mo</span>';
+                    } else {
+                        p1.innerHTML = '$499<span style="font-size: 15px; color: #64748b;">/mo</span>';
+                        p2.innerHTML = '$1199<span style="font-size: 15px; color: #64748b;">/mo</span>';
+                    }
+                });
             }
-        });
 
-        // 5. FAQ ACCORDION TOGGLE
-        document.querySelectorAll('.faq-box').forEach(box => {
-            box.addEventListener('click', () => {
-                const isOpen = box.classList.contains('open');
-                document.querySelectorAll('.faq-box').forEach(b => b.classList.remove('open'));
-                if (!isOpen) {
-                    box.classList.add('open');
-                }
+            // 5. FAQ ACCORDION TOGGLE
+            document.querySelectorAll('.faq-box').forEach(box => {
+                box.addEventListener('click', () => {
+                    const isOpen = box.classList.contains('open');
+                    document.querySelectorAll('.faq-box').forEach(b => b.classList.remove('open'));
+                    if (!isOpen) {
+                        box.classList.add('open');
+                    }
+                });
             });
+
+            // 6. MENU TOGGLE DROPDOWN LOGIC
+            const menuToggle = document.getElementById('menuToggle');
+            const navDropdown = document.getElementById('navDropdown');
+
+            if (menuToggle && navDropdown) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    navDropdown.classList.toggle('open');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!navDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+                        navDropdown.classList.remove('open');
+                    }
+                });
+
+                navDropdown.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navDropdown.classList.remove('open');
+                    });
+                });
+            }
         });
     </script>
 </body>
