@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conicorn - AI Automation Agency</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Smooth Scroll Lenis Library -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
+
+    <style>
+        /* --- CORE STYLES & RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        :root {
+            --bg: #070709;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-hover: rgba(255, 255, 255, 0.07);
+            --gradient-text: linear-gradient(135deg, #f0abfc, #c084fc, #818cf8);
+            --accent-purple: #a855f7;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- BACKGROUND VIDEO --- */
+        .bg-video-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .bg-video-wrapper video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.65) contrast(1.1);
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(7, 7, 9, 0.2) 0%, rgba(7, 7, 9, 0.85) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- IPHONE GLASSMORPHISM UTILITY --- */
+        .glass {
+            background: var(--card-bg);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .glass-pill {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 100px;
+        }
+
+        /* --- FLOATING NAVBAR --- */
+        header {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 90%;
+            max-width: 540px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+        }
+
+        .nav-logo-btn {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .nav-menu-btn {
+            background: transparent;
+            border: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-cta-btn {
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 20px 80px 20px;
+            position: relative;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #e2e8f0;
+            margin-bottom: 28px;
+        }
+
+        .hero-title-gradient {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .hero-title-white {
+            font-size: clamp(2.8rem, 7vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            color: #ffffff;
+            margin-bottom: 28px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            color: #94a3b8;
+            max-width: 650px;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-glass-cta {
+            padding: 16px 32px;
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-glass-cta:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- MARQUEE SLIDER (Brand Logos) --- */
+        .marquee-section {
+            padding: 40px 0;
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+
+        .marquee-track {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            width: max-content;
+            animation: marquee 25s linear infinite;
+        }
+
+        .marquee-item {
+            font-size: 20px;
+            font-weight: 700;
+            color: #64748b;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0.7;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* --- SECTION 2: WHO WE ARE --- */
+        .section-padding {
+            padding: 120px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .who-we-are-text {
+            font-size: clamp(1.8rem, 4vw, 3.2rem);
+            font-weight: 700;
+            line-height: 1.3;
+            color: #ffffff;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto 60px auto;
+            letter-spacing: -1px;
+        }
+
+        /* --- VIDEO SHOWCASE CARD & STATS --- */
+        .video-card-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            padding: 12px;
+        }
+
+        .video-card-inner {
+            width: 100%;
+            height: 480px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            background: #111;
+        }
+
+        .video-card-inner img,
+        .video-card-inner video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-btn-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+
+        /* --- FEATURE GRID (WHY CHOOSE US) --- */
+        .section-tag {
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            text-align: center;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .section-heading {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            padding: 40px 30px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-6px);
+            border-color: rgba(255, 255, 255, 0.18);
+        }
+
+        .feature-icon-box {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            color: #94a3b8;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* --- PROCESS SECTION (HOW WE WORK) --- */
+        .process-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .process-item {
+            padding: 28px 36px;
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            transition: background 0.3s ease;
+        }
+
+        .process-num {
+            font-size: 18px;
+            font-weight: 800;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        /* --- PRICING SECTION --- */
+        .pricing-toggle-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+
+        .toggle-switch {
+            width: 60px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            padding: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .toggle-dot {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .toggle-switch.active .toggle-dot {
+            transform: translateX(28px);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            padding: 48px 36px;
+            position: relative;
+        }
+
+        .price-amount {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 20px 0 30px 0;
+            letter-spacing: -2px;
+        }
+
+        /* --- FAQ ACCORDION --- */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-item {
+            padding: 24px 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question {
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, margin-top 0.4s ease;
+            color: #94a3b8;
+            font-size: 15px;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 16px;
+        }
+
+        /* --- LEAD FORM CARD --- */
+        .lead-card {
+            max-width: 680px;
+            margin: 80px auto 0 auto;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 18px;
+            background: #ffffff;
+            color: #000;
+            font-weight: 800;
+            font-size: 16px;
+            border-radius: 14px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .btn-submit:hover {
+            transform: scale(1.02);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 24px 40px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* --- SCROLL ANIMATION EFFECTS --- */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-glass-cta {
+                width: 100%;
+                justify-content: center;
+            }
+            .lead-card {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 3D BACKGROUND VIDEO -->
+    <div class="bg-video-wrapper">
+        <video autoplay loop muted playsinline>
+            <source src="images/bg-video.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="bg-overlay"></div>
+
+    <!-- FLOATING HEADER NAVBAR -->
+    <header>
+        <nav class="glass-pill">
+            <button class="nav-logo-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 8 4 4-4 4M8 12h8"/></svg>
+            </button>
+            <button class="nav-menu-btn">
+                <span>≡</span> Menu
+            </button>
+            <button class="nav-cta-btn">Get this Template</button>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-badge glass-pill scroll-reveal">🦄 UNICORN AI PARTNER</div>
+        <h1 class="hero-title-gradient scroll-reveal">Intelligent Automation</h1>
+        <h1 class="hero-title-white scroll-reveal">for Modern Teams</h1>
+        <p class="hero-subtitle scroll-reveal">
+            We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.
+        </p>
+        <div class="hero-actions scroll-reveal">
+            <button class="btn-glass-cta">Get this Template <span>→</span></button>
+            <button class="btn-glass-cta">👥 Work with Us</button>
+        </div>
+    </section>
+
+    <!-- INFINITE LOGO MARQUEE -->
+    <div class="marquee-section">
+        <div class="marquee-track">
+            <div class="marquee-item"><span>⚡</span> LOGOIPSUM</div>
+            <div class="marquee-item"><span>❖</span> IPSUM</div>
+            <div class="marquee-item"><span>✦</span> LOGOIPSUM FOUNDATION</div>
+            <div class="marquee-item"><span>▲</span> IPSUM</div>
+            <div class="marquee-item"><span>●</span> LOGOIPSUM</div>
+            <div class="marquee-item"><span>⚡</span> LOGOIPSUM</div>
+            <div class="marquee-item"><span>❖</span> IPSUM</div>
+            <div class="marquee-item"><span>✦</span> LOGOIPSUM FOUNDATION</div>
+            <div class="marquee-item"><span>▲</span> IPSUM</div>
+            <div class="marquee-item"><span>●</span> LOGOIPSUM</div>
+        </div>
+    </div>
+
+    <!-- WHO WE ARE SECTION -->
+    <section class="section-padding">
+        <span class="section-tag scroll-reveal">001 • WHO WE ARE</span>
+        <h2 class="who-we-are-text scroll-reveal">
+            We help startups, SMEs & enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
+        </h2>
+
+        <!-- FLOATING VIDEO CARD -->
+        <div class="video-card-container glass scroll-reveal">
+            <div class="video-card-inner">
+                <video autoplay loop muted playsinline>
+                    <source src="images/bg-video.mp4" type="video/mp4">
+                </video>
+                <div class="play-btn-overlay">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="section-padding">
+        <span class="section-tag scroll-reveal">002 • VALUE</span>
+        <h2 class="section-heading scroll-reveal">Why Choose Us?</h2>
+        <div class="grid-3">
+            <div class="feature-card glass scroll-reveal">
+                <div class="feature-icon-box">🎯</div>
+                <h3 class="feature-title">Business-First AI Strategy</h3>
+                <p class="feature-desc">We design business solutions aligned with your revenue goals, ensuring clear ROI from day one.</p>
+            </div>
+            <div class="feature-card glass scroll-reveal">
+                <div class="feature-icon-box">🚀</div>
+                <h3 class="feature-title">End-to-End Implementation</h3>
+                <p class="feature-desc">From strategy to development, followed by fast deployment and continuous optimization.</p>
+            </div>
+            <div class="feature-card glass scroll-reveal">
+                <div class="feature-icon-box">⚙️</div>
+                <h3 class="feature-title">Custom-Built Automation</h3>
+                <p class="feature-desc">No templates. Every workflow is tailored to your unique operations and software ecosystem.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW WE WORK (PROCESS) -->
+    <section class="section-padding">
+        <span class="section-tag scroll-reveal">003 • PROCESS</span>
+        <h2 class="section-heading scroll-reveal">How We Work</h2>
+        <div class="process-list">
+            <div class="process-item glass scroll-reveal">
+                <div class="process-num">01</div>
+                <div>
+                    <h3 style="font-size: 18px; font-weight:700;">Discovery & Audit</h3>
+                    <p style="color: #94a3b8; font-size: 14px;">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
+                </div>
+            </div>
+            <div class="process-item glass scroll-reveal">
+                <div class="process-num">02</div>
+                <div>
+                    <h3 style="font-size: 18px; font-weight:700;">Automation Blueprint</h3>
+                    <p style="color: #94a3b8; font-size: 14px;">We design a detailed automation architecture aligned with your business KPIs.</p>
+                </div>
+            </div>
+            <div class="process-item glass scroll-reveal">
+                <div class="process-num">03</div>
+                <div>
+                    <h3 style="font-size: 18px; font-weight:700;">Build & Integration</h3>
+                    <p style="color: #94a3b8; font-size: 14px;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING SECTION -->
+    <section class="section-padding">
+        <span class="section-tag scroll-reveal">004 • PRICING</span>
+        <h2 class="section-heading scroll-reveal">Built for Growth at Every Stage</h2>
+        
+        <div class="pricing-toggle-wrap scroll-reveal">
+            <span>MONTHLY</span>
+            <div class="toggle-switch" id="priceToggle">
+                <div class="toggle-dot"></div>
+            </div>
+            <span>ANNUALLY (SAVE 20%)</span>
+        </div>
+
+        <div class="pricing-grid">
+            <div class="price-card glass scroll-reveal">
+                <h3 style="font-size: 20px;">Starter Automation</h3>
+                <p style="color: #94a3b8; font-size:14px;">For small teams beginning their journey</p>
+                <div class="price-amount" id="starterPrice">$499<span style="font-size: 16px; color:#94a3b8;">/mo</span></div>
+                <button class="btn-submit" style="background: rgba(255,255,255,0.1); color:#fff; margin-bottom:20px;">Get Starter Package</button>
+            </div>
+            <div class="price-card glass scroll-reveal" style="border-color: rgba(168, 85, 247, 0.4);">
+                <div style="position: absolute; top: 20px; right: 20px; font-size:11px; font-weight:800; background: var(--accent-purple); padding: 4px 12px; border-radius:100px;">MOST POPULAR</div>
+                <h3 style="font-size: 20px;">Growth Automation</h3>
+                <p style="color: #94a3b8; font-size:14px;">For scaling businesses</p>
+                <div class="price-amount" id="growthPrice">$1199<span style="font-size: 16px; color:#94a3b8;">/mo</span></div>
+                <button class="btn-submit" style="margin-bottom:20px;">Get Growth Package</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="section-padding">
+        <span class="section-tag scroll-reveal">005 • FAQS</span>
+        <h2 class="section-heading scroll-reveal">Common Questions</h2>
+        
+        <div class="faq-container">
+            <div class="faq-item glass scroll-reveal">
+                <div class="faq-question">
+                    What industries do you work with?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    We work with businesses across real estate, e-commerce, finance, education, SaaS, and marketing agencies.
+                </div>
+            </div>
+            <div class="faq-item glass scroll-reveal">
+                <div class="faq-question">
+                    How long does implementation take?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Most standard workflows take between 2 to 4 weeks from discovery to deployment.
+                </div>
+            </div>
+            <div class="faq-item glass scroll-reveal">
+                <div class="faq-question">
+                    Is AI automation secure?
+                    <span>+</span>
+                </div>
+                <div class="faq-answer">
+                    Yes, we enforce end-to-end encryption and strict role-based access control for all API integrations.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEAD FORM SECTION -->
+    <section class="section-padding">
+        <div class="lead-card glass scroll-reveal">
+            <h2 style="font-size: 2.2rem; font-weight:800; margin-bottom:12px;">Your Competitors Are Automating. Are You?</h2>
+            <p style="color: #94a3b8; margin-bottom: 30px; font-size:15px;">Stop wasting time on manual processes. Start building a self-running business.</p>
+            <form onsubmit="event.preventDefault(); alert('Request Sent!');">
+                <input type="text" placeholder="Your name*" class="form-input" required>
+                <input type="text" placeholder="Your company name*" class="form-input" required>
+                <input type="email" placeholder="Your business email*" class="form-input" required>
+                <textarea placeholder="Share project details*" class="form-input" rows="4" required style="resize:none;"></textarea>
+                <button type="submit" class="btn-submit">Send Your Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Conicorn AI. All rights reserved. Made with Framer style smooth code.</p>
+    </footer>
+
+    <!-- JAVASCRIPT SCRIPTS -->
+    <script>
+        // 1. LENIS SMOOTH SCROLLING (मक्खन स्क्रॉल के लिए)
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothTouch: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 2. SCROLL REVEAL ANIMATIONS
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+        });
+
+        // 3. PRICING TOGGLE SWITCH (MONTHLY / ANNUALLY)
+        const toggle = document.getElementById('priceToggle');
+        const starterPrice = document.getElementById('starterPrice');
+        const growthPrice = document.getElementById('growthPrice');
+        let isAnnual = false;
+
+        toggle.addEventListener('click', () => {
+            isAnnual = !isAnnual;
+            toggle.classList.toggle('active', isAnnual);
+            if (isAnnual) {
+                starterPrice.innerHTML = '$399<span style="font-size: 16px; color:#94a3b8;">/mo</span>';
+                growthPrice.innerHTML = '$1099<span style="font-size: 16px; color:#94a3b8;">/mo</span>';
+            } else {
+                starterPrice.innerHTML = '$499<span style="font-size: 16px; color:#94a3b8;">/mo</span>';
+                growthPrice.innerHTML = '$1199<span style="font-size: 16px; color:#94a3b8;">/mo</span>';
+            }
+        });
+
+        // 4. FAQ ACCORDION INTERACTION
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
