@@ -37,29 +37,6 @@
             line-height: 1.5;
         }
 
-        /* --- THE WONDER (BACKGROUND ORB) --- */
-        .wonder-bg {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 70vw;
-            height: 70vw;
-            max-width: 900px;
-            max-height: 900px;
-            background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(99, 102, 241, 0.08) 40%, transparent 70%);
-            filter: blur(60px);
-            z-index: -3; /* सबसे पीछे */
-            border-radius: 50%;
-            animation: breathe 8s infinite alternate ease-in-out;
-            pointer-events: none;
-        }
-
-        @keyframes breathe {
-            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.7; }
-            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
-        }
-
         /* --- BACKGROUND VIDEO SETUP --- */
         .bg-video-wrapper {
             position: fixed;
@@ -75,7 +52,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.5) contrast(1.1);
+            filter: brightness(0.7) contrast(1.1);
         }
 
         .bg-overlay {
@@ -84,12 +61,12 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.5) 0%, rgba(8, 8, 10, 0.95) 100%);
+            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.3) 0%, rgba(8, 8, 10, 0.9) 100%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* --- GLASSMORPHISM CARDS --- */
+        /* --- APPLE IPHONE GLASSMORPHISM --- */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(25px);
@@ -108,7 +85,7 @@
             border-radius: 100px;
         }
 
-        /* --- FLOATING NAVBAR --- */
+        /* --- FLOATING HEADER / NAVBAR --- */
         header {
             position: fixed;
             top: 20px;
@@ -116,7 +93,7 @@
             transform: translateX(-50%);
             z-index: 1000;
             width: 90%;
-            max-width: 550px;
+            max-width: 520px;
         }
 
         nav {
@@ -138,11 +115,6 @@
             border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-        }
-
         .nav-link {
             color: #fff;
             text-decoration: none;
@@ -151,11 +123,6 @@
             display: flex;
             align-items: center;
             gap: 6px;
-            transition: color 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #a78bfa;
         }
 
         .btn-header {
@@ -168,7 +135,6 @@
             font-size: 13px;
             cursor: pointer;
             transition: transform 0.2s ease;
-            text-decoration: none;
         }
 
         .btn-header:hover {
@@ -244,7 +210,6 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s ease;
-            text-decoration: none;
         }
 
         .btn-glass:hover {
@@ -252,33 +217,29 @@
             transform: translateY(-2px);
         }
 
-        /* --- INFINITE MARQUEE SLIDER (BOLD & SEAMLESS) --- */
+        /* --- MARQUEE SLIDER --- */
         .marquee-container {
-            padding: 40px 0;
+            padding: 30px 0;
             overflow: hidden;
-            background: rgba(0,0,0,0.2);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
 
         .marquee-content {
             display: flex;
+            gap: 60px;
             width: max-content;
-            animation: marquee 25s linear infinite;
+            animation: marquee 20s linear infinite;
         }
 
         .marquee-item {
-            font-size: 22px; /* एकदम बोल्ड */
-            font-weight: 800;
-            color: #ffffff;
-            opacity: 0.6;
-            letter-spacing: 2px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #52525b;
+            letter-spacing: 1px;
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 0 40px;
+            gap: 8px;
         }
 
         @keyframes marquee {
@@ -312,23 +273,24 @@
             letter-spacing: -1px;
         }
 
-        /* --- WHO WE ARE (WORD-BY-WORD SCROLL HIGHLIGHT) --- */
+        /* --- WHO WE ARE (TEXT HIGHLIGHT ON SCROLL) --- */
         .text-reveal-box {
             font-size: clamp(1.8rem, 3.8vw, 3rem);
-            font-weight: 800;
+            font-weight: 700;
             line-height: 1.3;
             text-align: center;
             max-width: 950px;
             margin: 0 auto 60px auto;
         }
 
+        /* सिर्फ शब्द-दर-शब्द के लिए नया CSS */
         .text-reveal-box span {
-            color: rgba(255, 255, 255, 0.15); /* डिफ़ॉल्ट फीका */
+            color: rgba(255, 255, 255, 0.2);
             transition: color 0.4s ease;
         }
 
         .text-reveal-box span.active-word {
-            color: #ffffff; /* स्क्रॉल होने पर ब्राइट */
+            color: #ffffff;
         }
 
         /* --- VIDEO MOCKUP CARD --- */
@@ -355,90 +317,21 @@
             object-fit: cover;
         }
 
-        /* --- TECHNOLOGY ECOSYSTEM (MULTI-ROW MARQUEE) --- */
-        .tech-ecosystem {
-            padding: 80px 0;
-            position: relative;
-            overflow: hidden;
-            background: rgba(0, 0, 0, 0.3);
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .tech-marquee-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: relative;
-        }
-
-        .tech-row {
-            display: flex;
-            width: max-content;
-            gap: 20px;
-        }
-
-        .scroll-left { animation: scrollLeft 35s linear infinite; }
-        .scroll-right { animation: scrollRight 35s linear infinite; }
-
-        @keyframes scrollLeft {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        @keyframes scrollRight {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
-        }
-
-        .tech-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 16px 32px;
-            border-radius: 40px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            white-space: nowrap;
-        }
-
-        .center-badge-overlay {
+        .play-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 10;
-        }
-
-        .conicorn-badge {
-            width: 160px;
-            height: 160px;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), rgba(0,0,0,0.8));
-            backdrop-filter: blur(15px);
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
             border-radius: 50%;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            color: #fff;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 0 15px rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .conicorn-badge:hover {
-            transform: scale(1.05);
-        }
-
-        .conicorn-badge span {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-top: 8px;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            cursor: pointer;
         }
 
         /* --- GRID LAYOUTS --- */
@@ -482,6 +375,22 @@
             line-height: 1.6;
         }
 
+        /* --- BENTO GRID FOR AI SERVICES --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .bento-col-8 { grid-column: span 8; }
+        .bento-col-4 { grid-column: span 4; }
+        .bento-col-6 { grid-column: span 6; }
+        .bento-col-12 { grid-column: span 12; }
+
+        @media (max-width: 900px) {
+            .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
+        }
+
         /* --- PROCESS TIMELINE --- */
         .process-stack {
             display: flex;
@@ -509,6 +418,65 @@
             font-weight: 800;
             font-size: 15px;
             flex-shrink: 0;
+        }
+
+        /* --- TECH ECOSYSTEM SPHERE --- */
+        .ecosystem-wrap {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .eco-center-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- PRICING --- */
+        .pricing-switch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 40px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .toggle-bg {
+            width: 56px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            padding: 3px;
+            cursor: pointer;
+        }
+
+        .toggle-circle {
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-bg.active .toggle-circle {
+            transform: translateX(26px);
+        }
+
+        .price-val {
+            font-size: 3.2rem;
+            font-weight: 800;
+            margin: 16px 0 24px 0;
+            letter-spacing: -1.5px;
         }
 
         /* --- FAQ ACCORDION --- */
@@ -619,12 +587,8 @@
 </head>
 <body>
 
-    <!-- WONDER ORB BACKGROUND -->
-    <div class="wonder-bg"></div>
-
     <!-- 3D BACKGROUND VIDEO -->
     <div class="bg-video-wrapper">
-        <!-- अपनी वीडियो यहाँ अपलोड करें -->
         <video autoplay loop muted playsinline>
             <source src="images/bg-video.mp4" type="video/mp4">
         </video>
@@ -637,51 +601,51 @@
             <div class="nav-logo">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 8 4 4-4 4M8 12h8"/></svg>
             </div>
-            <div class="nav-links">
-                <a href="#" class="nav-link">Home</a>
-                <a href="#contact" class="nav-link">Contact</a>
-            </div>
-            <a href="#contact" class="btn-header">Get this Template</a>
+            <a href="#" class="nav-link"><span>≡</span> Menu</a>
+            <button class="btn-header">Get this Template</button>
         </nav>
     </header>
 
     <!-- 1. HERO SECTION -->
     <section class="hero">
-        <div class="badge-hero glass-pill reveal-on-scroll">✦ UNICORN AI PARTNER</div>
+        <div class="badge-hero glass-pill reveal-on-scroll">✏️ UNICORN AI PARTNER</div>
         <h1 class="title-gradient reveal-on-scroll">Intelligent Automation</h1>
         <h1 class="title-white reveal-on-scroll">for Modern Teams</h1>
         <p class="hero-desc reveal-on-scroll">
             We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.
         </p>
         <div class="hero-btns reveal-on-scroll">
-            <a href="#contact" class="btn-glass">Get this Template <span>→</span></a>
-            <a href="#contact" class="btn-glass">❖ Work with Us</a>
+            <button class="btn-glass">Get this Template <span>→</span></button>
+            <button class="btn-glass">👥 Work with Us</button>
         </div>
     </section>
 
-    <!-- 2. INFINITE LOGO MARQUEE (BOLD) -->
+    <!-- 2. INFINITE LOGO MARQUEE -->
     <div class="marquee-container">
         <div class="marquee-content">
-            <!-- Set 1 -->
             <div class="marquee-item"><span>⚡</span> LOGOIPSUM</div>
-            <div class="marquee-item"><span>❖</span> AIPM</div>
-            <div class="marquee-item"><span>✦</span> CONICORN FOUNDATION</div>
+            <div class="marquee-item"><span>❖</span> IPSUM</div>
+            <div class="marquee-item"><span>✦</span> LOGOIPSUM FOUNDATION</div>
             <div class="marquee-item"><span>▲</span> IPSUM</div>
             <div class="marquee-item"><span>●</span> LOGOIPSUM</div>
-            <!-- Set 2 (Duplicate for seamless loop) -->
             <div class="marquee-item"><span>⚡</span> LOGOIPSUM</div>
-            <div class="marquee-item"><span>❖</span> AIPM</div>
-            <div class="marquee-item"><span>✦</span> CONICORN FOUNDATION</div>
+            <div class="marquee-item"><span>❖</span> IPSUM</div>
+            <div class="marquee-item"><span>✦</span> LOGOIPSUM FOUNDATION</div>
             <div class="marquee-item"><span>▲</span> IPSUM</div>
             <div class="marquee-item"><span>●</span> LOGOIPSUM</div>
         </div>
     </div>
 
-    <!-- 3. WHO WE ARE (WORD-BY-WORD SCROLL HIGHLIGHT) -->
+    <!-- 3. WHO WE ARE (TEXT HIGHLIGHT + IMAGES) -->
     <section class="section">
         <span class="tag-sub reveal-on-scroll">001 • WHO WE ARE</span>
         <div class="text-reveal-box reveal-on-scroll" id="scrollHighlightText">
             We help startups, SMEs & enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
+        </div>
+
+        <!-- WE HELP के नीचे इमेज लगाने का ऑप्शन (we-help-image.jpg नाम से सेव करें) -->
+        <div class="reveal-on-scroll" style="text-align: center; margin-bottom: 40px;">
+            <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 18px; border: 1px solid rgba(255, 255, 255, 0.1);">
         </div>
 
         <div class="video-card glass-card reveal-on-scroll">
@@ -689,6 +653,9 @@
                 <video autoplay loop muted playsinline>
                     <source src="images/bg-video.mp4" type="video/mp4">
                 </video>
+                <div class="play-overlay">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                </div>
             </div>
         </div>
     </section>
@@ -716,9 +683,37 @@
         </div>
     </section>
 
-    <!-- 5. HOW WE WORK (PROCESS) -->
+    <!-- 5. OUR AI-DRIVEN SERVICES (BENTO GRID) -->
     <section class="section">
-        <span class="tag-sub reveal-on-scroll">003 • PROCESS</span>
+        <span class="tag-sub reveal-on-scroll">003 • CAPABILITIES</span>
+        <h2 class="heading-main reveal-on-scroll">Our AI-Driven Services</h2>
+        <div class="bento-grid">
+            <div class="bento-col-8 glass-card card-inner reveal-on-scroll">
+                <div class="icon-box">🤖</div>
+                <h3 class="card-title">AI Workflow Automation</h3>
+                <p class="card-desc">Automate repetitive tasks using intelligent triggers and decision logic. Real-time system integration with validated output.</p>
+            </div>
+            <div class="bento-col-4 glass-card card-inner reveal-on-scroll">
+                <div class="icon-box">💬</div>
+                <h3 class="card-title">AI Chatbots & Agents</h3>
+                <p class="card-desc">24/7 customer support, lead qualification, and appointment booking reps.</p>
+            </div>
+            <div class="bento-col-4 glass-card card-inner reveal-on-scroll">
+                <div class="icon-box">📈</div>
+                <h3 class="card-title">CRM & Sales Automation</h3>
+                <p class="card-desc">Pipeline automation, AI lead scoring, and predictive sales insights.</p>
+            </div>
+            <div class="bento-col-8 glass-card card-inner reveal-on-scroll">
+                <div class="icon-box">📊</div>
+                <h3 class="card-title">AI Data & Reporting Systems</h3>
+                <p class="card-desc">Automated dashboards, business intelligence forecasting, and real-time sales telemetry.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. HOW WE WORK (PROCESS) -->
+    <section class="section">
+        <span class="tag-sub reveal-on-scroll">004 • PROCESS</span>
         <h2 class="heading-main reveal-on-scroll">How We Work</h2>
         <div class="process-stack">
             <div class="glass-card process-row reveal-on-scroll">
@@ -739,47 +734,56 @@
                 <div class="process-num">03</div>
                 <div>
                     <h3 style="font-size: 17px; font-weight:700;">Build & Integration</h3>
-                    <p style="color: var(--text-muted); font-size: 14px;">Our engineers implement AI systems and integrate seamlessly with your tools.</p>
+                    <p style="color: var(--text-muted); font-size: 14px;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 6. TECHNOLOGY ECOSYSTEM (LEFT/RIGHT SCROLLING MARQUEE) -->
-    <section class="tech-ecosystem reveal-on-scroll">
-        <span class="tag-sub">004 • ECOSYSTEM</span>
-        <h2 class="heading-main" style="margin-bottom: 40px;">Technology Ecosystem</h2>
+    <!-- 7. TECHNOLOGY ECOSYSTEM -->
+    <section class="section">
+        <span class="tag-sub reveal-on-scroll">005 • INTEGRATIONS</span>
+        <h2 class="heading-main reveal-on-scroll">Technology Ecosystem</h2>
+        <div class="ecosystem-wrap reveal-on-scroll">
+            <div class="eco-center-btn">
+                <span>⚙️</span> Try with Conicorn
+            </div>
+            <p style="color: var(--text-muted); margin-top: 20px; font-size: 14px;">Our architecture connects Salesforce, HubSpot, Zapier, Zoho, OpenAI, and Make seamlessly.</p>
+        </div>
+    </section>
+
+    <!-- 8. PRICING SECTION -->
+    <section class="section">
+        <span class="tag-sub reveal-on-scroll">006 • PRICING</span>
+        <h2 class="heading-main reveal-on-scroll">Built for Growth at Every Stage</h2>
         
-        <div class="tech-marquee-wrapper">
-            <!-- Row 1: Left -->
-            <div class="tech-row scroll-left">
-                <div class="tech-card">Zoho</div><div class="tech-card">Mailchimp</div><div class="tech-card">ActiveCampaign</div><div class="tech-card">Zapier</div><div class="tech-card">OpenAI</div><div class="tech-card">Make</div>
-                <div class="tech-card">Zoho</div><div class="tech-card">Mailchimp</div><div class="tech-card">ActiveCampaign</div><div class="tech-card">Zapier</div><div class="tech-card">OpenAI</div><div class="tech-card">Make</div>
+        <div class="pricing-switch reveal-on-scroll">
+            <span>MONTHLY</span>
+            <div class="toggle-bg" id="priceToggle">
+                <div class="toggle-circle"></div>
             </div>
-            <!-- Row 2: Right -->
-            <div class="tech-row scroll-right">
-                <div class="tech-card">Hubspot</div><div class="tech-card">Salesforce</div><div class="tech-card">Slack</div><div class="tech-card">Airtable</div><div class="tech-card">Stripe</div><div class="tech-card">Shopify</div>
-                <div class="tech-card">Hubspot</div><div class="tech-card">Salesforce</div><div class="tech-card">Slack</div><div class="tech-card">Airtable</div><div class="tech-card">Stripe</div><div class="tech-card">Shopify</div>
-            </div>
-            <!-- Row 3: Left -->
-            <div class="tech-row scroll-left">
-                <div class="tech-card">Zapier</div><div class="tech-card">Zoho</div><div class="tech-card">OpenAI</div><div class="tech-card">Mailchimp</div><div class="tech-card">ActiveCampaign</div><div class="tech-card">Slack</div>
-                <div class="tech-card">Zapier</div><div class="tech-card">Zoho</div><div class="tech-card">OpenAI</div><div class="tech-card">Mailchimp</div><div class="tech-card">ActiveCampaign</div><div class="tech-card">Slack</div>
-            </div>
+            <span>ANNUALLY (SAVE 20%)</span>
         </div>
 
-        <!-- Central Badge Overlay -->
-        <div class="center-badge-overlay">
-            <div class="conicorn-badge">
-                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                <span>Try with Conicorn</span>
+        <div class="grid-3" style="max-width: 800px; margin: 0 auto;">
+            <div class="glass-card card-inner reveal-on-scroll">
+                <h3>Starter Automation</h3>
+                <p style="color: var(--text-muted); font-size:13px;">For small teams beginning their journey</p>
+                <div class="price-val" id="p1">$499<span style="font-size: 15px; color: var(--text-muted);">/mo</span></div>
+                <button class="btn-submit-main" style="background: rgba(255,255,255,0.1); color:#fff;">Get Starter Package</button>
+            </div>
+            <div class="glass-card card-inner reveal-on-scroll" style="border-color: rgba(168, 85, 247, 0.4);">
+                <h3>Growth Automation</h3>
+                <p style="color: var(--text-muted); font-size:13px;">For scaling businesses</p>
+                <div class="price-val" id="p2">$1199<span style="font-size: 15px; color: var(--text-muted);">/mo</span></div>
+                <button class="btn-submit-main">Get Growth Package</button>
             </div>
         </div>
     </section>
 
-    <!-- 7. FAQS -->
+    <!-- 9. FAQS -->
     <section class="section">
-        <span class="tag-sub reveal-on-scroll">005 • FAQS</span>
+        <span class="tag-sub reveal-on-scroll">007 • FAQS</span>
         <h2 class="heading-main reveal-on-scroll">Common Questions</h2>
         
         <div class="faq-stack">
@@ -795,11 +799,24 @@
                 <div class="faq-head">Do we need technical knowledge to work with you? <span>+</span></div>
                 <div class="faq-body">No technical knowledge required. We handle everything from design to code and maintenance.</div>
             </div>
+            <div class="glass-card faq-box reveal-on-scroll">
+                <div class="faq-head">Is AI automation secure? <span>+</span></div>
+                <div class="faq-body">Yes, we enforce end-to-end encryption and strict role-based access control for all API integrations.</div>
+            </div>
         </div>
     </section>
 
-    <!-- 8. CONTACT LEAD FORM -->
-    <section class="section" id="contact">
+    <!-- 10. DEVELOPER PROFILE SECTION (developer-photo.jpg नाम से सेव करें) -->
+    <section class="section">
+        <div class="glass-card card-inner reveal-on-scroll" style="max-width: 350px; margin: 0 auto; text-align: center; padding: 40px 20px;">
+            <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 2px solid rgba(255,255,255,0.2);">
+            <h3 class="card-title">Your Name Here</h3>
+            <p class="card-desc">AI Automation Developer & Founder</p>
+        </div>
+    </section>
+
+    <!-- 11. LEAD FORM CARD -->
+    <section class="section">
         <div class="glass-card form-card reveal-on-scroll">
             <div style="font-size:24px; margin-bottom:10px;">✦</div>
             <h2 style="font-size: 2.2rem; font-weight:800; margin-bottom:10px;">Your Competitors Are Automating. Are You?</h2>
@@ -827,7 +844,7 @@
 
     <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
     <script>
-        // 1. LENIS SMOOTH SCROLLING (Framer-like smooth scroll)
+        // 1. LENIS SMOOTH SCROLLING
         const lenis = new Lenis({
             duration: 1.4,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -840,7 +857,7 @@
         }
         requestAnimationFrame(raf);
 
-        // 2. SCROLL REVEAL EFFECT
+        // 2. SCROLL REVEAL & TEXT HIGHLIGHT EFFECT
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -851,11 +868,10 @@
             }, { threshold: 0.15 });
 
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-            
-            // 3. TEXT HIGHLIGHT WORD-BY-WORD LOGIC
+
+            // 3. TEXT HIGHLIGHT WORD-BY-WORD SCROLL LOGIC
             const textEl = document.getElementById('scrollHighlightText');
             if (textEl) {
-                // Split text into words and wrap in spans
                 const words = textEl.innerText.split(' ');
                 textEl.innerHTML = words.map(w => `<span>${w}</span>`).join(' ');
                 const spans = textEl.querySelectorAll('span');
@@ -874,7 +890,25 @@
             }
         });
 
-        // 4. FAQ ACCORDION TOGGLE
+        // 4. PRICING TOGGLE
+        const toggle = document.getElementById('priceToggle');
+        const p1 = document.getElementById('p1');
+        const p2 = document.getElementById('p2');
+        let isAnnual = false;
+
+        toggle.addEventListener('click', () => {
+            isAnnual = !isAnnual;
+            toggle.classList.toggle('active', isAnnual);
+            if (isAnnual) {
+                p1.innerHTML = '$399<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
+                p2.innerHTML = '$1099<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
+            } else {
+                p1.innerHTML = '$499<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
+                p2.innerHTML = '$1199<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
+            }
+        });
+
+        // 5. FAQ ACCORDION TOGGLE
         document.querySelectorAll('.faq-box').forEach(box => {
             box.addEventListener('click', () => {
                 const isOpen = box.classList.contains('open');
