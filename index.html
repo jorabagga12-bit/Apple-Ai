@@ -8,9 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- Smooth Scroll Lenis -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
-
+    
     <style>
         /* --- RESET & GLOBAL VARIABLES --- */
         * {
@@ -379,7 +377,7 @@
             letter-spacing: -1px;
         }
 
-        /* --- 3D WHITE GLASS WRAPPER (FOR SECTIONS 001 - 007 ONLY) --- */
+        /* --- 3D WHITE GLASS WRAPPER (FIXED WIDTH) --- */
         .white-glass-wrapper {
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(40px);
@@ -387,16 +385,17 @@
             border: 1px solid rgba(255, 255, 255, 0.9);
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.9);
             color: #0f172a;
-            margin-top: 40px;
-            margin-bottom: 60px;
+            
+            /* FIXED WIDTH SO IT DOES NOT CUT OFF */
+            width: 94%; 
+            max-width: 1240px;
+            margin: 40px auto 60px auto; 
+            
             padding-top: 40px;
             padding-bottom: 40px;
             position: relative;
             z-index: 2;
             border-radius: 44px;
-            max-width: 1240px;
-            margin-left: auto;
-            margin-right: auto;
         }
 
         .white-glass-wrapper .glass-card {
@@ -457,7 +456,7 @@
             color: #0f172a;
         }
 
-        /* VIDEO MOCKUP CONTAINER WITH BOLD BACKDROP MARQUEE & 3D TILT */
+        /* VIDEO MOCKUP CONTAINER */
         .video-container-wrapper {
             position: relative;
             width: 100%;
@@ -467,7 +466,7 @@
             perspective: 1000px;
         }
 
-        /* BOLD TEXT PASSING BEHIND VIDEO CARD */
+        /* BOLD TEXT PASSING BEHIND VIDEO CARD (CHANGED TO MONEY AI) */
         .bg-bold-text-marquee {
             position: absolute;
             top: 50%;
@@ -475,10 +474,10 @@
             width: 240%;
             transform: translateY(-50%);
             white-space: nowrap;
-            font-size: clamp(3rem, 7vw, 6rem);
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
             font-weight: 900;
             color: rgba(15, 23, 42, 0.07);
-            letter-spacing: 6px;
+            letter-spacing: 4px;
             pointer-events: none;
             z-index: 0;
             animation: marqueeTextBg 22s linear infinite;
@@ -704,7 +703,7 @@
             margin-top: 14px;
         }
 
-        /* --- DARK GLASS STYLING FOR SECTIONS OUTSIDE WHITE WRAPPER (DEV PROFILE & CONTACT) --- */
+        /* --- DARK GLASS STYLING --- */
         .dark-glass-card {
             background: rgba(255, 255, 255, 0.04) !important;
             backdrop-filter: blur(30px) !important;
@@ -827,7 +826,7 @@
         </nav>
     </header>
 
-    <!-- 1. HERO SECTION (DARK GLASS INTRO) -->
+    <!-- 1. HERO SECTION -->
     <section class="hero">
         <div class="badge-hero glass-pill reveal-on-scroll">
             <span class="pulse-dot"></span> UNICORN AI PARTNER
@@ -859,10 +858,10 @@
         </div>
     </div>
 
-    <!-- START OF 3D WHITE GLASS WRAPPER (SECTIONS 001 TO 007) -->
+    <!-- START OF 3D WHITE GLASS WRAPPER -->
     <div class="white-glass-wrapper">
 
-        <!-- 3. WHO WE ARE (TEXT HIGHLIGHT + IMAGES + 3D VIDEO CARD WITH BG MARQUEE) -->
+        <!-- 3. WHO WE ARE -->
         <section class="section">
             <span class="tag-sub reveal-on-scroll">001 • WHO WE ARE</span>
             <div class="text-reveal-box reveal-on-scroll" id="scrollHighlightText">
@@ -877,7 +876,7 @@
             <!-- 3D VIDEO CONTAINER WITH BOLD TEXT PASSING BEHIND IT -->
             <div class="video-container-wrapper">
                 <div class="bg-bold-text-marquee">
-                    AUTOMATION • AI AGENTS • WORKFLOWS • SCALABLE GROWTH •
+                    MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • 
                 </div>
                 <div class="video-card glass-card reveal-on-scroll" id="3dVideoCard">
                     <div class="video-card-screen">
@@ -915,7 +914,7 @@
             </div>
         </section>
 
-        <!-- 5. OUR AI-DRIVEN SERVICES (BENTO GRID) -->
+        <!-- 5. OUR AI-DRIVEN SERVICES -->
         <section class="section">
             <span class="tag-sub reveal-on-scroll">003 • CAPABILITIES</span>
             <h2 class="heading-main reveal-on-scroll">Our AI-Driven Services</h2>
@@ -943,7 +942,7 @@
             </div>
         </section>
 
-        <!-- 6. HOW WE WORK (PROCESS) -->
+        <!-- 6. HOW WE WORK -->
         <section class="section">
             <span class="tag-sub reveal-on-scroll">004 • PROCESS</span>
             <h2 class="heading-main reveal-on-scroll">How We Work</h2>
@@ -1041,7 +1040,7 @@
 
     </div><!-- END OF WHITE GLASS WRAPPER -->
 
-    <!-- 10. DEVELOPER PROFILE SECTION (OUTSIDE WHITE WRAPPER, BACK OVER 3D BACKGROUND VIDEO) -->
+    <!-- 10. DEVELOPER PROFILE SECTION -->
     <section class="section">
         <div class="dark-glass-card card-inner reveal-on-scroll" style="max-width: 360px; margin: 0 auto; text-align: center; padding: 40px 24px;">
             <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid rgba(255,255,255,0.8); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
@@ -1050,7 +1049,7 @@
         </div>
     </section>
 
-    <!-- 11. LEAD FORM CARD (CONTACT SECTION) -->
+    <!-- 11. LEAD FORM CARD -->
     <section class="section" id="contact">
         <div class="dark-glass-card form-card reveal-on-scroll">
             <div style="margin-bottom:15px;"><div class="spinner-gyro" style="width:30px; height:30px;"></div></div>
@@ -1066,7 +1065,7 @@
         </div>
     </section>
 
-    <!-- FOOTER (DARK MODE OVER BG VIDEO) -->
+    <!-- FOOTER -->
     <footer>
         <div class="footer-links">
             <a href="#">LinkedIn ↗</a>
@@ -1079,20 +1078,7 @@
 
     <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
     <script>
-        // 1. LENIS SMOOTH SCROLLING
-        const lenis = new Lenis({
-            duration: 1.4,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothTouch: true
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // 2. SCROLL REVEAL & TEXT HIGHLIGHT EFFECT
+        // 1. SCROLL REVEAL & TEXT HIGHLIGHT EFFECT
         document.addEventListener("DOMContentLoaded", function() {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -1104,7 +1090,7 @@
 
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
-            // 3. TEXT HIGHLIGHT WORD-BY-WORD SCROLL LOGIC
+            // 2. TEXT HIGHLIGHT WORD-BY-WORD SCROLL LOGIC
             const textEl = document.getElementById('scrollHighlightText');
             if (textEl) {
                 const words = textEl.innerText.split(' ');
@@ -1124,7 +1110,7 @@
                 });
             }
 
-            // 4. SECTION 001 VIDEO CARD 3D TILT & FLATTEN ON SCROLL
+            // 3. SECTION 001 VIDEO CARD 3D TILT & FLATTEN ON SCROLL
             const videoCard = document.getElementById('3dVideoCard');
             if (videoCard) {
                 window.addEventListener('scroll', () => {
@@ -1142,7 +1128,7 @@
             }
         });
 
-        // 5. PRICING TOGGLE
+        // 4. PRICING TOGGLE
         const toggle = document.getElementById('priceToggle');
         const p1 = document.getElementById('p1');
         const p2 = document.getElementById('p2');
@@ -1160,7 +1146,7 @@
             }
         });
 
-        // 6. FAQ ACCORDION TOGGLE
+        // 5. FAQ ACCORDION TOGGLE
         document.querySelectorAll('.faq-box').forEach(box => {
             box.addEventListener('click', () => {
                 const isOpen = box.classList.contains('open');
