@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mani AI Automation Agency</title>
+    <title>MONEY AI - Intelligent Automation Agency</title>
     <style>
-        /* --- RESET & BASIC SETUP --- */
+        /* --- RESET & BASE SETUP --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            scroll-behavior: smooth; /* Smooth scrolling for Contact link */
+            scroll-behavior: smooth;
         }
 
         body {
@@ -20,7 +20,7 @@
             overflow-x: hidden;
         }
 
-        /* --- THE "WONDER" (FIXED 3D BACKGROUND ORB) --- */
+        /* --- BACKGROUND 3D ORB (WONDER) --- */
         .wonder-bg {
             position: fixed;
             top: 50%;
@@ -30,8 +30,8 @@
             height: 80vw;
             max-width: 800px;
             max-height: 800px;
-            background: radial-gradient(circle, rgba(40,40,40,0.9) 0%, rgba(20,20,20,0.6) 40%, rgba(229,229,229,0) 70%);
-            filter: blur(40px);
+            background: radial-gradient(circle, rgba(40,40,40,0.85) 0%, rgba(20,20,20,0.5) 40%, rgba(229,229,229,0) 70%);
+            filter: blur(50px);
             z-index: -1;
             border-radius: 50%;
             animation: breathe 8s infinite alternate ease-in-out;
@@ -43,7 +43,7 @@
             100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
         }
 
-        /* --- NAVIGATION BAR --- */
+        /* --- FIXED NAVIGATION BAR --- */
         nav {
             position: fixed;
             top: 20px;
@@ -51,20 +51,20 @@
             transform: translateX(-50%);
             display: flex;
             align-items: center;
-            gap: 15px;
-            z-index: 100;
+            gap: 12px;
+            z-index: 1000;
         }
 
         .nav-pill {
-            background: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(15px);
-            padding: 10px 20px;
+            padding: 10px 22px;
             border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.6);
+            border: 1px solid rgba(255,255,255,0.7);
             font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
+            font-weight: 600;
             color: #111;
+            text-decoration: none;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -73,304 +73,265 @@
         }
 
         .nav-pill:hover {
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-2px);
+        }
+
+        .nav-pill.dark {
+            background: #111;
+            color: #fff;
+            border-color: #111;
+        }
+
+        .nav-pill.dark:hover {
+            background: #2a2a2a;
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 20px;
+            padding: 120px 20px 60px;
         }
 
         .hero-badge {
             font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 20px;
-            display: inline-block;
-            opacity: 0;
-            animation: simpleFade 1s forwards 0.5s;
+            margin-bottom: 25px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #111;
+            border-radius: 50%;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5.5rem);
-            line-height: 1.1;
-            font-weight: 500;
-            color: #222;
+            font-size: clamp(2.8rem, 5.5vw, 5rem);
+            line-height: 1.15;
+            font-weight: 600;
+            color: #111;
             max-width: 900px;
             margin-bottom: 25px;
         }
 
-        /* Letter Blur Animation Utility */
-        .char-blur {
+        /* Word Blur Animation */
+        .hero h1 .word {
+            display: inline-block;
             opacity: 0;
             filter: blur(15px);
-            display: inline-block;
-            transition: opacity 0.5s ease, filter 0.5s ease;
+            transform: translateY(20px);
+            animation: blurIn 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
-        .char-blur.active {
-            opacity: 1;
-            filter: blur(0);
+        @keyframes blurIn {
+            to {
+                opacity: 1;
+                filter: blur(0px);
+                transform: translateY(0);
+            }
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: #555;
-            max-width: 600px;
-            line-height: 1.5;
+            color: #444;
+            max-width: 620px;
+            line-height: 1.6;
             margin-bottom: 40px;
-            opacity: 0;
-            animation: simpleFade 1s forwards 2s; /* appears after title */
+            opacity: 0.9;
         }
 
         .hero-buttons {
             display: flex;
             gap: 15px;
-            opacity: 0;
-            animation: simpleFade 1s forwards 2.5s;
-        }
-
-        @keyframes simpleFade {
-            to { opacity: 1; }
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .btn-dark {
             background: #111;
             color: #fff;
-            padding: 15px 30px;
+            padding: 16px 32px;
             border-radius: 40px;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dark:hover {
+            background: #333;
+            transform: translateY(-2px);
         }
 
         .btn-light {
             background: rgba(255,255,255,0.7);
             backdrop-filter: blur(10px);
             color: #111;
-            padding: 15px 30px;
+            padding: 16px 32px;
             border-radius: 40px;
             text-decoration: none;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.5);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.6);
+            transition: all 0.3s ease;
         }
 
-        /* --- STYLISH SPONSOR LOGOS --- */
+        .btn-light:hover {
+            background: rgba(255,255,255,0.95);
+            transform: translateY(-2px);
+        }
+
+        /* --- LOGO SPONSOR STRIP --- */
         .logos {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 60px;
-            padding: 50px 0;
+            gap: 50px;
+            opacity: 0.5;
+            padding: 40px 20px;
             flex-wrap: wrap;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
         }
 
         .logos h3 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #555;
-            letter-spacing: -1px;
-            text-transform: lowercase;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-        }
-        
-        .logos h3:hover {
-            opacity: 1;
-            color: #111;
-            transform: scale(1.05);
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
-        /* --- WE HELP SECTION (SCROLL BOLD TEXT) --- */
+        /* --- WE HELP SECTION WITH SCROLL TEXT HIGHLIGHT --- */
         .we-help-section {
-            padding: 150px 20px;
+            padding: 120px 20px;
             text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         .section-tag {
             font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
+            font-weight: 700;
+            letter-spacing: 2px;
             color: #666;
             margin-bottom: 30px;
+            text-transform: uppercase;
         }
 
         .we-help-text {
             font-size: clamp(2rem, 4vw, 3.5rem);
             line-height: 1.3;
-            max-width: 1000px;
-            margin: 0 auto;
-            color: #111;
+            font-weight: 600;
+            color: #333;
         }
 
-        .scroll-word {
-            opacity: 0.3;
-            font-weight: 300;
-            transition: opacity 0.3s ease, font-weight 0.3s ease;
+        /* Each word scroll highlight styling */
+        .we-help-text span {
+            display: inline-block;
+            margin-right: 8px;
+            opacity: 0.2;
+            filter: blur(4px);
+            transition: opacity 0.4s ease, filter 0.4s ease, transform 0.4s ease;
         }
 
-        .scroll-word.bold-active {
+        .we-help-text span.active-word {
             opacity: 1;
-            font-weight: 800; /* एकदम डार्क और बोल्ड */
+            filter: blur(0px);
+            font-weight: 800;
+            color: #000;
+            transform: translateY(-2px);
         }
 
-        /* --- MEDIA SECTION (VIDEO + ROTATING BG + DEV PHOTO) --- */
+        /* --- VIDEO SECTION --- */
         .media-section {
-            padding: 80px 20px;
+            padding: 40px 20px;
             display: flex;
             justify-content: center;
-            position: relative;
-        }
-
-        .rotating-orb-behind {
-            position: absolute;
-            width: 950px;
-            height: 550px;
-            background: linear-gradient(45deg, #111, transparent, #555, transparent);
-            border-radius: 50px;
-            z-index: 0;
-            filter: blur(20px);
-            animation: spinBg 8s linear infinite;
-            opacity: 0.5;
-        }
-
-        @keyframes spinBg {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .media-container {
             width: 100%;
-            max-width: 900px;
-            height: 500px;
-            background: #000;
-            border-radius: 40px;
-            border: 2px solid rgba(255,255,255,0.8);
+            max-width: 920px;
+            height: 520px;
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.8);
             position: relative;
             overflow: hidden;
-            z-index: 1;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
         }
 
         .media-container video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.8;
+            border-radius: 30px;
         }
 
-        .dev-photo {
-            position: absolute;
-            bottom: -30px;
-            right: 15%;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 4px solid #fff;
-            background: #ccc;
-            z-index: 2;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .dev-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* --- BOLD STATS SECTION --- */
+        /* --- STATS SECTION --- */
         .stats-section {
             display: flex;
             justify-content: center;
             gap: 80px;
-            padding: 80px 20px;
+            padding: 100px 20px;
             flex-wrap: wrap;
         }
 
-        .stat-box { text-align: center; }
+        .stat-box {
+            text-align: center;
+        }
 
         .stat-number {
-            font-size: 4rem;
-            font-weight: 800;
+            font-size: 4.5rem;
+            font-weight: 900;
             color: #111;
-            margin-bottom: 10px;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
         }
 
         .stat-text {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: #666;
-            font-weight: 500;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
         }
 
-        /* --- WHY CHOOSE US (GEOMETRIC SHAPES) --- */
-        .choose-us-section {
-            padding: 100px 20px;
-            text-align: center;
-        }
-
-        .cards-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.5);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.8);
-            max-width: 300px;
-            text-align: center;
-        }
-
-        /* Geometric Shapes instead of Emojis */
-        .shape-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 20px;
-            background: #222;
-        }
-
-        .shape-circle { border-radius: 50%; }
-        .shape-square { border-radius: 10px; }
-        .shape-triangle {
-            background: transparent;
-            width: 0; height: 0;
-            border-left: 30px solid transparent;
-            border-right: 30px solid transparent;
-            border-bottom: 60px solid #222;
-        }
-
-        .feature-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
-        .feature-card p { color: #555; line-height: 1.5; }
-
-        /* --- TECHNOLOGY ECOSYSTEM SCROLL SECTION --- */
+        /* --- TECHNOLOGY ECOSYSTEM (MATCHING IMAGE SPECIFICATION) --- */
         .tech-ecosystem {
             padding: 120px 0;
-            text-align: center;
-            overflow: hidden;
             position: relative;
+            overflow: hidden;
+            background: rgba(230, 230, 230, 0.4);
+            border-top: 1px solid rgba(255,255,255,0.6);
+            border-bottom: 1px solid rgba(255,255,255,0.6);
         }
 
-        .tech-ecosystem h2 {
-            font-size: 3rem;
-            margin-bottom: 60px;
+        .tech-title-wrap {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 20px;
         }
 
+        .tech-title-wrap h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        /* Marquee Rows */
         .marquee-wrapper {
             display: flex;
             flex-direction: column;
@@ -380,198 +341,388 @@
 
         .marquee-row {
             display: flex;
-            gap: 20px;
             width: max-content;
+            gap: 20px;
         }
 
-        .marquee-item {
-            background: rgba(255,255,255,0.6);
-            backdrop-filter: blur(10px);
-            padding: 15px 40px;
-            border-radius: 40px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #333;
-            border: 1px solid rgba(255,255,255,0.8);
+        .marquee-left {
+            animation: scrollLeft 35s linear infinite;
         }
 
-        /* Animations for rows */
-        .scroll-left { animation: scrollLeft 30s linear infinite; }
-        .scroll-right { animation: scrollRight 30s linear infinite; }
+        .marquee-right {
+            animation: scrollRight 35s linear infinite;
+        }
 
         @keyframes scrollLeft {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+
         @keyframes scrollRight {
             0% { transform: translateX(-50%); }
             100% { transform: translateX(0); }
         }
 
-        /* Center Orb Try with Mani AI */
-        .center-orb {
+        .tech-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.9);
+            padding: 16px 32px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        /* Central Badge "Try with Money" */
+        .center-badge-overlay {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 180px;
-            height: 180px;
-            background: rgba(20, 20, 20, 0.8);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #fff;
-            font-weight: 600;
-            border: 1px solid rgba(255,255,255,0.2);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             z-index: 10;
         }
 
-        .tech-footer-text {
-            margin-top: 50px;
-            color: #555;
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        .money-badge {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle at 30% 30%, #333, #000);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4), inset 0 0 15px rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            transition: transform 0.3s ease;
         }
 
-        /* --- TIMELINE SECTION --- */
+        .money-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .money-badge svg {
+            width: 36px;
+            height: 36px;
+            fill: #fff;
+            margin-bottom: 8px;
+            animation: spin 12s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .money-badge span {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tech-subtitle {
+            text-align: center;
+            max-width: 650px;
+            margin: 50px auto 0;
+            padding: 0 20px;
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* --- DEVELOPER PROFILE SECTION --- */
+        .developer-section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .dev-card {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.8);
+            max-width: 450px;
+            margin: 0 auto;
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .dev-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid #111;
+        }
+
+        .dev-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .dev-card p.title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .dev-card p.bio {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.5;
+        }
+
+        /* --- HOW WE WORK / TIMELINE --- */
         .timeline-section {
-            padding: 150px 20px;
-            max-width: 1000px;
+            padding: 120px 20px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
-        .timeline-title { text-align: center; font-size: 3rem; margin-bottom: 80px; }
+        .timeline-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 80px;
+        }
 
         .timeline-item {
             display: flex;
             gap: 40px;
-            margin-bottom: 80px;
+            margin-bottom: 70px;
             position: relative;
         }
 
-        .timeline-icon {
-            width: 80px;
-            height: 80px;
-            background: #222;
-            border-radius: 25px;
+        .timeline-shape {
+            width: 70px;
+            height: 70px;
+            background: #111;
+            border-radius: 20px;
             flex-shrink: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #fff;
-            font-size: 24px;
             z-index: 2;
         }
 
-        .timeline-content h3 { font-size: 1.8rem; margin-bottom: 15px; }
-        .timeline-content p { font-size: 1.1rem; color: #555; line-height: 1.6; }
-
-        .timeline-line {
-            position: absolute;
-            left: 39px;
-            top: 80px;
-            bottom: -80px;
-            width: 2px;
-            background: #ccc;
-            z-index: 1;
+        .shape-inner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #fff;
+            border-radius: 50%;
         }
 
-        .timeline-progress {
-            width: 100%;
-            height: 0%;
-            background: #111;
-            transition: height 0.3s ease;
+        .shape-inner.square {
+            border-radius: 4px;
         }
 
-        /* --- CONTACT / FAQ SECTION --- */
-        .faq-section {
+        .shape-inner.triangle {
+            width: 0;
+            height: 0;
+            border: none;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 18px solid #fff;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .timeline-content p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        /* --- TESTIMONIALS SECTION ("WHAT THEY SAY") --- */
+        .testimonials-section {
             padding: 100px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 24px;
+            padding: 30px;
+        }
+
+        .testimonial-card p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .client-info h4 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .client-info span {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* --- FAQ / CONTACT SECTION --- */
+        .faq-section {
+            padding: 100px 20px 140px;
             max-width: 800px;
             margin: 0 auto;
         }
 
         .faq-item {
-            background: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.65);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.8);
             border-radius: 20px;
             padding: 25px;
             margin-bottom: 15px;
             cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(255,255,255,0.9);
         }
 
         .faq-question {
             font-size: 1.2rem;
-            font-weight: 600;
+            font-weight: 700;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
+        .faq-plus {
+            font-size: 1.5rem;
+            font-weight: 400;
+        }
+
+        /* --- BLUR REVEAL GENERIC --- */
+        .blur-reveal {
+            opacity: 0;
+            filter: blur(20px);
+            transform: translateY(30px);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), 
+                        filter 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+                        transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .blur-reveal.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .stats-section {
+                gap: 40px;
+            }
+
+            .money-badge {
+                width: 140px;
+                height: 140px;
+            }
+
+            .money-badge span {
+                font-size: 0.75rem;
+            }
+
+            .media-container {
+                height: 320px;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <!-- 3D WONDER BACKGROUND -->
+    <!-- 3D Orb Background -->
     <div class="wonder-bg"></div>
 
-    <!-- NAVIGATION (Home & Contact added) -->
+    <!-- Navigation Bar -->
     <nav>
-        <a href="#" class="nav-pill" style="border-radius: 50%; padding: 10px;">❄️</a>
-        <a href="#" class="nav-pill">Home</a>
+        <a href="#hero" class="nav-pill">Home</a>
         <a href="#contact" class="nav-pill">Contact</a>
-        <a href="#contact" class="nav-pill" style="background: #111; color: #fff;">Get this Template</a>
+        <a href="#contact" class="nav-pill dark">Get this Template</a>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-        <div class="hero-badge">🚀 UNICORN AI PARTNER</div>
-        <!-- This text will be split into letters by JS for blur reveal -->
-        <h1 id="hero-title">Intelligent Automation <br> for Modern Teams</h1>
-        <p>We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.</p>
-        <div class="hero-buttons">
-            <a href="#contact" class="btn-dark">Get this Template ➔</a>
-            <a href="#contact" class="btn-light">👨‍💼👩‍💼 Work with Us</a>
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-badge blur-reveal">
+            <div class="badge-dot"></div>
+            MONEY AI PARTNER
+        </div>
+
+        <!-- Animated Heading -->
+        <h1 id="hero-heading">
+            Intelligent Automation for Modern Teams
+        </h1>
+
+        <p class="blur-reveal">
+            We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.
+        </p>
+        
+        <div class="hero-buttons blur-reveal">
+            <a href="#contact" class="btn-dark">Get started ➔</a>
+            <a href="#contact" class="btn-light">Work with Us</a>
         </div>
     </section>
 
-    <!-- STYLISH LOGOS -->
-    <div class="logos">
+    <!-- Sponsor Logos -->
+    <div class="logos blur-reveal">
         <h3>LogoIpsum</h3>
         <h3>IP/UM</h3>
-        <h3>Foundation</h3>
-        <h3>Mani AI</h3>
+        <h3>LogoIpsum Foundation</h3>
+        <h3>LogoIpsum</h3>
     </div>
 
-    <!-- WE HELP SECTION (SCROLL BOLD EFFECT) -->
+    <!-- We Help Section with Dynamic Word Highlight on Scroll -->
     <section class="we-help-section">
-        <div class="section-tag">001 ● WHO WE ARE</div>
-        <!-- This text will be split into words by JS -->
-        <h2 id="scroll-text" class="we-help-text">
-            We help startups, SMEs & enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
+        <div class="section-tag blur-reveal">001 ● WHO WE ARE</div>
+        <h2 class="we-help-text" id="scroll-text">
+            We help startups SMEs and enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
         </h2>
     </section>
 
-    <!-- VIDEO SECTION WITH ROTATING BG & DEV PHOTO -->
-    <section class="media-section">
-        <div class="rotating-orb-behind"></div>
+    <!-- Video Section -->
+    <section class="media-section blur-reveal">
         <div class="media-container">
-            <!-- Video File: Tell the user to put "main-video.mp4" in the "images" folder -->
-            <video src="images/main-video.mp4" autoplay loop muted playsinline></video>
-        </div>
-        <!-- Developer Photo -->
-        <div class="dev-photo">
-            <!-- Tell user to put "dev-photo.jpg" in the "images" folder -->
-            <img src="images/dev-photo.jpg" alt="Developer">
+            <!-- Place your video inside images/hero-video.mp4 -->
+            <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80">
+                <source src="images/hero-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </section>
 
-    <!-- BOLD STATS -->
-    <section class="stats-section">
+    <!-- Stats Section -->
+    <section class="stats-section blur-reveal">
         <div class="stat-box">
             <div class="stat-number">10,000+</div>
             <div class="stat-text">HOURS SAVED</div>
@@ -586,113 +737,116 @@
         </div>
     </section>
 
-    <!-- WHY CHOOSE US (SHAPES INSTEAD OF EMOJIS) -->
-    <section class="choose-us-section">
-        <div class="section-tag">002 ● VALUE</div>
-        <h2>Why Choose Us?</h2>
-        <div class="cards-container">
-            <div class="feature-card">
-                <div class="shape-icon shape-circle"></div>
-                <h3>Business-First AI</h3>
-                <p>We design solutions aligned with your revenue goals.</p>
-            </div>
-            <div class="feature-card">
-                <div class="shape-icon shape-triangle"></div>
-                <h3>End-to-End</h3>
-                <p>From strategy to deployment, followed by optimization.</p>
-            </div>
-            <div class="feature-card">
-                <div class="shape-icon shape-square"></div>
-                <h3>Custom-Built</h3>
-                <p>No templates. Every workflow is tailored to your needs.</p>
-            </div>
+    <!-- Technology Ecosystem Section (Multi-Row Marquee) -->
+    <section class="tech-ecosystem blur-reveal">
+        <div class="tech-title-wrap">
+            <h2>Technology Ecosystem</h2>
         </div>
-    </section>
 
-    <!-- TECHNOLOGY ECOSYSTEM SECTION (Based on Image) -->
-    <section class="tech-ecosystem" id="integrations">
-        <div class="section-tag">006 ● INTEGRATIONS</div>
-        <h2>Technology Ecosystem</h2>
-        
         <div class="marquee-wrapper">
-            <!-- Row 1: Left Scroll -->
-            <div class="marquee-row scroll-left">
-                <div class="marquee-item">Make</div>
-                <div class="marquee-item">Custom APIs</div>
-                <div class="marquee-item">HubSpot</div>
-                <div class="marquee-item">Salesforce</div>
-                <div class="marquee-item">Zapier</div>
-                <!-- Duplicate for seamless loop -->
-                <div class="marquee-item">Make</div>
-                <div class="marquee-item">Custom APIs</div>
-                <div class="marquee-item">HubSpot</div>
-                <div class="marquee-item">Salesforce</div>
-                <div class="marquee-item">Zapier</div>
-            </div>
-            
-            <!-- Row 2: Right Scroll -->
-            <div class="marquee-row scroll-right">
-                <div class="marquee-item">Zapier</div>
-                <div class="marquee-item">OpenAI</div>
-                <div class="marquee-item">Mani AI</div>
-                <div class="marquee-item">Make</div>
-                <div class="marquee-item">Zoho</div>
-                <!-- Duplicate -->
-                <div class="marquee-item">Zapier</div>
-                <div class="marquee-item">OpenAI</div>
-                <div class="marquee-item">Mani AI</div>
-                <div class="marquee-item">Make</div>
-                <div class="marquee-item">Zoho</div>
+            <!-- Row 1: Left -->
+            <div class="marquee-row marquee-left">
+                <div class="tech-card">Zoho</div>
+                <div class="tech-card">Mailchimp</div>
+                <div class="tech-card">ActiveCampaign</div>
+                <div class="tech-card">Zapier</div>
+                <div class="tech-card">OpenAI</div>
+                <div class="tech-card">Cloudflare</div>
+                <div class="tech-card">Zoho</div>
+                <div class="tech-card">Mailchimp</div>
+                <div class="tech-card">ActiveCampaign</div>
+                <div class="tech-card">Zapier</div>
+                <div class="tech-card">OpenAI</div>
+                <div class="tech-card">Cloudflare</div>
             </div>
 
-            <!-- Row 3: Left Scroll -->
-            <div class="marquee-row scroll-left">
-                <div class="marquee-item">Custom APIs</div>
-                <div class="marquee-item">HubSpot</div>
-                <div class="marquee-item">Salesforce</div>
-                <div class="marquee-item">Zoho</div>
-                <div class="marquee-item">OpenAI</div>
-                <!-- Duplicate -->
-                <div class="marquee-item">Custom APIs</div>
-                <div class="marquee-item">HubSpot</div>
-                <div class="marquee-item">Salesforce</div>
-                <div class="marquee-item">Zoho</div>
-                <div class="marquee-item">OpenAI</div>
+            <!-- Row 2: Right -->
+            <div class="marquee-row marquee-right">
+                <div class="tech-card">ActiveCampaign</div>
+                <div class="tech-card">OpenAI</div>
+                <div class="tech-card">Zapier</div>
+                <div class="tech-card">Mailchimp</div>
+                <div class="tech-card">Zoho</div>
+                <div class="tech-card">Hubspot</div>
+                <div class="tech-card">ActiveCampaign</div>
+                <div class="tech-card">OpenAI</div>
+                <div class="tech-card">Zapier</div>
+                <div class="tech-card">Mailchimp</div>
+                <div class="tech-card">Zoho</div>
+                <div class="tech-card">Hubspot</div>
             </div>
 
-            <!-- Center Orb -->
-            <div class="center-orb">
-                Try with Mani AI
+            <!-- Row 3: Left -->
+            <div class="marquee-row marquee-left">
+                <div class="tech-card">Zapier</div>
+                <div class="tech-card">Zoho</div>
+                <div class="tech-card">OpenAI</div>
+                <div class="tech-card">Mailchimp</div>
+                <div class="tech-card">ActiveCampaign</div>
+                <div class="tech-card">Slack</div>
+                <div class="tech-card">Zapier</div>
+                <div class="tech-card">Zoho</div>
+                <div class="tech-card">OpenAI</div>
+                <div class="tech-card">Mailchimp</div>
+                <div class="tech-card">ActiveCampaign</div>
+                <div class="tech-card">Slack</div>
             </div>
         </div>
 
-        <p class="tech-footer-text">Our automation architecture connects data, workflows, and platforms into a secure, high-performance system that grows with you.</p>
+        <!-- Central Circular Badge Overlay -->
+        <div class="center-badge-overlay">
+            <div class="money-badge">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/>
+                </svg>
+                <span>Try with Money</span>
+            </div>
+        </div>
+
+        <p class="tech-subtitle">
+            Our automation architecture connects data, workflows, and platforms into a secure, high-performance system that grows with you.
+        </p>
     </section>
 
-    <!-- HOW WE WORK / TIMELINE SECTION -->
+    <!-- Developer Section -->
+    <section class="developer-section blur-reveal">
+        <div class="section-tag">002 ● LEAD ARCHITECT</div>
+        <div class="dev-card">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80" alt="Developer" class="dev-avatar">
+            <h3>Alex Rivers</h3>
+            <p class="title">Lead Automation Engineer</p>
+            <p class="bio">Building high-throughput AI pipelines and scalable automation architectures for modern digital enterprises.</p>
+        </div>
+    </section>
+
+    <!-- How We Work Section -->
     <section class="timeline-section">
-        <h2 class="timeline-title">How We Work</h2>
+        <h2 class="timeline-title blur-reveal">How We Work</h2>
         
-        <div class="timeline-item">
-            <div class="timeline-icon">1</div>
-            <div class="timeline-line"><div class="timeline-progress"></div></div>
+        <div class="timeline-item blur-reveal">
+            <div class="timeline-shape">
+                <div class="shape-inner"></div>
+            </div>
             <div class="timeline-content">
                 <h3>Discovery & Audit</h3>
                 <p>We analyze your business workflows, bottlenecks, and revenue opportunities to build a custom roadmap.</p>
             </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="timeline-icon">2</div>
-            <div class="timeline-line"><div class="timeline-progress"></div></div>
+        <div class="timeline-item blur-reveal">
+            <div class="timeline-shape">
+                <div class="shape-inner square"></div>
+            </div>
             <div class="timeline-content">
                 <h3>Automation Blueprint</h3>
                 <p>We design a detailed automation architecture aligned with your exact KPIs and growth goals.</p>
             </div>
         </div>
 
-        <div class="timeline-item">
-            <div class="timeline-icon">3</div>
+        <div class="timeline-item blur-reveal">
+            <div class="timeline-shape">
+                <div class="shape-inner triangle"></div>
+            </div>
             <div class="timeline-content">
                 <h3>Build & Integration</h3>
                 <p>Our engineers implement AI systems and seamlessly integrate them with your existing tech stack.</p>
@@ -700,111 +854,111 @@
         </div>
     </section>
 
-    <!-- CONTACT / FAQ SECTION -->
-    <section class="faq-section" id="contact">
-        <div class="section-tag" style="text-align: center;">005 ● FAQ & CONTACT</div>
-        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Are you ready? Let's connect.</h2>
+    <!-- What They Say Section -->
+    <section class="testimonials-section blur-reveal">
+        <div class="section-tag" style="text-align: center;">004 ● TESTIMONIALS</div>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-top: 10px;">What They Say</h2>
         
-        <div class="faq-item">
-            <div class="faq-question">What industries do you work with? <span>+</span></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">How long does implementation take? <span>+</span></div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Send Your Request (Contact Form) <span>➔</span></div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"Money AI transformed our entire lead routing and client onboarding workflow. Saved us hundreds of hours every month."</p>
+                <div class="client-info">
+                    <h4>Sarah Jenkins</h4>
+                    <span>COO, NexaTech</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p>"The return on investment was almost immediate. The custom automation blueprints delivered beyond expectations."</p>
+                <div class="client-info">
+                    <h4>David Miller</h4>
+                    <span>Founder, GrowthScale</span>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <p>"Flawless integration with our stack. The team is hyper-responsive and builds bulletproof AI pipelines."</p>
+                <div class="client-info">
+                    <h4>Elena Rostova</h4>
+                    <span>Head of Ops, Venturi</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- JAVASCRIPT FOR ANIMATIONS -->
+    <!-- FAQ & Contact Section -->
+    <section class="faq-section blur-reveal" id="contact">
+        <div class="section-tag" style="text-align: center;">005 ● CONTACT & FAQ</div>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Common Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What industries do you work with? <span class="faq-plus">+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How long does implementation take? <span class="faq-plus">+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Do we need technical knowledge? <span class="faq-plus">+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do we get started with Money AI? <span class="faq-plus">+</span></div>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT ANIMATIONS -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
-            // 1. HERO TITLE LETTER-BY-LETTER BLUR REVEAL
-            const titleEl = document.getElementById('hero-title');
-            const textHTML = titleEl.innerHTML;
-            titleEl.innerHTML = ''; // Clear original text
-            
-            // Split by tags or characters safely (simple approach for text & <br>)
-            const parts = textHTML.split(/(<br>)/);
-            let charIndex = 0;
 
-            parts.forEach(part => {
-                if(part === '<br>') {
-                    titleEl.innerHTML += '<br>';
-                } else {
-                    const chars = part.split('');
-                    chars.forEach(char => {
-                        if(char === ' ') {
-                            titleEl.innerHTML += ' ';
-                        } else {
-                            const span = document.createElement('span');
-                            span.innerText = char;
-                            span.className = 'char-blur';
-                            titleEl.appendChild(span);
-                            
-                            // Staggered reveal
-                            setTimeout(() => {
-                                span.classList.add('active');
-                            }, 100 + (charIndex * 40)); // 40ms delay per letter
-                            charIndex++;
-                        }
-                    });
-                }
-            });
+            // 1. HERO HEADING WORD-BY-WORD BLUR-REVEAL ANIMATION
+            const heroHeading = document.getElementById('hero-heading');
+            if (heroHeading) {
+                const text = heroHeading.innerText;
+                const words = text.split(' ');
+                heroHeading.innerHTML = words.map((word, i) => 
+                    `<span class="word" style="animation-delay: ${i * 0.12}s">${word}</span>`
+                ).join(' ');
+            }
 
-            // 2. SCROLL TEXT BOLD EFFECT (We help startups...)
+            // 2. WE HELP SECTION: SCROLL WORD HIGHLIGHT EFFECT
             const scrollTextEl = document.getElementById('scroll-text');
-            const words = scrollTextEl.innerText.split(' ');
-            scrollTextEl.innerHTML = ''; // Clear original
-            
-            words.forEach(word => {
-                const span = document.createElement('span');
-                span.innerText = word + ' ';
-                span.className = 'scroll-word';
-                scrollTextEl.appendChild(span);
-            });
-
-            const scrollWords = document.querySelectorAll('.scroll-word');
-
-            window.addEventListener('scroll', () => {
-                // Word Highlight Logic
-                const rect = scrollTextEl.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
+            if (scrollTextEl) {
+                const wordsArr = scrollTextEl.innerText.split(' ');
+                scrollTextEl.innerHTML = wordsArr.map(w => `<span>${w}</span>`).join(' ');
                 
-                // If section is in view
-                if (rect.top < windowHeight && rect.bottom > 0) {
-                    // Calculate percentage of element scrolled
-                    let scrollPercent = (windowHeight - rect.top) / (windowHeight / 1.5);
-                    scrollPercent = Math.max(0, Math.min(1, scrollPercent)); // Clamp between 0 and 1
-                    
-                    let highlightedCount = Math.floor(scrollPercent * words.length);
-                    
-                    scrollWords.forEach((span, index) => {
-                        if (index < highlightedCount) {
-                            span.classList.add('bold-active'); // Text gets bold
+                const wordSpans = scrollTextEl.querySelectorAll('span');
+
+                window.addEventListener('scroll', () => {
+                    const triggerBottom = window.innerHeight * 0.85;
+
+                    wordSpans.forEach((span, idx) => {
+                        const box = span.getBoundingClientRect();
+                        // As user scrolls down past the text, highlight words sequentially
+                        if (box.top < triggerBottom) {
+                            setTimeout(() => {
+                                span.classList.add('active-word');
+                            }, idx * 15);
                         } else {
-                            span.classList.remove('bold-active'); // Un-bolds when scrolling up
+                            span.classList.remove('active-word');
                         }
                     });
-                }
+                });
+            }
 
-                // 3. TIMELINE PROGRESS LINE
-                const timelineItems = document.querySelectorAll('.timeline-item');
-                timelineItems.forEach(item => {
-                    const tRect = item.getBoundingClientRect();
-                    const progressLine = item.querySelector('.timeline-progress');
-                    
-                    if(progressLine) {
-                        let fillPercentage = 0;
-                        if(tRect.top < window.innerHeight / 2) {
-                            fillPercentage = ((window.innerHeight / 2 - tRect.top) / tRect.height) * 100;
-                            fillPercentage = Math.max(0, Math.min(100, fillPercentage));
-                        }
-                        progressLine.style.height = fillPercentage + '%';
+            // 3. INTERSECTION OBSERVER FOR BLUR-REVEAL SECTIONS
+            const observerOptions = {
+                root: null,
+                threshold: 0.12
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
                     }
                 });
-            });
+            }, observerOptions);
+
+            document.querySelectorAll('.blur-reveal').forEach(el => observer.observe(el));
         });
     </script>
 </body>
