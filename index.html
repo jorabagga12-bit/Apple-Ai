@@ -377,25 +377,26 @@
             letter-spacing: -1px;
         }
 
-        /* --- 3D WHITE GLASS WRAPPER (FIXED WIDTH) --- */
+        /* --- 3D WHITE GLASS WRAPPER (FULL WIDTH) --- */
         .white-glass-wrapper {
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-top: 1px solid rgba(255, 255, 255, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.9);
             box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.9);
             color: #0f172a;
             
-            /* FIXED WIDTH SO IT DOES NOT CUT OFF */
-            width: 94%; 
-            max-width: 1240px;
-            margin: 40px auto 60px auto; 
+            /* UPDATED: FULL WIDTH SO IT TOUCHES SIDES */
+            width: 100%; 
+            max-width: 100%;
+            margin: 40px 0 60px 0; 
             
             padding-top: 40px;
             padding-bottom: 40px;
             position: relative;
             z-index: 2;
-            border-radius: 44px;
+            border-radius: 0;
         }
 
         .white-glass-wrapper .glass-card {
@@ -466,7 +467,7 @@
             perspective: 1000px;
         }
 
-        /* BOLD TEXT PASSING BEHIND VIDEO CARD (CHANGED TO MONEY AI) */
+        /* BOLD TEXT PASSING BEHIND VIDEO CARD (UPDATED) */
         .bg-bold-text-marquee {
             position: absolute;
             top: 50%;
@@ -476,7 +477,13 @@
             white-space: nowrap;
             font-size: clamp(3.5rem, 8vw, 6.5rem);
             font-weight: 900;
-            color: rgba(15, 23, 42, 0.07);
+            
+            /* UPDATED: Light blue & white mix */
+            background: linear-gradient(to right, #bae6fd, #ffffff, #7dd3fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.9;
+            
             letter-spacing: 4px;
             pointer-events: none;
             z-index: 0;
@@ -510,7 +517,7 @@
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
 
-        .video-card-screen video {
+        .video-card-screen video, .video-card-screen img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -880,9 +887,10 @@
                 </div>
                 <div class="video-card glass-card reveal-on-scroll" id="3dVideoCard">
                     <div class="video-card-screen">
-                        <video autoplay loop muted playsinline>
-                            <source src="images/bg-video.mp4" type="video/mp4">
-                        </video>
+                        
+                        <!-- UPDATED: Video removed, JPG Image tag added here -->
+                        <img src="images/your-3d-image.jpg" alt="Video Placeholder Image" style="width: 100%; height: 100%; object-fit: cover;">
+                        
                         <div class="play-overlay">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
                         </div>
