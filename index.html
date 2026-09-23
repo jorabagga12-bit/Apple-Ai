@@ -183,7 +183,7 @@
             50% { transform: scale(1.5); opacity: 0.5; }
         }
 
-        /* --- UPDATED HEADER (SIDE-BY-SIDE PILL & MB LOGO) --- */
+        /* --- UPDATED HEADER (SIDE-BY-SIDE PILL & MB LOGO - BIGGER SIZE) --- */
         header {
             position: fixed;
             top: 25px;
@@ -192,13 +192,13 @@
             z-index: 1000;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
         }
 
-        /* MB LOGO (Standalone Circle) */
+        /* MB LOGO - INCREASED SIZE */
         .nav-logo {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: rgba(25, 25, 30, 0.65);
             backdrop-filter: blur(25px);
@@ -209,7 +209,7 @@
             justify-content: center;
             color: #ffffff;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -220,9 +220,9 @@
             border-color: rgba(255, 255, 255, 0.3);
         }
 
-        /* PILL GROUP (Menu + Get this Template) */
+        /* PILL GROUP - INCREASED SIZES */
         .nav-pill-group {
-            position: relative; /* For absolute dropdown positioning */
+            position: relative;
             display: flex;
             align-items: center;
             background: rgba(25, 25, 30, 0.65);
@@ -230,8 +230,8 @@
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 100px;
-            padding: 5px;
-            gap: 5px;
+            padding: 8px;
+            gap: 8px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
@@ -239,14 +239,14 @@
             background: transparent;
             border: 1px solid transparent;
             color: #ffffff;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 100px;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             transition: all 0.25s ease;
         }
 
@@ -260,7 +260,7 @@
         }
 
         .menu-trigger-btn .menu-icon {
-            font-size: 18px;
+            font-size: 22px;
             line-height: 1;
             font-weight: 400;
         }
@@ -269,10 +269,10 @@
             background: #ffffff;
             color: #000000;
             border: none;
-            padding: 11px 24px;
+            padding: 14px 28px;
             border-radius: 100px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 16px;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             white-space: nowrap;
@@ -307,7 +307,7 @@
         /* --- UPDATED MENU DROPDOWN (DARK & GRID STYLE) --- */
         .nav-dropdown {
             position: absolute;
-            top: calc(100% + 14px);
+            top: calc(100% + 16px);
             left: 50%;
             transform: translateX(-50%) translateY(-10px) scale(0.96);
             width: 320px;
@@ -484,34 +484,39 @@
             letter-spacing: -1px;
         }
 
-        /* --- ULTIMATE 3D SEAMLESS WHITE GLASS MIXING (Makkhan Smooth) --- */
+        /* --- ULTIMATE 3D SEAMLESS WHITE GLASS MIXING (FIXED WITH DARK MERGE) --- */
         .white-glass-wrapper {
             position: relative;
             width: 100%;
             margin: 0;
-            /* 200px padding is the magical transition zone */
-            padding: 200px 0;
+            padding: 260px 0; /* Expanded padding for a perfectly seamless merge */
             z-index: 2;
             
-            /* Background completely fades in and out */
+            /* Background completely fades in starting with DARK color to kill the glow, then transitions to white */
             background: linear-gradient(to bottom,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.94) 200px,
-                rgba(255, 255, 255, 0.94) calc(100% - 200px),
-                rgba(255, 255, 255, 0) 100%
+                rgba(8, 8, 10, 0) 0%,
+                rgba(8, 8, 10, 1) 120px,             /* Pure dark merge */
+                rgba(255, 255, 255, 0.95) 300px,     /* Fade smoothly into white */
+                rgba(255, 255, 255, 0.95) calc(100% - 300px),
+                rgba(8, 8, 10, 1) calc(100% - 120px),/* Pure dark merge at bottom */
+                rgba(8, 8, 10, 0) 100%
             );
             
-            /* Blur boundary mask: eliminates sharp edges of the backdrop filter */
+            /* Blur boundary mask: avoids hard lines where blur starts */
             -webkit-mask-image: linear-gradient(to bottom,
                 transparent 0%,
-                black 200px,
-                black calc(100% - 200px),
+                transparent 80px,
+                black 300px,
+                black calc(100% - 300px),
+                transparent calc(100% - 80px),
                 transparent 100%
             );
             mask-image: linear-gradient(to bottom,
                 transparent 0%,
-                black 200px,
-                black calc(100% - 200px),
+                transparent 80px,
+                black 300px,
+                black calc(100% - 300px),
+                transparent calc(100% - 80px),
                 transparent 100%
             );
             
@@ -927,7 +932,7 @@
     </div>
     <div class="bg-overlay"></div>
 
-    <!-- NEW HEADER LAYOUT MATCHING IMAGE REFS -->
+    <!-- HEADER LAYOUT WITH BIGGER PILL AND MB LOGO -->
     <header>
         <!-- Left Side: Circular MB Logo -->
         <div class="nav-logo" title="Conicorn AI">
@@ -942,7 +947,7 @@
             </button>
             <button class="btn-header">Get this Template</button>
 
-            <!-- DROPDOWN INSIDE PILL WRAPPER TO POSITION IT BELOW -->
+            <!-- DROPDOWN INSIDE PILL WRAPPER -->
             <div class="nav-dropdown" id="navDropdown">
                 <a href="#" class="dropdown-link">Home</a>
                 <a href="#" class="dropdown-link">Case Studies</a>
@@ -986,7 +991,7 @@
         </div>
     </div>
 
-    <!-- START OF 3D WHITE GLASS WRAPPER (MAKKHAN SMOOTH MIXING) -->
+    <!-- START OF 3D WHITE GLASS WRAPPER (MAKKHAN SMOOTH MIXING WITH DARK FADE) -->
     <div class="white-glass-wrapper">
 
         <!-- 3. WHO WE ARE -->
@@ -1279,7 +1284,7 @@
                 });
             });
 
-            // 6. MENU TOGGLE DROPDOWN LOGIC (UPDATED WITH ICON SWAP X)
+            // 6. MENU TOGGLE DROPDOWN LOGIC
             const menuToggle = document.getElementById('menuToggle');
             const navDropdown = document.getElementById('navDropdown');
             const menuBlurOverlay = document.getElementById('menuBlurOverlay');
