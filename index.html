@@ -3,886 +3,810 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conicorn - AI Automation Agency</title>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Smooth Scroll Lenis -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
-
+    <title>Mani AI Automation Agency</title>
     <style>
-        /* --- RESET & GLOBAL VARIABLES --- */
+        /* --- RESET & BASIC SETUP --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        :root {
-            --bg-dark: #08080a;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-hover: rgba(255, 255, 255, 0.07);
-            --text-main: #ffffff;
-            --text-muted: #8e8e93;
-            --accent-gradient: linear-gradient(135deg, #d8b4fe, #818cf8, #a78bfa);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            scroll-behavior: smooth; /* Smooth scrolling for Contact link */
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
+            background-color: #e5e5e5;
+            color: #111;
             overflow-x: hidden;
-            line-height: 1.5;
         }
 
-        /* --- BACKGROUND VIDEO SETUP --- */
-        .bg-video-wrapper {
+        /* --- THE "WONDER" (FIXED 3D BACKGROUND ORB) --- */
+        .wonder-bg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -2;
-            overflow: hidden;
-        }
-
-        .bg-video-wrapper video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.7) contrast(1.1);
-        }
-
-        .bg-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.3) 0%, rgba(8, 8, 10, 0.9) 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            max-width: 800px;
+            max-height: 800px;
+            background: radial-gradient(circle, rgba(40,40,40,0.9) 0%, rgba(20,20,20,0.6) 40%, rgba(229,229,229,0) 70%);
+            filter: blur(40px);
             z-index: -1;
+            border-radius: 50%;
+            animation: breathe 8s infinite alternate ease-in-out;
             pointer-events: none;
         }
 
-        /* --- APPLE IPHONE GLASSMORPHISM --- */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        @keyframes breathe {
+            0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.8; }
+            100% { transform: translate(-50%, -50%) scale(1.05); opacity: 1; }
         }
 
-        .glass-pill {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 100px;
-        }
-
-        /* --- FLOATING HEADER / NAVBAR --- */
-        header {
+        /* --- NAVIGATION BAR --- */
+        nav {
             position: fixed;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 1000;
-            width: 90%;
-            max-width: 520px;
-        }
-
-        nav {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            padding: 8px 14px;
+            gap: 15px;
+            z-index: 100;
         }
 
-        .nav-logo {
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .nav-link {
-            color: #fff;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .btn-header {
-            background: #ffffff;
-            color: #000000;
-            border: none;
+        .nav-pill {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(15px);
             padding: 10px 20px;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 13px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.6);
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            color: #111;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
         }
 
-        .btn-header:hover {
-            transform: scale(1.04);
+        .nav-pill:hover {
+            background: rgba(255, 255, 255, 0.8);
         }
 
         /* --- HERO SECTION --- */
         .hero {
-            min-height: 100vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             text-align: center;
-            padding: 140px 20px 80px 20px;
+            padding: 0 20px;
         }
 
-        .badge-hero {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
+        .hero-badge {
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 600;
             letter-spacing: 1px;
-            color: #d1d5db;
-            margin-bottom: 24px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            display: inline-block;
+            opacity: 0;
+            animation: simpleFade 1s forwards 0.5s;
         }
 
-        .title-gradient {
-            font-size: clamp(2.8rem, 6.5vw, 5.2rem);
-            font-weight: 800;
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5.5rem);
             line-height: 1.1;
-            letter-spacing: -2px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-weight: 500;
+            color: #222;
+            max-width: 900px;
+            margin-bottom: 25px;
         }
 
-        .title-white {
-            font-size: clamp(2.8rem, 6.5vw, 5.2rem);
-            font-weight: 800;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            color: #ffffff;
-            margin-bottom: 24px;
+        /* Letter Blur Animation Utility */
+        .char-blur {
+            opacity: 0;
+            filter: blur(15px);
+            display: inline-block;
+            transition: opacity 0.5s ease, filter 0.5s ease;
         }
 
-        .hero-desc {
-            font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--text-muted);
-            max-width: 620px;
-            margin-bottom: 36px;
+        .char-blur.active {
+            opacity: 1;
+            filter: blur(0);
         }
 
-        .hero-btns {
+        .hero p {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 600px;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: simpleFade 1s forwards 2s; /* appears after title */
+        }
+
+        .hero-buttons {
             display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            animation: simpleFade 1s forwards 2.5s;
         }
 
-        .btn-glass {
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 14px;
+        @keyframes simpleFade {
+            to { opacity: 1; }
+        }
+
+        .btn-dark {
+            background: #111;
             color: #fff;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 100px;
-            cursor: pointer;
+            padding: 15px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-light {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            color: #111;
+            padding: 15px 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,255,0.5);
             display: flex;
             align-items: center;
             gap: 10px;
+        }
+
+        /* --- STYLISH SPONSOR LOGOS --- */
+        .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            padding: 50px 0;
+            flex-wrap: wrap;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+
+        .logos h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #555;
+            letter-spacing: -1px;
+            text-transform: lowercase;
+            opacity: 0.5;
             transition: all 0.3s ease;
         }
-
-        .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-2px);
+        
+        .logos h3:hover {
+            opacity: 1;
+            color: #111;
+            transform: scale(1.05);
         }
 
-        /* --- MARQUEE SLIDER --- */
-        .marquee-container {
-            padding: 30px 0;
-            overflow: hidden;
-            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        /* --- WE HELP SECTION (SCROLL BOLD TEXT) --- */
+        .we-help-section {
+            padding: 150px 20px;
+            text-align: center;
         }
 
-        .marquee-content {
-            display: flex;
-            gap: 60px;
-            width: max-content;
-            animation: marquee 20s linear infinite;
-        }
-
-        .marquee-item {
-            font-size: 18px;
-            font-weight: 700;
-            color: #52525b;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        /* --- SECTION COMMONS --- */
-        .section {
-            padding: 100px 24px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .tag-sub {
+        .section-tag {
             font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 12px;
-            display: block;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #666;
+            margin-bottom: 30px;
         }
 
-        .heading-main {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 50px;
-            letter-spacing: -1px;
-        }
-
-        /* --- WHO WE ARE (TEXT HIGHLIGHT ON SCROLL) --- */
-        .text-reveal-box {
-            font-size: clamp(1.8rem, 3.8vw, 3rem);
-            font-weight: 700;
+        .we-help-text {
+            font-size: clamp(2rem, 4vw, 3.5rem);
             line-height: 1.3;
-            text-align: center;
-            max-width: 950px;
-            margin: 0 auto 60px auto;
-            color: rgba(255, 255, 255, 0.2); /* डिफ़ॉल्ट धुंधला/डार्क */
-            transition: color 0.5s ease;
-        }
-
-        .text-reveal-box.active {
-            color: #ffffff; /* स्क्रॉल होने पर सफ़ेद */
-        }
-
-        /* --- VIDEO MOCKUP CARD --- */
-        .video-card {
-            position: relative;
-            width: 100%;
-            max-width: 850px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 12px;
+            color: #111;
         }
 
-        .video-card-screen {
-            width: 100%;
-            height: 450px;
-            border-radius: 18px;
-            overflow: hidden;
+        .scroll-word {
+            opacity: 0.3;
+            font-weight: 300;
+            transition: opacity 0.3s ease, font-weight 0.3s ease;
+        }
+
+        .scroll-word.bold-active {
+            opacity: 1;
+            font-weight: 800; /* एकदम डार्क और बोल्ड */
+        }
+
+        /* --- MEDIA SECTION (VIDEO + ROTATING BG + DEV PHOTO) --- */
+        .media-section {
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
             position: relative;
-            background: #000;
         }
 
-        .video-card-screen video {
+        .rotating-orb-behind {
+            position: absolute;
+            width: 950px;
+            height: 550px;
+            background: linear-gradient(45deg, #111, transparent, #555, transparent);
+            border-radius: 50px;
+            z-index: 0;
+            filter: blur(20px);
+            animation: spinBg 8s linear infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes spinBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .media-container {
+            width: 100%;
+            max-width: 900px;
+            height: 500px;
+            background: #000;
+            border-radius: 40px;
+            border: 2px solid rgba(255,255,255,0.8);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .dev-photo {
+            position: absolute;
+            bottom: -30px;
+            right: 15%;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid #fff;
+            background: #ccc;
+            z-index: 2;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .dev-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .play-overlay {
+        /* --- BOLD STATS SECTION --- */
+        .stats-section {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            padding: 80px 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box { text-align: center; }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #111;
+            margin-bottom: 10px;
+        }
+
+        .stat-text {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* --- WHY CHOOSE US (GEOMETRIC SHAPES) --- */
+        .choose-us-section {
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.8);
+            max-width: 300px;
+            text-align: center;
+        }
+
+        /* Geometric Shapes instead of Emojis */
+        .shape-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 20px;
+            background: #222;
+        }
+
+        .shape-circle { border-radius: 50%; }
+        .shape-square { border-radius: 10px; }
+        .shape-triangle {
+            background: transparent;
+            width: 0; height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-bottom: 60px solid #222;
+        }
+
+        .feature-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .feature-card p { color: #555; line-height: 1.5; }
+
+        /* --- TECHNOLOGY ECOSYSTEM SCROLL SECTION --- */
+        .tech-ecosystem {
+            padding: 120px 0;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tech-ecosystem h2 {
+            font-size: 3rem;
+            margin-bottom: 60px;
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+        }
+
+        .marquee-row {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+        }
+
+        .marquee-item {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 40px;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        /* Animations for rows */
+        .scroll-left { animation: scrollLeft 30s linear infinite; }
+        .scroll-right { animation: scrollRight 30s linear infinite; }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Center Orb Try with Mani AI */
+        .center-orb {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 64px;
-            height: 64px;
-            background: rgba(255, 255, 255, 0.2);
+            width: 180px;
+            height: 180px;
+            background: rgba(20, 20, 20, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 50%;
             display: flex;
-            align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-        }
-
-        /* --- GRID LAYOUTS --- */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .card-inner {
-            padding: 36px 28px;
-        }
-
-        .card-inner:hover {
-            background: var(--glass-hover);
-            border-color: rgba(255, 255, 255, 0.18);
-        }
-
-        .icon-box {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
             align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 20px;
+            color: #fff;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
         }
 
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+        .tech-footer-text {
+            margin-top: 50px;
+            color: #555;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .card-desc {
-            color: var(--text-muted);
-            font-size: 14px;
-            line-height: 1.6;
-        }
-
-        /* --- BENTO GRID FOR AI SERVICES --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 20px;
-        }
-
-        .bento-col-8 { grid-column: span 8; }
-        .bento-col-4 { grid-column: span 4; }
-        .bento-col-6 { grid-column: span 6; }
-        .bento-col-12 { grid-column: span 12; }
-
-        @media (max-width: 900px) {
-            .bento-col-8, .bento-col-4, .bento-col-6 { grid-column: span 12; }
-        }
-
-        /* --- PROCESS TIMELINE --- */
-        .process-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            max-width: 780px;
+        /* --- TIMELINE SECTION --- */
+        .timeline-section {
+            padding: 150px 20px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
-        .process-row {
-            padding: 24px 30px;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
+        .timeline-title { text-align: center; font-size: 3rem; margin-bottom: 80px; }
 
-        .process-num {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.08);
+        .timeline-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 15px;
-            flex-shrink: 0;
-        }
-
-        /* --- TECH ECOSYSTEM SPHERE --- */
-        .ecosystem-wrap {
-            text-align: center;
-            padding: 60px 20px;
+            gap: 40px;
+            margin-bottom: 80px;
             position: relative;
         }
 
-        .eco-center-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 32px;
-            border-radius: 100px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            font-weight: 700;
-            font-size: 15px;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.1);
-        }
-
-        /* --- PRICING --- */
-        .pricing-switch {
+        .timeline-icon {
+            width: 80px;
+            height: 80px;
+            background: #222;
+            border-radius: 25px;
+            flex-shrink: 0;
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 14px;
-            margin-bottom: 40px;
-            font-size: 14px;
-            font-weight: 700;
+            align-items: center;
+            color: #fff;
+            font-size: 24px;
+            z-index: 2;
         }
 
-        .toggle-bg {
-            width: 56px;
-            height: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 100px;
-            padding: 3px;
-            cursor: pointer;
+        .timeline-content h3 { font-size: 1.8rem; margin-bottom: 15px; }
+        .timeline-content p { font-size: 1.1rem; color: #555; line-height: 1.6; }
+
+        .timeline-line {
+            position: absolute;
+            left: 39px;
+            top: 80px;
+            bottom: -80px;
+            width: 2px;
+            background: #ccc;
+            z-index: 1;
         }
 
-        .toggle-circle {
-            width: 24px;
-            height: 24px;
-            background: #fff;
-            border-radius: 50%;
-            transition: transform 0.3s ease;
+        .timeline-progress {
+            width: 100%;
+            height: 0%;
+            background: #111;
+            transition: height 0.3s ease;
         }
 
-        .toggle-bg.active .toggle-circle {
-            transform: translateX(26px);
-        }
-
-        .price-val {
-            font-size: 3.2rem;
-            font-weight: 800;
-            margin: 16px 0 24px 0;
-            letter-spacing: -1.5px;
-        }
-
-        /* --- FAQ ACCORDION --- */
-        .faq-stack {
-            max-width: 780px;
+        /* --- CONTACT / FAQ SECTION --- */
+        .faq-section {
+            padding: 100px 20px;
+            max-width: 800px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
         }
 
-        .faq-box {
-            padding: 22px 28px;
+        .faq-item {
+            background: rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 15px;
             cursor: pointer;
         }
 
-        .faq-head {
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            font-size: 1.05rem;
-            font-weight: 600;
         }
 
-        .faq-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, margin-top 0.3s ease;
-            color: var(--text-muted);
-            font-size: 14px;
-        }
-
-        .faq-box.open .faq-body {
-            max-height: 180px;
-            margin-top: 14px;
-        }
-
-        /* --- CONTACT LEAD FORM --- */
-        .form-card {
-            max-width: 620px;
-            margin: 0 auto;
-            padding: 50px 36px;
-            text-align: center;
-        }
-
-        .field-input {
-            width: 100%;
-            padding: 16px 18px;
-            margin-bottom: 14px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            color: #ffffff;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .field-input:focus {
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
-        .btn-submit-main {
-            width: 100%;
-            padding: 16px;
-            background: #ffffff;
-            color: #000000;
-            font-weight: 800;
-            font-size: 15px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 60px 24px 30px 24px;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 13px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-        }
-
-        /* --- SCROLL ANIMATION EFFECTS --- */
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
 
-    <!-- 3D BACKGROUND VIDEO -->
-    <div class="bg-video-wrapper">
-        <video autoplay loop muted playsinline>
-            <source src="images/bg-video.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="bg-overlay"></div>
+    <!-- 3D WONDER BACKGROUND -->
+    <div class="wonder-bg"></div>
 
-    <!-- FLOATING NAVBAR -->
-    <header>
-        <nav class="glass-pill">
-            <div class="nav-logo">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 8 4 4-4 4M8 12h8"/></svg>
-            </div>
-            <a href="#" class="nav-link"><span>≡</span> Menu</a>
-            <button class="btn-header">Get this Template</button>
-        </nav>
-    </header>
+    <!-- NAVIGATION (Home & Contact added) -->
+    <nav>
+        <a href="#" class="nav-pill" style="border-radius: 50%; padding: 10px;">❄️</a>
+        <a href="#" class="nav-pill">Home</a>
+        <a href="#contact" class="nav-pill">Contact</a>
+        <a href="#contact" class="nav-pill" style="background: #111; color: #fff;">Get this Template</a>
+    </nav>
 
-    <!-- 1. HERO SECTION -->
+    <!-- HERO SECTION -->
     <section class="hero">
-        <div class="badge-hero glass-pill reveal-on-scroll">✏️ UNICORN AI PARTNER</div>
-        <h1 class="title-gradient reveal-on-scroll">Intelligent Automation</h1>
-        <h1 class="title-white reveal-on-scroll">for Modern Teams</h1>
-        <p class="hero-desc reveal-on-scroll">
-            We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.
-        </p>
-        <div class="hero-btns reveal-on-scroll">
-            <button class="btn-glass">Get this Template <span>→</span></button>
-            <button class="btn-glass">👥 Work with Us</button>
+        <div class="hero-badge">🚀 UNICORN AI PARTNER</div>
+        <!-- This text will be split into letters by JS for blur reveal -->
+        <h1 id="hero-title">Intelligent Automation <br> for Modern Teams</h1>
+        <p>We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.</p>
+        <div class="hero-buttons">
+            <a href="#contact" class="btn-dark">Get this Template ➔</a>
+            <a href="#contact" class="btn-light">👨‍💼👩‍💼 Work with Us</a>
         </div>
     </section>
 
-    <!-- 2. INFINITE LOGO MARQUEE -->
-    <div class="marquee-container">
-        <div class="marquee-content">
-            <div class="marquee-item"><span>⚡</span> LOGOIPSUM</div>
-            <div class="marquee-item"><span>❖</span> IPSUM</div>
-            <div class="marquee-item"><span>✦</span> LOGOIPSUM FOUNDATION</div>
-            <div class="marquee-item"><span>▲</span> IPSUM</div>
-            <div class="marquee-item"><span>●</span> LOGOIPSUM</div>
-            <div class="marquee-item"><span>⚡</span> LOGOIPSUM</div>
-            <div class="marquee-item"><span>❖</span> IPSUM</div>
-            <div class="marquee-item"><span>✦</span> LOGOIPSUM FOUNDATION</div>
-            <div class="marquee-item"><span>▲</span> IPSUM</div>
-            <div class="marquee-item"><span>●</span> LOGOIPSUM</div>
-        </div>
+    <!-- STYLISH LOGOS -->
+    <div class="logos">
+        <h3>LogoIpsum</h3>
+        <h3>IP/UM</h3>
+        <h3>Foundation</h3>
+        <h3>Mani AI</h3>
     </div>
 
-    <!-- 3. WHO WE ARE (TEXT HIGHLIGHT + VIDEO CARD) -->
-    <section class="section">
-        <span class="tag-sub reveal-on-scroll">001 • WHO WE ARE</span>
-        <div class="text-reveal-box reveal-on-scroll" id="scrollHighlightText">
+    <!-- WE HELP SECTION (SCROLL BOLD EFFECT) -->
+    <section class="we-help-section">
+        <div class="section-tag">001 ● WHO WE ARE</div>
+        <!-- This text will be split into words by JS -->
+        <h2 id="scroll-text" class="we-help-text">
             We help startups, SMEs & enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
-        </div>
+        </h2>
+    </section>
 
-        <div class="video-card glass-card reveal-on-scroll">
-            <div class="video-card-screen">
-                <video autoplay loop muted playsinline>
-                    <source src="images/bg-video.mp4" type="video/mp4">
-                </video>
-                <div class="play-overlay">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-                </div>
+    <!-- VIDEO SECTION WITH ROTATING BG & DEV PHOTO -->
+    <section class="media-section">
+        <div class="rotating-orb-behind"></div>
+        <div class="media-container">
+            <!-- Video File: Tell the user to put "main-video.mp4" in the "images" folder -->
+            <video src="images/main-video.mp4" autoplay loop muted playsinline></video>
+        </div>
+        <!-- Developer Photo -->
+        <div class="dev-photo">
+            <!-- Tell user to put "dev-photo.jpg" in the "images" folder -->
+            <img src="images/dev-photo.jpg" alt="Developer">
+        </div>
+    </section>
+
+    <!-- BOLD STATS -->
+    <section class="stats-section">
+        <div class="stat-box">
+            <div class="stat-number">10,000+</div>
+            <div class="stat-text">HOURS SAVED</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">80%</div>
+            <div class="stat-text">PRODUCTIVITY BOOST</div>
+        </div>
+        <div class="stat-box">
+            <div class="stat-number">5X</div>
+            <div class="stat-text">ROI GENERATED</div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US (SHAPES INSTEAD OF EMOJIS) -->
+    <section class="choose-us-section">
+        <div class="section-tag">002 ● VALUE</div>
+        <h2>Why Choose Us?</h2>
+        <div class="cards-container">
+            <div class="feature-card">
+                <div class="shape-icon shape-circle"></div>
+                <h3>Business-First AI</h3>
+                <p>We design solutions aligned with your revenue goals.</p>
+            </div>
+            <div class="feature-card">
+                <div class="shape-icon shape-triangle"></div>
+                <h3>End-to-End</h3>
+                <p>From strategy to deployment, followed by optimization.</p>
+            </div>
+            <div class="feature-card">
+                <div class="shape-icon shape-square"></div>
+                <h3>Custom-Built</h3>
+                <p>No templates. Every workflow is tailored to your needs.</p>
             </div>
         </div>
     </section>
 
-    <!-- 4. WHY CHOOSE US -->
-    <section class="section">
-        <span class="tag-sub reveal-on-scroll">002 • VALUE</span>
-        <h2 class="heading-main reveal-on-scroll">Why Choose Us?</h2>
-        <div class="grid-3">
-            <div class="glass-card card-inner reveal-on-scroll">
-                <div class="icon-box">🎯</div>
-                <h3 class="card-title">Business-First AI Strategy</h3>
-                <p class="card-desc">We design business solutions aligned with your revenue goals, ensuring clear ROI from day one.</p>
-            </div>
-            <div class="glass-card card-inner reveal-on-scroll">
-                <div class="icon-box">🚀</div>
-                <h3 class="card-title">End-to-End Implementation</h3>
-                <p class="card-desc">From strategy to development, followed by fast deployment and continuous optimization.</p>
-            </div>
-            <div class="glass-card card-inner reveal-on-scroll">
-                <div class="icon-box">⚙️</div>
-                <h3 class="card-title">Custom-Built Automation</h3>
-                <p class="card-desc">No templates. Every workflow is tailored to your unique operations and software ecosystem.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. OUR AI-DRIVEN SERVICES (BENTO GRID) -->
-    <section class="section">
-        <span class="tag-sub reveal-on-scroll">003 • CAPABILITIES</span>
-        <h2 class="heading-main reveal-on-scroll">Our AI-Driven Services</h2>
-        <div class="bento-grid">
-            <div class="bento-col-8 glass-card card-inner reveal-on-scroll">
-                <div class="icon-box">🤖</div>
-                <h3 class="card-title">AI Workflow Automation</h3>
-                <p class="card-desc">Automate repetitive tasks using intelligent triggers and decision logic. Real-time system integration with validated output.</p>
-            </div>
-            <div class="bento-col-4 glass-card card-inner reveal-on-scroll">
-                <div class="icon-box">💬</div>
-                <h3 class="card-title">AI Chatbots & Agents</h3>
-                <p class="card-desc">24/7 customer support, lead qualification, and appointment booking reps.</p>
-            </div>
-            <div class="bento-col-4 glass-card card-inner reveal-on-scroll">
-                <div class="icon-box">📈</div>
-                <h3 class="card-title">CRM & Sales Automation</h3>
-                <p class="card-desc">Pipeline automation, AI lead scoring, and predictive sales insights.</p>
-            </div>
-            <div class="bento-col-8 glass-card card-inner reveal-on-scroll">
-                <div class="icon-box">📊</div>
-                <h3 class="card-title">AI Data & Reporting Systems</h3>
-                <p class="card-desc">Automated dashboards, business intelligence forecasting, and real-time sales telemetry.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. HOW WE WORK (PROCESS) -->
-    <section class="section">
-        <span class="tag-sub reveal-on-scroll">004 • PROCESS</span>
-        <h2 class="heading-main reveal-on-scroll">How We Work</h2>
-        <div class="process-stack">
-            <div class="glass-card process-row reveal-on-scroll">
-                <div class="process-num">01</div>
-                <div>
-                    <h3 style="font-size: 17px; font-weight:700;">Discovery & Audit</h3>
-                    <p style="color: var(--text-muted); font-size: 14px;">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
-                </div>
-            </div>
-            <div class="glass-card process-row reveal-on-scroll">
-                <div class="process-num">02</div>
-                <div>
-                    <h3 style="font-size: 17px; font-weight:700;">Automation Blueprint</h3>
-                    <p style="color: var(--text-muted); font-size: 14px;">We design a detailed automation architecture aligned with your KPIs.</p>
-                </div>
-            </div>
-            <div class="glass-card process-row reveal-on-scroll">
-                <div class="process-num">03</div>
-                <div>
-                    <h3 style="font-size: 17px; font-weight:700;">Build & Integration</h3>
-                    <p style="color: var(--text-muted); font-size: 14px;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 7. TECHNOLOGY ECOSYSTEM -->
-    <section class="section">
-        <span class="tag-sub reveal-on-scroll">005 • INTEGRATIONS</span>
-        <h2 class="heading-main reveal-on-scroll">Technology Ecosystem</h2>
-        <div class="ecosystem-wrap reveal-on-scroll">
-            <div class="eco-center-btn">
-                <span>⚙️</span> Try with Conicorn
-            </div>
-            <p style="color: var(--text-muted); margin-top: 20px; font-size: 14px;">Our architecture connects Salesforce, HubSpot, Zapier, Zoho, OpenAI, and Make seamlessly.</p>
-        </div>
-    </section>
-
-    <!-- 8. PRICING SECTION -->
-    <section class="section">
-        <span class="tag-sub reveal-on-scroll">006 • PRICING</span>
-        <h2 class="heading-main reveal-on-scroll">Built for Growth at Every Stage</h2>
+    <!-- TECHNOLOGY ECOSYSTEM SECTION (Based on Image) -->
+    <section class="tech-ecosystem" id="integrations">
+        <div class="section-tag">006 ● INTEGRATIONS</div>
+        <h2>Technology Ecosystem</h2>
         
-        <div class="pricing-switch reveal-on-scroll">
-            <span>MONTHLY</span>
-            <div class="toggle-bg" id="priceToggle">
-                <div class="toggle-circle"></div>
+        <div class="marquee-wrapper">
+            <!-- Row 1: Left Scroll -->
+            <div class="marquee-row scroll-left">
+                <div class="marquee-item">Make</div>
+                <div class="marquee-item">Custom APIs</div>
+                <div class="marquee-item">HubSpot</div>
+                <div class="marquee-item">Salesforce</div>
+                <div class="marquee-item">Zapier</div>
+                <!-- Duplicate for seamless loop -->
+                <div class="marquee-item">Make</div>
+                <div class="marquee-item">Custom APIs</div>
+                <div class="marquee-item">HubSpot</div>
+                <div class="marquee-item">Salesforce</div>
+                <div class="marquee-item">Zapier</div>
             </div>
-            <span>ANNUALLY (SAVE 20%)</span>
+            
+            <!-- Row 2: Right Scroll -->
+            <div class="marquee-row scroll-right">
+                <div class="marquee-item">Zapier</div>
+                <div class="marquee-item">OpenAI</div>
+                <div class="marquee-item">Mani AI</div>
+                <div class="marquee-item">Make</div>
+                <div class="marquee-item">Zoho</div>
+                <!-- Duplicate -->
+                <div class="marquee-item">Zapier</div>
+                <div class="marquee-item">OpenAI</div>
+                <div class="marquee-item">Mani AI</div>
+                <div class="marquee-item">Make</div>
+                <div class="marquee-item">Zoho</div>
+            </div>
+
+            <!-- Row 3: Left Scroll -->
+            <div class="marquee-row scroll-left">
+                <div class="marquee-item">Custom APIs</div>
+                <div class="marquee-item">HubSpot</div>
+                <div class="marquee-item">Salesforce</div>
+                <div class="marquee-item">Zoho</div>
+                <div class="marquee-item">OpenAI</div>
+                <!-- Duplicate -->
+                <div class="marquee-item">Custom APIs</div>
+                <div class="marquee-item">HubSpot</div>
+                <div class="marquee-item">Salesforce</div>
+                <div class="marquee-item">Zoho</div>
+                <div class="marquee-item">OpenAI</div>
+            </div>
+
+            <!-- Center Orb -->
+            <div class="center-orb">
+                Try with Mani AI
+            </div>
         </div>
 
-        <div class="grid-3" style="max-width: 800px; margin: 0 auto;">
-            <div class="glass-card card-inner reveal-on-scroll">
-                <h3>Starter Automation</h3>
-                <p style="color: var(--text-muted); font-size:13px;">For small teams beginning their journey</p>
-                <div class="price-val" id="p1">$499<span style="font-size: 15px; color: var(--text-muted);">/mo</span></div>
-                <button class="btn-submit-main" style="background: rgba(255,255,255,0.1); color:#fff;">Get Starter Package</button>
-            </div>
-            <div class="glass-card card-inner reveal-on-scroll" style="border-color: rgba(168, 85, 247, 0.4);">
-                <h3>Growth Automation</h3>
-                <p style="color: var(--text-muted); font-size:13px;">For scaling businesses</p>
-                <div class="price-val" id="p2">$1199<span style="font-size: 15px; color: var(--text-muted);">/mo</span></div>
-                <button class="btn-submit-main">Get Growth Package</button>
-            </div>
-        </div>
+        <p class="tech-footer-text">Our automation architecture connects data, workflows, and platforms into a secure, high-performance system that grows with you.</p>
     </section>
 
-    <!-- 9. FAQS -->
-    <section class="section">
-        <span class="tag-sub reveal-on-scroll">007 • FAQS</span>
-        <h2 class="heading-main reveal-on-scroll">Common Questions</h2>
+    <!-- HOW WE WORK / TIMELINE SECTION -->
+    <section class="timeline-section">
+        <h2 class="timeline-title">How We Work</h2>
         
-        <div class="faq-stack">
-            <div class="glass-card faq-box reveal-on-scroll">
-                <div class="faq-head">What industries do you work with? <span>+</span></div>
-                <div class="faq-body">We work with businesses across real estate, e-commerce, finance, education, SaaS, and marketing agencies.</div>
+        <div class="timeline-item">
+            <div class="timeline-icon">1</div>
+            <div class="timeline-line"><div class="timeline-progress"></div></div>
+            <div class="timeline-content">
+                <h3>Discovery & Audit</h3>
+                <p>We analyze your business workflows, bottlenecks, and revenue opportunities to build a custom roadmap.</p>
             </div>
-            <div class="glass-card faq-box reveal-on-scroll">
-                <div class="faq-head">How long does implementation take? <span>+</span></div>
-                <div class="faq-body">Most standard workflows take between 2 to 4 weeks from discovery to deployment.</div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-icon">2</div>
+            <div class="timeline-line"><div class="timeline-progress"></div></div>
+            <div class="timeline-content">
+                <h3>Automation Blueprint</h3>
+                <p>We design a detailed automation architecture aligned with your exact KPIs and growth goals.</p>
             </div>
-            <div class="glass-card faq-box reveal-on-scroll">
-                <div class="faq-head">Do we need technical knowledge to work with you? <span>+</span></div>
-                <div class="faq-body">No technical knowledge required. We handle everything from design to code and maintenance.</div>
-            </div>
-            <div class="glass-card faq-box reveal-on-scroll">
-                <div class="faq-head">Is AI automation secure? <span>+</span></div>
-                <div class="faq-body">Yes, we enforce end-to-end encryption and strict role-based access control for all API integrations.</div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-icon">3</div>
+            <div class="timeline-content">
+                <h3>Build & Integration</h3>
+                <p>Our engineers implement AI systems and seamlessly integrate them with your existing tech stack.</p>
             </div>
         </div>
     </section>
 
-    <!-- 10. LEAD FORM CARD -->
-    <section class="section">
-        <div class="glass-card form-card reveal-on-scroll">
-            <div style="font-size:24px; margin-bottom:10px;">✦</div>
-            <h2 style="font-size: 2.2rem; font-weight:800; margin-bottom:10px;">Your Competitors Are Automating. Are You?</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px; font-size:14px;">Stop wasting time on manual processes. Start building a self-running business.</p>
-            <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
-                <input type="text" placeholder="Your name*" class="field-input" required>
-                <input type="text" placeholder="Your company name*" class="field-input" required>
-                <input type="email" placeholder="Your business email*" class="field-input" required>
-                <textarea placeholder="Share project details*" class="field-input" rows="4" required style="resize:none;"></textarea>
-                <button type="submit" class="btn-submit-main">Send Your Request</button>
-            </form>
+    <!-- CONTACT / FAQ SECTION -->
+    <section class="faq-section" id="contact">
+        <div class="section-tag" style="text-align: center;">005 ● FAQ & CONTACT</div>
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 40px;">Are you ready? Let's connect.</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What industries do you work with? <span>+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How long does implementation take? <span>+</span></div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Send Your Request (Contact Form) <span>➔</span></div>
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-links">
-            <a href="#">LinkedIn ↗</a>
-            <a href="#">Instagram ↗</a>
-            <a href="#">Facebook ↗</a>
-            <a href="#">Twitter X ↗</a>
-        </div>
-        <p>© 2026 Conicorn AI. All rights reserved.</p>
-    </footer>
-
-    <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
+    <!-- JAVASCRIPT FOR ANIMATIONS -->
     <script>
-        // 1. LENIS SMOOTH SCROLLING
-        const lenis = new Lenis({
-            duration: 1.4,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            smoothTouch: true
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. HERO TITLE LETTER-BY-LETTER BLUR REVEAL
+            const titleEl = document.getElementById('hero-title');
+            const textHTML = titleEl.innerHTML;
+            titleEl.innerHTML = ''; // Clear original text
+            
+            // Split by tags or characters safely (simple approach for text & <br>)
+            const parts = textHTML.split(/(<br>)/);
+            let charIndex = 0;
 
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-        requestAnimationFrame(raf);
-
-        // 2. SCROLL REVEAL & TEXT HIGHLIGHT EFFECT
-        document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        if (entry.target.id === 'scrollHighlightText') {
-                            entry.target.classList.add('active');
+            parts.forEach(part => {
+                if(part === '<br>') {
+                    titleEl.innerHTML += '<br>';
+                } else {
+                    const chars = part.split('');
+                    chars.forEach(char => {
+                        if(char === ' ') {
+                            titleEl.innerHTML += ' ';
+                        } else {
+                            const span = document.createElement('span');
+                            span.innerText = char;
+                            span.className = 'char-blur';
+                            titleEl.appendChild(span);
+                            
+                            // Staggered reveal
+                            setTimeout(() => {
+                                span.classList.add('active');
+                            }, 100 + (charIndex * 40)); // 40ms delay per letter
+                            charIndex++;
                         }
+                    });
+                }
+            });
+
+            // 2. SCROLL TEXT BOLD EFFECT (We help startups...)
+            const scrollTextEl = document.getElementById('scroll-text');
+            const words = scrollTextEl.innerText.split(' ');
+            scrollTextEl.innerHTML = ''; // Clear original
+            
+            words.forEach(word => {
+                const span = document.createElement('span');
+                span.innerText = word + ' ';
+                span.className = 'scroll-word';
+                scrollTextEl.appendChild(span);
+            });
+
+            const scrollWords = document.querySelectorAll('.scroll-word');
+
+            window.addEventListener('scroll', () => {
+                // Word Highlight Logic
+                const rect = scrollTextEl.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // If section is in view
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    // Calculate percentage of element scrolled
+                    let scrollPercent = (windowHeight - rect.top) / (windowHeight / 1.5);
+                    scrollPercent = Math.max(0, Math.min(1, scrollPercent)); // Clamp between 0 and 1
+                    
+                    let highlightedCount = Math.floor(scrollPercent * words.length);
+                    
+                    scrollWords.forEach((span, index) => {
+                        if (index < highlightedCount) {
+                            span.classList.add('bold-active'); // Text gets bold
+                        } else {
+                            span.classList.remove('bold-active'); // Un-bolds when scrolling up
+                        }
+                    });
+                }
+
+                // 3. TIMELINE PROGRESS LINE
+                const timelineItems = document.querySelectorAll('.timeline-item');
+                timelineItems.forEach(item => {
+                    const tRect = item.getBoundingClientRect();
+                    const progressLine = item.querySelector('.timeline-progress');
+                    
+                    if(progressLine) {
+                        let fillPercentage = 0;
+                        if(tRect.top < window.innerHeight / 2) {
+                            fillPercentage = ((window.innerHeight / 2 - tRect.top) / tRect.height) * 100;
+                            fillPercentage = Math.max(0, Math.min(100, fillPercentage));
+                        }
+                        progressLine.style.height = fillPercentage + '%';
                     }
                 });
-            }, { threshold: 0.15 });
-
-            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-        });
-
-        // 3. PRICING TOGGLE
-        const toggle = document.getElementById('priceToggle');
-        const p1 = document.getElementById('p1');
-        const p2 = document.getElementById('p2');
-        let isAnnual = false;
-
-        toggle.addEventListener('click', () => {
-            isAnnual = !isAnnual;
-            toggle.classList.toggle('active', isAnnual);
-            if (isAnnual) {
-                p1.innerHTML = '$399<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
-                p2.innerHTML = '$1099<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
-            } else {
-                p1.innerHTML = '$499<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
-                p2.innerHTML = '$1199<span style="font-size: 15px; color: var(--text-muted);">/mo</span>';
-            }
-        });
-
-        // 4. FAQ ACCORDION TOGGLE
-        document.querySelectorAll('.faq-box').forEach(box => {
-            box.addEventListener('click', () => {
-                const isOpen = box.classList.contains('open');
-                document.querySelectorAll('.faq-box').forEach(b => b.classList.remove('open'));
-                if (!isOpen) {
-                    box.classList.add('open');
-                }
             });
         });
     </script>
 </body>
 </html>
+
