@@ -7,7 +7,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Smooth Scroll Lenis -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.39/dist/lenis.min.js"></script>
 
@@ -28,6 +28,10 @@
             --text-main: #ffffff;
             --text-muted: #8e8e93;
             --accent-gradient: linear-gradient(135deg, #d8b4fe, #818cf8, #a78bfa);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -52,7 +56,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.7) contrast(1.1);
+            filter: brightness(0.65) contrast(1.15);
         }
 
         .bg-overlay {
@@ -61,7 +65,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.3) 0%, rgba(8, 8, 10, 0.9) 100%);
+            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.2) 0%, rgba(8, 8, 10, 0.85) 100%);
             z-index: -1;
             pointer-events: none;
         }
@@ -72,7 +76,7 @@
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
+            border-radius: 28px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -188,15 +192,15 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            width: 90%;
-            max-width: 520px;
+            width: 92%;
+            max-width: 600px;
         }
 
         nav {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 14px;
+            padding: 8px 16px;
         }
 
         .nav-logo {
@@ -219,6 +223,11 @@
             display: flex;
             align-items: center;
             gap: 6px;
+            transition: opacity 0.2s;
+        }
+
+        .nav-link:hover {
+            opacity: 0.8;
         }
 
         .btn-header {
@@ -306,6 +315,7 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .btn-glass:hover {
@@ -345,7 +355,7 @@
 
         /* --- SECTION COMMONS --- */
         .section {
-            padding: 100px 24px;
+            padding: 90px 24px;
             max-width: 1100px;
             margin: 0 auto;
         }
@@ -369,32 +379,38 @@
             letter-spacing: -1px;
         }
 
-        /* --- 3D WHITE GLASS WRAPPER (STARTING FROM SECTION 001 ONWARDS) --- */
+        /* --- 3D WHITE GLASS WRAPPER (FOR SECTIONS 001 - 007 ONLY) --- */
         .white-glass-wrapper {
             background: rgba(255, 255, 255, 0.88);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
-            border-top: 1px solid rgba(255, 255, 255, 0.9);
-            box-shadow: 0 -30px 80px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.9);
             color: #0f172a;
             margin-top: 40px;
+            margin-bottom: 60px;
             padding-top: 40px;
+            padding-bottom: 40px;
             position: relative;
             z-index: 2;
-            border-radius: 40px 40px 0 0;
+            border-radius: 44px;
+            max-width: 1240px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .white-glass-wrapper .glass-card {
-            background: rgba(255, 255, 255, 0.65);
+            background: rgba(255, 255, 255, 0.68);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.95);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), inset 0 1px 2px rgba(255, 255, 255, 0.9);
             color: #0f172a;
+            border-radius: 28px;
         }
 
         .white-glass-wrapper .glass-card:hover {
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.88);
             border-color: #ffffff;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
         }
@@ -441,22 +457,58 @@
             color: #0f172a;
         }
 
-        /* VIDEO MOCKUP CARD */
+        /* VIDEO MOCKUP CONTAINER WITH BOLD BACKDROP MARQUEE & 3D TILT */
+        .video-container-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 0;
+            perspective: 1000px;
+        }
+
+        /* BOLD TEXT PASSING BEHIND VIDEO CARD */
+        .bg-bold-text-marquee {
+            position: absolute;
+            top: 50%;
+            left: -20%;
+            width: 240%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            font-size: clamp(3rem, 7vw, 6rem);
+            font-weight: 900;
+            color: rgba(15, 23, 42, 0.07);
+            letter-spacing: 6px;
+            pointer-events: none;
+            z-index: 0;
+            animation: marqueeTextBg 22s linear infinite;
+        }
+
+        @keyframes marqueeTextBg {
+            0% { transform: translate(0, -50%); }
+            100% { transform: translate(-40%, -50%); }
+        }
+
         .video-card {
             position: relative;
+            z-index: 1;
             width: 100%;
             max-width: 850px;
             margin: 0 auto;
             padding: 12px;
+            transform-style: preserve-3d;
+            will-change: transform;
+            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .video-card-screen {
             width: 100%;
             height: 450px;
-            border-radius: 18px;
+            border-radius: 20px;
             overflow: hidden;
             position: relative;
             background: #000;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
         }
 
         .video-card-screen video {
@@ -472,14 +524,15 @@
             transform: translate(-50%, -50%);
             width: 64px;
             height: 64px;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
             backdrop-filter: blur(10px);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             cursor: pointer;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
         }
 
         /* GRID LAYOUTS */
@@ -651,7 +704,18 @@
             margin-top: 14px;
         }
 
-        /* CONTACT LEAD FORM */
+        /* --- DARK GLASS STYLING FOR SECTIONS OUTSIDE WHITE WRAPPER (DEV PROFILE & CONTACT) --- */
+        .dark-glass-card {
+            background: rgba(255, 255, 255, 0.04) !important;
+            backdrop-filter: blur(30px) !important;
+            -webkit-backdrop-filter: blur(30px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6) !important;
+            color: #ffffff !important;
+            border-radius: 32px !important;
+        }
+
+        /* CONTACT LEAD FORM DARK INPUTS */
         .form-card {
             max-width: 620px;
             margin: 0 auto;
@@ -659,51 +723,56 @@
             text-align: center;
         }
 
-        .field-input {
+        .field-input-dark {
             width: 100%;
             padding: 16px 18px;
             margin-bottom: 14px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.12);
-            border-radius: 12px;
-            color: #0f172a;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            color: #ffffff;
             font-size: 14px;
             outline: none;
+            transition: all 0.3s ease;
         }
 
-        .field-input::placeholder {
-            color: #64748b;
+        .field-input-dark::placeholder {
+            color: #8e8e93;
         }
 
-        .field-input:focus {
-            border-color: #0f172a;
+        .field-input-dark:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .btn-submit-main {
             width: 100%;
             padding: 16px;
-            background: #0f172a;
-            color: #ffffff;
+            background: var(--accent-gradient);
+            color: #08080a;
             font-weight: 800;
             font-size: 15px;
-            border-radius: 12px;
+            border-radius: 14px;
             border: none;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .btn-submit-main:hover {
-            background: #1e293b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
         }
 
-        /* FOOTER */
+        /* FOOTER DARK */
         footer {
             padding: 60px 24px 30px 24px;
             text-align: center;
-            color: #64748b;
+            color: #8e8e93;
             font-size: 13px;
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 40px;
         }
 
         .footer-links {
@@ -714,8 +783,13 @@
         }
 
         .footer-links a {
-            color: #475569;
+            color: #d1d5db;
             text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
         }
 
         /* SCROLL ANIMATION EFFECTS */
@@ -748,6 +822,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="m12 8 4 4-4 4M8 12h8"/></svg>
             </div>
             <a href="#" class="nav-link"><span>≡</span> Menu</a>
+            <a href="#contact" class="nav-link" style="margin-left: auto; margin-right: 8px;">Contact</a>
             <button class="btn-header">Get this Template</button>
         </nav>
     </header>
@@ -764,7 +839,7 @@
         </p>
         <div class="hero-btns reveal-on-scroll">
             <button class="btn-glass">Get this Template <span class="spinner-ring" style="width:14px; height:14px; border-width:1.5px;"></span></button>
-            <button class="btn-glass"><span class="spinner-orb" style="width:12px; height:12px;"></span> Work with Us</button>
+            <a href="#contact" class="btn-glass"><span class="spinner-orb" style="width:12px; height:12px;"></span> Work with Us</a>
         </div>
     </section>
 
@@ -784,28 +859,34 @@
         </div>
     </div>
 
-    <!-- START OF 3D WHITE GLASS WRAPPER (FROM SECTION 001 ONWARDS) -->
+    <!-- START OF 3D WHITE GLASS WRAPPER (SECTIONS 001 TO 007) -->
     <div class="white-glass-wrapper">
 
-        <!-- 3. WHO WE ARE (TEXT HIGHLIGHT + IMAGES) -->
+        <!-- 3. WHO WE ARE (TEXT HIGHLIGHT + IMAGES + 3D VIDEO CARD WITH BG MARQUEE) -->
         <section class="section">
             <span class="tag-sub reveal-on-scroll">001 • WHO WE ARE</span>
             <div class="text-reveal-box reveal-on-scroll" id="scrollHighlightText">
                 We help startups, SMEs & enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
             </div>
 
-            <!-- WE HELP के नीचे इमेज -->
+            <!-- WE HELP IMAGE -->
             <div class="reveal-on-scroll" style="text-align: center; margin-bottom: 40px;">
-                <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 18px; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 15px 35px rgba(0,0,0,0.06);">
+                <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 22px; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 15px 35px rgba(0,0,0,0.06);">
             </div>
 
-            <div class="video-card glass-card reveal-on-scroll">
-                <div class="video-card-screen">
-                    <video autoplay loop muted playsinline>
-                        <source src="images/bg-video.mp4" type="video/mp4">
-                    </video>
-                    <div class="play-overlay">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            <!-- 3D VIDEO CONTAINER WITH BOLD TEXT PASSING BEHIND IT -->
+            <div class="video-container-wrapper">
+                <div class="bg-bold-text-marquee">
+                    AUTOMATION • AI AGENTS • WORKFLOWS • SCALABLE GROWTH •
+                </div>
+                <div class="video-card glass-card reveal-on-scroll" id="3dVideoCard">
+                    <div class="video-card-screen">
+                        <video autoplay loop muted playsinline>
+                            <source src="images/bg-video.mp4" type="video/mp4">
+                        </video>
+                        <div class="play-overlay">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -928,7 +1009,7 @@
                     <h3 style="color:#0f172a;">Growth Automation</h3>
                     <p style="color: #64748b; font-size:13px;">For scaling businesses</p>
                     <div class="price-val" id="p2">$1199<span style="font-size: 15px; color: #64748b;">/mo</span></div>
-                    <button class="btn-submit-main">Get Growth Package</button>
+                    <button class="btn-submit-main" style="background:#0f172a; color:#fff;">Get Growth Package</button>
                 </div>
             </div>
         </section>
@@ -958,43 +1039,43 @@
             </div>
         </section>
 
-        <!-- 10. DEVELOPER PROFILE SECTION (CARD INSIDE PROPER GLASS CONTAINER) -->
-        <section class="section">
-            <div class="glass-card card-inner reveal-on-scroll" style="max-width: 360px; margin: 0 auto; text-align: center; padding: 40px 24px;">
-                <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid rgba(255,255,255,0.8); box-shadow: 0 10px 20px rgba(0,0,0,0.08);">
-                <h3 class="card-title">Your Name Here</h3>
-                <p class="card-desc">AI Automation Developer & Founder</p>
-            </div>
-        </section>
-
-        <!-- 11. LEAD FORM CARD -->
-        <section class="section">
-            <div class="glass-card form-card reveal-on-scroll">
-                <div style="margin-bottom:15px;"><div class="spinner-gyro" style="width:30px; height:30px;"></div></div>
-                <h2 style="font-size: 2.2rem; font-weight:800; margin-bottom:10px; color:#0f172a;">Your Competitors Are Automating. Are You?</h2>
-                <p style="color: #64748b; margin-bottom: 30px; font-size:14px;">Stop wasting time on manual processes. Start building a self-running business.</p>
-                <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
-                    <input type="text" placeholder="Your name*" class="field-input" required>
-                    <input type="text" placeholder="Your company name*" class="field-input" required>
-                    <input type="email" placeholder="Your business email*" class="field-input" required>
-                    <textarea placeholder="Share project details*" class="field-input" rows="4" required style="resize:none;"></textarea>
-                    <button type="submit" class="btn-submit-main">Send Your Request</button>
-                </form>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer>
-            <div class="footer-links">
-                <a href="#">LinkedIn ↗</a>
-                <a href="#">Instagram ↗</a>
-                <a href="#">Facebook ↗</a>
-                <a href="#">Twitter X ↗</a>
-            </div>
-            <p>© 2026 Conicorn AI. All rights reserved.</p>
-        </footer>
-
     </div><!-- END OF WHITE GLASS WRAPPER -->
+
+    <!-- 10. DEVELOPER PROFILE SECTION (OUTSIDE WHITE WRAPPER, BACK OVER 3D BACKGROUND VIDEO) -->
+    <section class="section">
+        <div class="dark-glass-card card-inner reveal-on-scroll" style="max-width: 360px; margin: 0 auto; text-align: center; padding: 40px 24px;">
+            <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid rgba(255,255,255,0.8); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+            <h3 class="card-title" style="color:#ffffff;">Your Name Here</h3>
+            <p class="card-desc" style="color: var(--text-muted);">AI Automation Developer & Founder</p>
+        </div>
+    </section>
+
+    <!-- 11. LEAD FORM CARD (CONTACT SECTION) -->
+    <section class="section" id="contact">
+        <div class="dark-glass-card form-card reveal-on-scroll">
+            <div style="margin-bottom:15px;"><div class="spinner-gyro" style="width:30px; height:30px;"></div></div>
+            <h2 style="font-size: 2.2rem; font-weight:800; margin-bottom:10px; color:#ffffff;">Your Competitors Are Automating. Are You?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px; font-size:14px;">Stop wasting time on manual processes. Start building a self-running business.</p>
+            <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
+                <input type="text" placeholder="Your name*" class="field-input-dark" required>
+                <input type="text" placeholder="Your company name*" class="field-input-dark" required>
+                <input type="email" placeholder="Your business email*" class="field-input-dark" required>
+                <textarea placeholder="Share project details*" class="field-input-dark" rows="4" required style="resize:none;"></textarea>
+                <button type="submit" class="btn-submit-main">Send Your Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER (DARK MODE OVER BG VIDEO) -->
+    <footer>
+        <div class="footer-links">
+            <a href="#">LinkedIn ↗</a>
+            <a href="#">Instagram ↗</a>
+            <a href="#">Facebook ↗</a>
+            <a href="#">Twitter X ↗</a>
+        </div>
+        <p>© 2026 Conicorn AI. All rights reserved.</p>
+    </footer>
 
     <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
     <script>
@@ -1042,9 +1123,26 @@
                     });
                 });
             }
+
+            // 4. SECTION 001 VIDEO CARD 3D TILT & FLATTEN ON SCROLL
+            const videoCard = document.getElementById('3dVideoCard');
+            if (videoCard) {
+                window.addEventListener('scroll', () => {
+                    const rect = videoCard.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    // Dist from center of viewport
+                    const centerOffset = (rect.top + rect.height / 2) - (windowHeight / 2);
+                    
+                    // Dynamic 3D Tilt calculation
+                    const tiltX = Math.min(Math.max((centerOffset / windowHeight) * 35, -25), 25);
+                    const scale = Math.max(0.88, 1 - Math.abs(centerOffset / windowHeight) * 0.2);
+
+                    videoCard.style.transform = `rotateX(${tiltX}deg) scale(${scale})`;
+                });
+            }
         });
 
-        // 4. PRICING TOGGLE
+        // 5. PRICING TOGGLE
         const toggle = document.getElementById('priceToggle');
         const p1 = document.getElementById('p1');
         const p2 = document.getElementById('p2');
@@ -1062,7 +1160,7 @@
             }
         });
 
-        // 5. FAQ ACCORDION TOGGLE
+        // 6. FAQ ACCORDION TOGGLE
         document.querySelectorAll('.faq-box').forEach(box => {
             box.addEventListener('click', () => {
                 const isOpen = box.classList.contains('open');
