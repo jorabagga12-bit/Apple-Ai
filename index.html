@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conicorn - AI Automation Agency</title>
+    <title>Conicorn - AI Automation Agency (Light Theme)</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- RESET & GLOBAL VARIABLES --- */
+        /* --- RESET & GLOBAL VARIABLES (APPLE iOS LIGHT THEME) --- */
         * {
             margin: 0;
             padding: 0;
@@ -19,13 +19,15 @@
         }
 
         :root {
-            --bg-dark: #08080a;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --glass-hover: rgba(255, 255, 255, 0.07);
-            --text-main: #ffffff;
-            --text-muted: #8e8e93;
-            --accent-gradient: linear-gradient(135deg, #d8b4fe, #818cf8, #a78bfa);
+            /* Light Theme Variables */
+            --bg-main: #f5f5f7; /* Apple specific light grey */
+            --bg-pure-white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.7); /* White glass */
+            --glass-border: rgba(0, 0, 0, 0.08); /* Light border */
+            --glass-hover: rgba(255, 255, 255, 0.95);
+            --text-main: #1d1d1f; /* Apple dark text */
+            --text-muted: #86868b;
+            --accent-gradient: linear-gradient(135deg, #a78bfa, #818cf8, #d8b4fe);
         }
 
         html {
@@ -33,13 +35,13 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-main);
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.5;
         }
 
-        /* --- BACKGROUND VIDEO SETUP --- */
+        /* --- BACKGROUND VIDEO SETUP (LIGHTER FADE) --- */
         .bg-video-wrapper {
             position: fixed;
             top: 0;
@@ -54,7 +56,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.65) contrast(1.15);
+            /* Video को थोड़ा लाइट कर दिया है */
+            filter: brightness(1.1) contrast(0.9);
         }
 
         .bg-overlay {
@@ -63,37 +66,40 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.2) 0%, rgba(8, 8, 10, 0.85) 100%);
+            /* Dark gradient की जगह White Frosted Gradient */
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4) 0%, rgba(245, 245, 247, 0.95) 100%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* --- APPLE IPHONE GLASSMORPHISM (DARK BASE) --- */
+        /* --- APPLE IPHONE GLASSMORPHISM (LIGHT BASE) --- */
         .glass-card {
             background: var(--glass-bg);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
             border-radius: 28px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            /* Shadow को वाइट थीम के हिसाब से सॉफ्ट कर दिया है */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .glass-card:hover {
             background: var(--glass-hover);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6);
+            border-color: rgba(0, 0, 0, 0.12);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
         }
 
         .glass-pill {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 100px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
 
-        /* --- 3D ADVANCED SPINNERS & CHAKKAR ANIMATIONS --- */
+        /* --- 3D ADVANCED SPINNERS (Same logic, looks great on white too) --- */
         .spinner-ring {
             width: 26px;
             height: 26px;
@@ -142,7 +148,7 @@
             height: 22px;
             background: radial-gradient(circle at 30% 30%, #a78bfa, #4f46e5);
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(167, 139, 250, 0.8);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.6);
             animation: pulseOrb 2s ease-in-out infinite;
             display: inline-block;
         }
@@ -163,33 +169,28 @@
             50% { transform: rotate(180deg) scale(1.1); }
             100% { transform: rotate(360deg) scale(0.95); }
         }
-
         @keyframes spinReverse {
             0% { transform: rotate(360deg); }
             100% { transform: rotate(0deg); }
         }
-
         @keyframes gyroRotate {
             0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
             100% { transform: rotateX(360deg) rotateY(180deg) rotateZ(360deg); }
         }
-
         @keyframes gyroRotateInner {
             0% { transform: rotateX(360deg) rotateY(0deg); }
             100% { transform: rotateX(0deg) rotateY(360deg); }
         }
-
         @keyframes pulseOrb {
-            0%, 100% { transform: scale(0.95); box-shadow: 0 0 10px rgba(167, 139, 250, 0.5); }
-            50% { transform: scale(1.2); box-shadow: 0 0 22px rgba(167, 139, 250, 0.9); }
+            0%, 100% { transform: scale(0.95); box-shadow: 0 0 10px rgba(167, 139, 250, 0.4); }
+            50% { transform: scale(1.2); box-shadow: 0 0 22px rgba(167, 139, 250, 0.7); }
         }
-
         @keyframes miniPulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.5); opacity: 0.5; }
         }
 
-        /* --- UPDATED HEADER --- */
+        /* --- UPDATED HEADER (LIGHT) --- */
         header {
             position: fixed;
             top: 25px;
@@ -205,44 +206,44 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: rgba(25, 25, 30, 0.65);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #ffffff;
+            color: var(--text-main);
             font-weight: 800;
             font-size: 20px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .nav-logo:hover {
             transform: scale(1.06);
-            border-color: rgba(255, 255, 255, 0.3);
+            background: #ffffff;
         }
 
         .nav-pill-group {
             position: relative;
             display: flex;
             align-items: center;
-            background: rgba(25, 25, 30, 0.65);
+            background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 100px;
             padding: 8px;
             gap: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
         }
 
         .menu-trigger-btn {
             background: transparent;
             border: 1px solid transparent;
-            color: #ffffff;
+            color: var(--text-main);
             padding: 12px 24px;
             border-radius: 100px;
             font-size: 16px;
@@ -255,12 +256,11 @@
         }
 
         .menu-trigger-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.05);
         }
 
         .menu-trigger-btn.active-menu {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(0, 0, 0, 0.08);
         }
 
         .menu-trigger-btn .menu-icon {
@@ -270,8 +270,8 @@
         }
 
         .btn-header {
-            background: #ffffff;
-            color: #000000;
+            background: var(--text-main); /* Dark Button on light theme */
+            color: #ffffff;
             border: none;
             padding: 14px 28px;
             border-radius: 100px;
@@ -284,7 +284,7 @@
 
         .btn-header:hover {
             transform: scale(1.02);
-            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
         }
 
         .menu-blur-overlay {
@@ -293,7 +293,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(255, 255, 255, 0.4); /* Light blur overlay */
             backdrop-filter: blur(15px);
             -webkit-backdrop-filter: blur(15px);
             z-index: 995;
@@ -313,10 +313,10 @@
             left: 50%;
             transform: translateX(-50%) translateY(-10px) scale(0.96);
             width: 320px;
-            background: rgba(25, 25, 30, 0.9) !important;
+            background: rgba(255, 255, 255, 0.95) !important;
             backdrop-filter: blur(35px) !important;
             -webkit-backdrop-filter: blur(35px) !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
             border-radius: 24px !important;
             padding: 24px 30px !important;
             display: grid;
@@ -326,7 +326,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.6) !important;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15) !important;
             z-index: 999;
         }
 
@@ -337,7 +337,7 @@
         }
 
         .dropdown-link {
-            color: #ffffff;
+            color: var(--text-main);
             text-decoration: none;
             font-size: 15px;
             font-weight: 600;
@@ -347,7 +347,7 @@
         }
 
         .dropdown-link:hover {
-            color: #d8b4fe;
+            color: #818cf8;
             transform: translateX(4px);
         }
 
@@ -368,9 +368,9 @@
             gap: 8px;
             padding: 8px 18px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 1px;
-            color: #d1d5db;
+            color: #555;
             margin-bottom: 24px;
         }
 
@@ -384,12 +384,12 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .title-white {
+        .title-solid {
             font-size: clamp(2.8rem, 6.5vw, 5.2rem);
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -2px;
-            color: #ffffff;
+            color: var(--text-main); /* Changed to dark */
             margin-bottom: 24px;
         }
 
@@ -411,9 +411,9 @@
             padding: 14px 28px;
             font-weight: 700;
             font-size: 14px;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 100px;
             cursor: pointer;
             display: flex;
@@ -421,17 +421,42 @@
             gap: 10px;
             transition: all 0.3s ease;
             text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
         .btn-glass:hover {
-            background: rgba(255, 255, 255, 0.15);
+            background: #ffffff;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
             transform: translateY(-2px);
         }
 
-        /* --- MARQUEE SLIDER --- */
+        .btn-solid-dark {
+            padding: 14px 28px;
+            font-weight: 700;
+            font-size: 14px;
+            color: #ffffff;
+            background: var(--text-main);
+            border: 1px solid var(--text-main);
+            border-radius: 100px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .btn-solid-dark:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        /* --- MARQUEE SLIDER (Lighter text) --- */
         .marquee-container {
             padding: 30px 0;
             overflow: hidden;
+            /* Update gradient mask for light theme */
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
         }
@@ -446,7 +471,7 @@
         .marquee-item {
             font-size: 18px;
             font-weight: 700;
-            color: #8e8e93;
+            color: #a1a1a6; /* lighter gray */
             letter-spacing: 1px;
             display: flex;
             align-items: center;
@@ -484,34 +509,21 @@
             text-align: center;
             margin-bottom: 60px;
             letter-spacing: -1px;
-            color: #ffffff;
+            color: var(--text-main); /* Dark Heading */
         }
 
-        /* --- MAIN DARK WRAPPER (ADDED FROSTED WHITE EFFECT) --- */
-        .main-dark-wrapper {
+        /* --- MAIN WHITE WRAPPER (GRADIENT TO PURE WHITE SCROLL EFFECT) --- */
+        .main-content-wrapper {
             position: relative;
             width: 100%;
             margin: 0;
             padding: 60px 0; 
             z-index: 2;
+            /* नीचे जाते-जाते प्योर वाइट हो जाएगा */
+            background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.8) 15%, #ffffff 30%, #ffffff 100%);
         }
 
-        /* NEW: हल्का सा वाइट और ब्लर इफ़ेक्ट (We Help के नीचे के सेक्शन के लिए) */
-        .main-dark-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 20%; /* We help वाले हिस्से के थोड़ा नीचे से शुरू होगा */
-            left: 0;
-            width: 100%;
-            height: 80%;
-            background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.015) 20%, rgba(255, 255, 255, 0.035) 100%);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        /* TEXT REVEAL IN DARK THEME */
+        /* TEXT REVEAL IN LIGHT THEME */
         .text-reveal-box {
             font-size: clamp(2rem, 4.5vw, 3.5rem);
             font-weight: 700;
@@ -519,16 +531,16 @@
             text-align: center;
             max-width: 950px;
             margin: 0 auto 60px auto;
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         .text-reveal-box span {
-            color: rgba(255, 255, 255, 0.18);
+            color: rgba(0, 0, 0, 0.15); /* light inactive words */
             transition: color 0.4s ease;
         }
 
         .text-reveal-box span.active-word {
-            color: #ffffff;
+            color: var(--text-main); /* dark active words */
         }
 
         /* VIDEO MOCKUP CONTAINER */
@@ -541,7 +553,7 @@
             perspective: 1000px;
         }
 
-        /* MONEY AI BACKGROUND TEXT */
+        /* MONEY AI BACKGROUND TEXT (Subtle for white theme) */
         .bg-bold-text-marquee {
             position: absolute;
             top: 50%;
@@ -555,16 +567,11 @@
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            opacity: 0.15;
+            opacity: 0.1; /* Lower opacity for light theme */
             letter-spacing: 4px;
             pointer-events: none;
             z-index: 0;
             animation: marqueeTextBg 22s linear infinite;
-        }
-
-        @keyframes marqueeTextBg {
-            0% { transform: translate(0, -50%); background-position: 0% center; }
-            100% { transform: translate(-40%, -50%); background-position: 200% center; }
         }
 
         .video-card {
@@ -586,7 +593,7 @@
             overflow: hidden;
             position: relative;
             background: #000;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2); /* Softer shadow on white */
         }
 
         .video-card-screen video, .video-card-screen img {
@@ -614,15 +621,15 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.03); /* Light background for icon */
+            border: 1px solid rgba(0, 0, 0, 0.08);
         }
 
         .card-title {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 12px;
-            color: #ffffff;
+            color: var(--text-main);
             line-height: 1.3;
         }
 
@@ -666,15 +673,15 @@
             width: 48px;
             height: 48px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            color: #ffffff;
+            background: rgba(0, 0, 0, 0.05); /* Light grey circle */
+            color: var(--text-main);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
             font-size: 18px;
             flex-shrink: 0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         /* TECH ECOSYSTEM */
@@ -690,12 +697,12 @@
             gap: 12px;
             padding: 16px 36px;
             border-radius: 100px;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
             font-weight: 700;
             font-size: 1.1rem;
-            color: #ffffff;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: var(--text-main);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
         }
 
         /* PRICING */
@@ -707,16 +714,21 @@
             margin-bottom: 40px;
             font-size: 1.1rem;
             font-weight: 700;
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         .toggle-bg {
             width: 60px;
             height: 32px;
-            background: rgba(255, 255, 255, 0.15);
+            background: #d1d1d6; /* Light grey track */
             border-radius: 100px;
             padding: 3px;
             cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-bg.active {
+            background: #34c759; /* iOS green or keep it brand colored */
         }
 
         .toggle-circle {
@@ -724,6 +736,7 @@
             height: 26px;
             background: #ffffff;
             border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             transition: transform 0.3s ease;
         }
 
@@ -736,7 +749,7 @@
             font-weight: 800;
             margin: 20px 0 28px 0;
             letter-spacing: -1.5px;
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         /* FAQ ACCORDION */
@@ -751,6 +764,7 @@
         .faq-box {
             padding: 26px 32px;
             cursor: pointer;
+            background: #ffffff;
         }
 
         .faq-head {
@@ -758,15 +772,15 @@
             justify-content: space-between;
             align-items: center;
             font-size: 1.25rem;
-            font-weight: 600;
-            color: #ffffff;
+            font-weight: 700;
+            color: var(--text-main);
         }
 
         .faq-body {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, margin-top 0.3s ease;
-            color: #8e8e93;
+            color: var(--text-muted);
             font-size: 1.1rem;
             line-height: 1.6;
         }
@@ -776,42 +790,43 @@
             margin-top: 16px;
         }
 
-        /* CONTACT LEAD FORM DARK INPUTS */
+        /* CONTACT LEAD FORM LIGHT INPUTS */
         .form-card {
             max-width: 620px;
             margin: 0 auto;
             padding: 50px 40px;
             text-align: center;
+            background: #ffffff; /* pure white box for form */
         }
 
-        .field-input-dark {
+        .field-input-light {
             width: 100%;
             padding: 18px 20px;
             margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: #f5f5f7; /* Light grey input */
+            border: 1px solid rgba(0, 0, 0, 0.08);
             border-radius: 14px;
-            color: #ffffff;
+            color: var(--text-main);
             font-size: 1.1rem;
             outline: none;
             transition: all 0.3s ease;
         }
 
-        .field-input-dark::placeholder {
-            color: #8e8e93;
+        .field-input-light::placeholder {
+            color: #a1a1a6;
         }
 
-        .field-input-dark:focus {
+        .field-input-light:focus {
             border-color: #a78bfa;
-            box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
-            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+            background: #ffffff;
         }
 
         .btn-submit-main {
             width: 100%;
             padding: 18px;
-            background: var(--accent-gradient);
-            color: #08080a;
+            background: var(--text-main); /* Dark button */
+            color: #ffffff;
             font-weight: 800;
             font-size: 1.1rem;
             border-radius: 14px;
@@ -823,16 +838,16 @@
 
         .btn-submit-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
-        /* FOOTER DARK */
+        /* FOOTER LIGHT */
         footer {
             padding: 60px 24px 30px 24px;
             text-align: center;
-            color: #8e8e93;
+            color: var(--text-muted);
             font-size: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
             margin-top: 40px;
             position: relative;
             z-index: 10;
@@ -846,13 +861,13 @@
         }
 
         .footer-links a {
-            color: #d1d5db;
+            color: #555;
             text-decoration: none;
             transition: color 0.2s;
         }
 
         .footer-links a:hover {
-            color: #ffffff;
+            color: var(--text-main);
         }
 
         /* SCROLL ANIMATION EFFECTS */
@@ -910,13 +925,13 @@
             <span class="pulse-dot"></span> UNICORN AI PARTNER
         </div>
         <h1 class="title-gradient reveal-on-scroll">Intelligent Automation</h1>
-        <h1 class="title-white reveal-on-scroll">for Modern Teams</h1>
+        <h1 class="title-solid reveal-on-scroll">for Modern Teams</h1>
         <p class="hero-desc reveal-on-scroll">
             We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.
         </p>
         <div class="hero-btns reveal-on-scroll">
             <button class="btn-glass">Get this Template <span class="spinner-ring" style="width:14px; height:14px; border-width:1.5px;"></span></button>
-            <a href="#contact" class="btn-glass"><span class="spinner-orb" style="width:12px; height:12px;"></span> Work with Us</a>
+            <a href="#contact" class="btn-solid-dark"><span class="spinner-orb" style="width:12px; height:12px;"></span> Work with Us</a>
         </div>
     </section>
 
@@ -936,8 +951,8 @@
         </div>
     </div>
 
-    <!-- START OF MAIN DARK WRAPPER -->
-    <div class="main-dark-wrapper">
+    <!-- START OF MAIN CONTENT WRAPPER (Gradual White Background) -->
+    <div class="main-content-wrapper">
 
         <!-- 3. WHO WE ARE -->
         <section class="section">
@@ -948,7 +963,7 @@
 
             <!-- WE HELP IMAGE -->
             <div class="reveal-on-scroll" style="text-align: center; margin-bottom: 40px;">
-                <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
+                <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 22px; border: 1px solid rgba(0, 0, 0, 0.05); box-shadow: 0 20px 40px rgba(0,0,0,0.08);">
             </div>
 
             <!-- 3D VIDEO CONTAINER -->
@@ -1023,22 +1038,22 @@
                 <div class="glass-card process-row reveal-on-scroll">
                     <div class="process-num">01</div>
                     <div>
-                        <h3 style="font-size: 1.4rem; font-weight:700; color:#ffffff; margin-bottom: 6px;">Discovery & Audit</h3>
-                        <p style="color: #8e8e93; font-size: 1.1rem; line-height: 1.5;">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
+                        <h3 style="font-size: 1.4rem; font-weight:700; color:var(--text-main); margin-bottom: 6px;">Discovery & Audit</h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
                     </div>
                 </div>
                 <div class="glass-card process-row reveal-on-scroll">
                     <div class="process-num">02</div>
                     <div>
-                        <h3 style="font-size: 1.4rem; font-weight:700; color:#ffffff; margin-bottom: 6px;">Automation Blueprint</h3>
-                        <p style="color: #8e8e93; font-size: 1.1rem; line-height: 1.5;">We design a detailed automation architecture aligned with your KPIs.</p>
+                        <h3 style="font-size: 1.4rem; font-weight:700; color:var(--text-main); margin-bottom: 6px;">Automation Blueprint</h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;">We design a detailed automation architecture aligned with your KPIs.</p>
                     </div>
                 </div>
                 <div class="glass-card process-row reveal-on-scroll">
                     <div class="process-num">03</div>
                     <div>
-                        <h3 style="font-size: 1.4rem; font-weight:700; color:#ffffff; margin-bottom: 6px;">Build & Integration</h3>
-                        <p style="color: #8e8e93; font-size: 1.1rem; line-height: 1.5;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
+                        <h3 style="font-size: 1.4rem; font-weight:700; color:var(--text-main); margin-bottom: 6px;">Build & Integration</h3>
+                        <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.5;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
                     </div>
                 </div>
             </div>
@@ -1053,7 +1068,7 @@
                     <div class="spinner-gyro" style="width:20px; height:20px;"></div>
                     <span>Try with Conicorn</span>
                 </div>
-                <p style="color: #8e8e93; margin-top: 24px; font-size: 1.1rem;">Our architecture connects Salesforce, HubSpot, Zapier, Zoho, OpenAI, and Make seamlessly.</p>
+                <p style="color: var(--text-muted); margin-top: 24px; font-size: 1.1rem;">Our architecture connects Salesforce, HubSpot, Zapier, Zoho, OpenAI, and Make seamlessly.</p>
             </div>
         </section>
 
@@ -1072,16 +1087,17 @@
 
             <div class="grid-3" style="max-width: 800px; margin: 0 auto;">
                 <div class="glass-card card-inner reveal-on-scroll">
-                    <h3 style="color:#ffffff; font-size: 1.5rem; margin-bottom: 8px;">Starter Automation</h3>
-                    <p style="color: #8e8e93; font-size:1.1rem;">For small teams beginning their journey</p>
-                    <div class="price-val" id="p1">$499<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span></div>
-                    <button class="btn-submit-main" style="background: rgba(255,255,255,0.08); color:#ffffff; border: 1px solid rgba(255,255,255,0.15);">Get Starter Package</button>
+                    <h3 style="color:var(--text-main); font-size: 1.5rem; margin-bottom: 8px;">Starter Automation</h3>
+                    <p style="color: var(--text-muted); font-size:1.1rem;">For small teams beginning their journey</p>
+                    <div class="price-val" id="p1">$499<span style="font-size: 1.1rem; color: #86868b; font-weight: 500;">/mo</span></div>
+                    <button class="btn-glass" style="width: 100%; justify-content: center; background: rgba(0,0,0,0.03);">Get Starter Package</button>
                 </div>
+                <!-- Highlighted Card -->
                 <div class="glass-card card-inner reveal-on-scroll" style="border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 20px 40px rgba(167, 139, 250, 0.15);">
-                    <h3 style="color:#ffffff; font-size: 1.5rem; margin-bottom: 8px;">Growth Automation</h3>
-                    <p style="color: #8e8e93; font-size:1.1rem;">For scaling businesses</p>
-                    <div class="price-val" id="p2">$1199<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span></div>
-                    <button class="btn-submit-main" style="background:#ffffff; color:#08080a;">Get Growth Package</button>
+                    <h3 style="color:var(--text-main); font-size: 1.5rem; margin-bottom: 8px;">Growth Automation</h3>
+                    <p style="color: var(--text-muted); font-size:1.1rem;">For scaling businesses</p>
+                    <div class="price-val" id="p2">$1199<span style="font-size: 1.1rem; color: #86868b; font-weight: 500;">/mo</span></div>
+                    <button class="btn-submit-main" style="margin-top:0;">Get Growth Package</button>
                 </div>
             </div>
         </section>
@@ -1111,13 +1127,13 @@
             </div>
         </section>
 
-    </div><!-- END OF MAIN DARK WRAPPER -->
+    </div><!-- END OF MAIN LIGHT WRAPPER -->
 
     <!-- 10. DEVELOPER PROFILE SECTION -->
     <section class="section">
         <div class="glass-card card-inner reveal-on-scroll" style="max-width: 360px; margin: 0 auto; text-align: center; padding: 40px 24px;">
-            <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-            <h3 class="card-title" style="color:#ffffff;">Your Name Here</h3>
+            <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid #ffffff; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+            <h3 class="card-title" style="color:var(--text-main);">Your Name Here</h3>
             <p class="card-desc" style="color: var(--text-muted); font-size: 1.1rem;">AI Automation Developer & Founder</p>
         </div>
     </section>
@@ -1126,13 +1142,13 @@
     <section class="section" id="contact">
         <div class="glass-card form-card reveal-on-scroll">
             <div style="margin-bottom:20px; display: flex; justify-content: center;"><div class="spinner-gyro" style="width:36px; height:36px;"></div></div>
-            <h2 style="font-size: 2.5rem; font-weight:800; margin-bottom:12px; color:#ffffff; line-height: 1.2;">Your Competitors Are Automating. Are You?</h2>
+            <h2 style="font-size: 2.5rem; font-weight:800; margin-bottom:12px; color:var(--text-main); line-height: 1.2;">Your Competitors Are Automating. Are You?</h2>
             <p style="color: var(--text-muted); margin-bottom: 36px; font-size:1.15rem;">Stop wasting time on manual processes. Start building a self-running business.</p>
             <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
-                <input type="text" placeholder="Your name*" class="field-input-dark" required>
-                <input type="text" placeholder="Your company name*" class="field-input-dark" required>
-                <input type="email" placeholder="Your business email*" class="field-input-dark" required>
-                <textarea placeholder="Share project details*" class="field-input-dark" rows="4" required style="resize:none;"></textarea>
+                <input type="text" placeholder="Your name*" class="field-input-light" required>
+                <input type="text" placeholder="Your company name*" class="field-input-light" required>
+                <input type="email" placeholder="Your business email*" class="field-input-light" required>
+                <textarea placeholder="Share project details*" class="field-input-light" rows="4" required style="resize:none;"></textarea>
                 <button type="submit" class="btn-submit-main">Send Your Request</button>
             </form>
         </div>
@@ -1149,7 +1165,7 @@
         <p>© 2026 Conicorn AI. All rights reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
+    <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS (UNCHANGED) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             // 1. SCROLL REVEAL EFFECT
@@ -1209,11 +1225,11 @@
                     isAnnual = !isAnnual;
                     toggle.classList.toggle('active', isAnnual);
                     if (isAnnual) {
-                        p1.innerHTML = '$399<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
-                        p2.innerHTML = '$1099<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
+                        p1.innerHTML = '$399<span style="font-size: 1.1rem; color: #86868b; font-weight: 500;">/mo</span>';
+                        p2.innerHTML = '$1099<span style="font-size: 1.1rem; color: #86868b; font-weight: 500;">/mo</span>';
                     } else {
-                        p1.innerHTML = '$499<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
-                        p2.innerHTML = '$1199<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
+                        p1.innerHTML = '$499<span style="font-size: 1.1rem; color: #86868b; font-weight: 500;">/mo</span>';
+                        p2.innerHTML = '$1199<span style="font-size: 1.1rem; color: #86868b; font-weight: 500;">/mo</span>';
                     }
                 });
             }
