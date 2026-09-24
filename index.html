@@ -32,15 +32,16 @@
 
         html {
             scroll-behavior: smooth;
-            width: 100%;
         }
 
-        body {
+        /* FIXED: Prevent Horizontal Scroll completely */
+        html, body {
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
-            line-height: 1.6;
             width: 100%;
+            max-width: 100vw;
+            line-height: 1.6;
         }
 
         /* --- BACKGROUND VIDEO & OVERLAY --- */
@@ -153,7 +154,7 @@
             top: 20px; 
             left: 50%; 
             transform: translateX(-50%);
-            z-index: 1000; 
+            z-index: 9999; 
             display: flex; 
             align-items: center; 
             justify-content: center;
@@ -199,7 +200,7 @@
         .menu-blur-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            z-index: 995; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 9995; opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .menu-blur-overlay.active { opacity: 1; visibility: visible; }
 
@@ -211,7 +212,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1); border-top: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 24px; padding: 20px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
             opacity: 0; visibility: hidden; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8); z-index: 999;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8); z-index: 9999;
         }
         .nav-dropdown.open { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0) scale(1); }
 
@@ -266,7 +267,11 @@
 
         /* --- MAIN DARK WRAPPER --- */
         .main-dark-wrapper {
-            position: relative; width: 100%; padding: 40px 0; z-index: 2;
+            position: relative; 
+            width: 100%; 
+            padding: 40px 0; 
+            z-index: 2;
+            overflow: hidden; /* FIXED: This stops the large text from creating horizontal scroll space */
             background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 15, 0.8) 15%, rgba(10, 10, 15, 1) 100%);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
@@ -328,7 +333,7 @@
         }
         .video-card-screen video, .video-card-screen img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
 
-        /* GRIDS & CARDS (FIXED MINMAX FOR NO OVERFLOW) */
+        /* GRIDS & CARDS */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 20px; }
         .card-inner { padding: 36px 28px; }
         .icon-box {
@@ -403,7 +408,6 @@
             transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
         .toggle-bg.active .toggle-circle { transform: translateX(28px); }
-
         .price-val { font-size: 3.2rem; font-weight: 900; margin: 20px 0 24px 0; letter-spacing: -1.5px; color: #ffffff; }
 
         /* FAQ ACCORDION */
@@ -460,7 +464,7 @@
         }
         .reveal-on-scroll.visible { opacity: 1; transform: translateY(0) scale(1); }
 
-        /* --- MOBILE SPECIFIC MEDIA QUERIES (FIXES OVERFLOW AND ZOOM ISSUES) --- */
+        /* --- MOBILE SPECIFIC MEDIA QUERIES (FIXES OVERFLOW, HEADER AND ZOOM ISSUES) --- */
         @media (max-width: 900px) {
             .bento-col-8, .bento-col-4 { grid-column: span 12; }
         }
@@ -468,21 +472,37 @@
         @media (max-width: 600px) {
             header {
                 top: 12px;
-                width: 95%;
-                gap: 8px;
+                width: 100%; /* Fixed Header Width */
+                padding: 0 10px;
+                gap: 6px;
             }
             .nav-logo {
                 width: 44px;
                 height: 44px;
                 font-size: 15px;
             }
+            .nav-pill-group {
+                padding: 4px;
+            }
             .menu-trigger-btn {
-                padding: 8px 14px;
+                padding: 8px 12px;
                 font-size: 12px;
             }
             .btn-header {
-                padding: 8px 14px;
-                font-size: 12px;
+                padding: 8px 12px;
+                font-size: 11px;
+            }
+            /* FIXED: Dropdown alignment so "Home" button doesn't hide */
+            .nav-dropdown {
+                grid-template-columns: 1fr; /* 1 column layout on mobile to prevent squishing */
+                width: calc(100vw - 30px); /* Fits perfectly inside screen */
+                padding: 15px;
+                gap: 12px;
+                text-align: center;
+            }
+            .dropdown-link {
+                padding: 10px 0;
+                font-size: 15px;
             }
             .section {
                 padding: 50px 16px;
@@ -942,4 +962,3 @@
     </script>
 </body>
 </html>
-
