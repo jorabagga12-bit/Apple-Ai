@@ -19,7 +19,6 @@
         }
 
         :root {
-            --bg-dark: #08080a;
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.08);
             --glass-hover: rgba(255, 255, 255, 0.07);
@@ -32,39 +31,23 @@
             scroll-behavior: smooth;
         }
 
+        /* NEW BACKGROUND LOGIC: Slight white/light top fading to brownish-black */
         body {
-            background-color: var(--bg-dark);
+            background-color: #08080a;
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.5;
         }
 
-        /* --- BACKGROUND VIDEO SETUP --- */
-        .bg-video-wrapper {
+        .bg-dynamic-gradient {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
+            /* Top has a slight white/grey bite, fading to light brown/dark red tint, ending in deep black */
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0%, rgba(35, 25, 25, 0.8) 40%, rgba(8, 8, 10, 1) 100%);
             z-index: -2;
-            overflow: hidden;
-        }
-
-        .bg-video-wrapper video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: brightness(0.65) contrast(1.15);
-        }
-
-        .bg-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.2) 0%, rgba(8, 8, 10, 0.85) 100%);
-            z-index: -1;
             pointer-events: none;
         }
 
@@ -189,7 +172,7 @@
             50% { transform: scale(1.5); opacity: 0.5; }
         }
 
-        /* --- UPDATED HEADER --- */
+        /* --- HEADER --- */
         header {
             position: fixed;
             top: 25px;
@@ -391,11 +374,12 @@
             letter-spacing: -2px;
             color: #ffffff;
             margin-bottom: 24px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3); /* Ensures visibility on lighter top background */
         }
 
         .hero-desc {
             font-size: clamp(1rem, 2vw, 1.2rem);
-            color: var(--text-muted);
+            color: #d1d5db;
             max-width: 620px;
             margin-bottom: 36px;
         }
@@ -412,8 +396,8 @@
             font-weight: 700;
             font-size: 14px;
             color: #fff;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 100px;
             cursor: pointer;
             display: flex;
@@ -487,7 +471,7 @@
             color: #ffffff;
         }
 
-        /* --- MAIN DARK WRAPPER (ADDED FROSTED WHITE EFFECT) --- */
+        /* --- MAIN DARK WRAPPER --- */
         .main-dark-wrapper {
             position: relative;
             width: 100%;
@@ -496,11 +480,10 @@
             z-index: 2;
         }
 
-        /* NEW: हल्का सा वाइट और ब्लर इफ़ेक्ट (We Help के नीचे के सेक्शन के लिए) */
         .main-dark-wrapper::before {
             content: '';
             position: absolute;
-            top: 20%; /* We help वाले हिस्से के थोड़ा नीचे से शुरू होगा */
+            top: 20%; 
             left: 0;
             width: 100%;
             height: 80%;
@@ -511,7 +494,7 @@
             pointer-events: none;
         }
 
-        /* TEXT REVEAL IN DARK THEME */
+        /* TEXT REVEAL */
         .text-reveal-box {
             font-size: clamp(2rem, 4.5vw, 3.5rem);
             font-weight: 700;
@@ -541,7 +524,6 @@
             perspective: 1000px;
         }
 
-        /* MONEY AI BACKGROUND TEXT */
         .bg-bold-text-marquee {
             position: absolute;
             top: 50%;
@@ -776,21 +758,34 @@
             margin-top: 16px;
         }
 
-        /* CONTACT LEAD FORM DARK INPUTS */
-        .form-card {
-            max-width: 620px;
+        /* CONTACT LEAD FORM - NEW AESTHETIC ROUNDED DESIGN */
+        .form-card-aesthetic {
+            max-width: 650px;
             margin: 0 auto;
-            padding: 50px 40px;
+            padding: 60px 50px;
             text-align: center;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 48px; /* Extremely rounded just like video */
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.02);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .form-card-aesthetic:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
         }
 
         .field-input-dark {
             width: 100%;
-            padding: 18px 20px;
+            padding: 20px 24px;
             margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             color: #ffffff;
             font-size: 1.1rem;
             outline: none;
@@ -803,18 +798,18 @@
 
         .field-input-dark:focus {
             border-color: #a78bfa;
-            box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
-            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.2);
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .btn-submit-main {
             width: 100%;
-            padding: 18px;
+            padding: 20px;
             background: var(--accent-gradient);
             color: #08080a;
             font-weight: 800;
             font-size: 1.1rem;
-            border-radius: 14px;
+            border-radius: 20px;
             border: none;
             cursor: pointer;
             margin-top: 10px;
@@ -832,7 +827,7 @@
             text-align: center;
             color: #8e8e93;
             font-size: 14px;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: 40px;
             position: relative;
             z-index: 10;
@@ -873,13 +868,8 @@
     <!-- OVERLAY FOR MENU BLUR EFFECT -->
     <div id="menuBlurOverlay" class="menu-blur-overlay"></div>
 
-    <!-- 3D BACKGROUND VIDEO -->
-    <div class="bg-video-wrapper">
-        <video autoplay loop muted playsinline>
-            <source src="images/bg-video.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="bg-overlay"></div>
+    <!-- NEW DYNAMIC BACKGROUND GRADIENT -->
+    <div class="bg-dynamic-gradient"></div>
 
     <!-- HEADER LAYOUT -->
     <header>
@@ -895,7 +885,7 @@
 
             <div class="nav-dropdown" id="navDropdown">
                 <a href="#" class="dropdown-link">Home</a>
-                <a href="#" class="dropdown-link">Case Studies</a>
+                <a href="#case-studies" class="dropdown-link">Case Studies</a>
                 <a href="#contact" class="dropdown-link">Contact</a>
                 <a href="#" class="dropdown-link">404</a>
                 <a href="#terms" class="dropdown-link">Terms</a>
@@ -946,7 +936,6 @@
                 We help startups, SMEs & enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
             </div>
 
-            <!-- WE HELP IMAGE -->
             <div class="reveal-on-scroll" style="text-align: center; margin-bottom: 40px;">
                 <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
             </div>
@@ -954,7 +943,7 @@
             <!-- 3D VIDEO CONTAINER -->
             <div class="video-container-wrapper">
                 <div class="bg-bold-text-marquee">
-                    MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • 
+                    MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • 
                 </div>
                 <div class="video-card glass-card reveal-on-scroll" id="3dVideoCard">
                     <div class="video-card-screen">
@@ -1044,9 +1033,35 @@
             </div>
         </section>
 
+        <!-- NEW: WHAT WE'VE BUILT (CASE STUDIES) -->
+        <section class="section" id="case-studies">
+            <span class="tag-sub reveal-on-scroll">005 • CASE STUDIES</span>
+            <h2 class="heading-main reveal-on-scroll">What We've Built</h2>
+            <div class="glass-card card-inner reveal-on-scroll" style="text-align: center; padding: 60px 40px;">
+                <div class="icon-box" style="margin: 0 auto 24px auto;"><div class="spinner-orb"></div></div>
+                <h3 class="card-title" style="font-size: 2rem;">AI Property Inquiry Chatbot</h3>
+                <p class="card-desc" style="max-width: 600px; margin: 0 auto 30px auto;">An intelligent chatbot that qualifies property inquiries, answers buyer questions, and schedules viewings for Real Estate Firms.</p>
+                <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                    <div>
+                        <h4 style="font-size: 2.2rem; font-weight: 800; color: #ffffff;">3x</h4>
+                        <p style="color: #8e8e93; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Lead Response</p>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 2.2rem; font-weight: 800; color: #ffffff;">+40%</h4>
+                        <p style="color: #8e8e93; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">View Bookings</p>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 2.2rem; font-weight: 800; color: #ffffff;">24/7</h4>
+                        <p style="color: #8e8e93; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Engagement</p>
+                    </div>
+                </div>
+                <button class="btn-glass" style="margin: 40px auto 0 auto;">Explore All Case Studies ↗</button>
+            </div>
+        </section>
+
         <!-- 7. TECHNOLOGY ECOSYSTEM -->
         <section class="section">
-            <span class="tag-sub reveal-on-scroll">005 • INTEGRATIONS</span>
+            <span class="tag-sub reveal-on-scroll">006 • INTEGRATIONS</span>
             <h2 class="heading-main reveal-on-scroll">Technology Ecosystem</h2>
             <div class="ecosystem-wrap reveal-on-scroll">
                 <div class="eco-center-btn">
@@ -1059,7 +1074,7 @@
 
         <!-- 8. PRICING SECTION -->
         <section class="section" id="pricing">
-            <span class="tag-sub reveal-on-scroll">006 • PRICING</span>
+            <span class="tag-sub reveal-on-scroll">007 • PRICING</span>
             <h2 class="heading-main reveal-on-scroll">Built for Growth at Every Stage</h2>
             
             <div class="pricing-switch reveal-on-scroll">
@@ -1086,9 +1101,32 @@
             </div>
         </section>
 
+        <!-- NEW: TEAM SECTION -->
+        <section class="section" id="team">
+            <span class="tag-sub reveal-on-scroll">008 • TEAM</span>
+            <h2 class="heading-main reveal-on-scroll">Meet the Conicorn's Minds</h2>
+            <div class="grid-3">
+                <div class="glass-card card-inner reveal-on-scroll" style="text-align: center; padding: 30px 20px;">
+                    <img src="images/team1.jpg" alt="Taylor Jones" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 2px solid rgba(255,255,255,0.15);">
+                    <h3 class="card-title" style="margin-bottom: 4px;">Taylor Jones</h3>
+                    <p class="card-desc" style="font-size: 1rem;">Founder & CEO</p>
+                </div>
+                <div class="glass-card card-inner reveal-on-scroll" style="text-align: center; padding: 30px 20px;">
+                    <img src="images/team2.jpg" alt="Arjun Lim" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 2px solid rgba(255,255,255,0.15);">
+                    <h3 class="card-title" style="margin-bottom: 4px;">Arjun Lim</h3>
+                    <p class="card-desc" style="font-size: 1rem;">CTO</p>
+                </div>
+                <div class="glass-card card-inner reveal-on-scroll" style="text-align: center; padding: 30px 20px;">
+                    <img src="images/team3.jpg" alt="Minh Nguyen" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 2px solid rgba(255,255,255,0.15);">
+                    <h3 class="card-title" style="margin-bottom: 4px;">Minh Nguyen</h3>
+                    <p class="card-desc" style="font-size: 1rem;">Lead Developer</p>
+                </div>
+            </div>
+        </section>
+
         <!-- 9. FAQS -->
         <section class="section" id="faqs">
-            <span class="tag-sub reveal-on-scroll">007 • FAQS</span>
+            <span class="tag-sub reveal-on-scroll">009 • FAQS</span>
             <h2 class="heading-main reveal-on-scroll">Common Questions</h2>
             
             <div class="faq-stack">
@@ -1113,26 +1151,17 @@
 
     </div><!-- END OF MAIN DARK WRAPPER -->
 
-    <!-- 10. DEVELOPER PROFILE SECTION -->
-    <section class="section">
-        <div class="glass-card card-inner reveal-on-scroll" style="max-width: 360px; margin: 0 auto; text-align: center; padding: 40px 24px;">
-            <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
-            <h3 class="card-title" style="color:#ffffff;">Your Name Here</h3>
-            <p class="card-desc" style="color: var(--text-muted); font-size: 1.1rem;">AI Automation Developer & Founder</p>
-        </div>
-    </section>
-
-    <!-- 11. LEAD FORM CARD -->
-    <section class="section" id="contact">
-        <div class="glass-card form-card reveal-on-scroll">
+    <!-- 10. LEAD FORM CARD (UPDATED AESTHETIC ROUNDED SHAPE) -->
+    <section class="section" id="contact" style="padding-bottom: 90px;">
+        <div class="form-card-aesthetic reveal-on-scroll">
             <div style="margin-bottom:20px; display: flex; justify-content: center;"><div class="spinner-gyro" style="width:36px; height:36px;"></div></div>
-            <h2 style="font-size: 2.5rem; font-weight:800; margin-bottom:12px; color:#ffffff; line-height: 1.2;">Your Competitors Are Automating. Are You?</h2>
-            <p style="color: var(--text-muted); margin-bottom: 36px; font-size:1.15rem;">Stop wasting time on manual processes. Start building a self-running business.</p>
+            <h2 style="font-size: 2.4rem; font-weight:800; margin-bottom:12px; color:#ffffff; line-height: 1.2;">Your Competitors Are Automating.<br>Are You?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 40px; font-size:1.15rem;">Stop wasting time on manual processes. Start building a self-running business.</p>
             <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
                 <input type="text" placeholder="Your name*" class="field-input-dark" required>
                 <input type="text" placeholder="Your company name*" class="field-input-dark" required>
                 <input type="email" placeholder="Your business email*" class="field-input-dark" required>
-                <textarea placeholder="Share project details*" class="field-input-dark" rows="4" required style="resize:none;"></textarea>
+                <textarea placeholder="Share project details*" class="field-input-dark" rows="4" required style="resize:none; border-radius: 20px;"></textarea>
                 <button type="submit" class="btn-submit-main">Send Your Request</button>
             </form>
         </div>
@@ -1275,3 +1304,4 @@
     </script>
 </body>
 </html>
+
