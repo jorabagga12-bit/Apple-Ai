@@ -56,7 +56,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(0.4) contrast(1.2) blur(4px); /* Slightly blurred for focus on UI */
+            filter: brightness(0.4) contrast(1.2) blur(4px);
         }
 
         .bg-overlay {
@@ -73,10 +73,10 @@
         /* --- APPLE IPHONE PREMIUM GLASSMORPHISM --- */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(40px); /* High blur for Apple look */
+            backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1px solid var(--glass-border);
-            border-top: 1px solid var(--glass-border-highlight); /* Top highlight for depth */
+            border-top: 1px solid var(--glass-border-highlight);
             border-radius: 28px;
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -145,7 +145,7 @@
         @keyframes pulseOrb { 0%, 100% { transform: scale(0.95); box-shadow: 0 0 10px rgba(167, 139, 250, 0.5); } 50% { transform: scale(1.2); box-shadow: 0 0 22px rgba(167, 139, 250, 0.9); } }
         @keyframes miniPulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } }
 
-        /* --- UPDATED HEADER --- */
+        /* --- HEADER --- */
         header {
             position: fixed; top: 25px; left: 50%; transform: translateX(-50%);
             z-index: 1000; display: flex; align-items: center; gap: 16px;
@@ -182,7 +182,7 @@
         }
         .btn-header:hover { transform: scale(1.03); box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2); }
 
-        /* --- MENU DROPDOWN (SMOOTH & BLURRED) --- */
+        /* --- MENU DROPDOWN --- */
         .menu-blur-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -250,11 +250,26 @@
         .marquee-item { font-size: 20px; font-weight: 800; color: rgba(255,255,255,0.4); letter-spacing: 1px; display: flex; align-items: center; gap: 12px; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- MAIN DARK WRAPPER --- */
+        /* --- MAIN DARK WRAPPER (Merged Old & New Styles) --- */
         .main-dark-wrapper {
             position: relative; width: 100%; padding: 80px 0; z-index: 2;
             background: linear-gradient(to bottom, transparent 0%, rgba(10, 10, 15, 0.8) 15%, rgba(10, 10, 15, 1) 100%);
             backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+        }
+        
+        /* FROM OLD CODE: हल्का सा वाइट और ब्लर इफ़ेक्ट (We Help के नीचे के सेक्शन के लिए) */
+        .main-dark-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.015) 20%, rgba(255, 255, 255, 0.035) 100%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* SECTION COMMONS */
@@ -276,7 +291,7 @@
         .text-reveal-box span { color: rgba(255, 255, 255, 0.15); transition: color 0.4s ease; }
         .text-reveal-box span.active-word { color: #ffffff; text-shadow: 0 0 20px rgba(255,255,255,0.2); }
 
-        /* VIDEO MOCKUP CONTAINER (With scrolling text) */
+        /* VIDEO MOCKUP CONTAINER */
         .video-container-wrapper { position: relative; width: 100%; max-width: 1000px; margin: 0 auto; padding: 60px 0; perspective: 1200px; }
         
         .bg-bold-text-marquee {
@@ -291,7 +306,7 @@
 
         .video-card {
             position: relative; z-index: 1; width: 100%; padding: 16px; transform-style: preserve-3d;
-            will-change: transform; transition: transform 0.1s linear; /* Smooth JS tilt */
+            will-change: transform; transition: transform 0.1s linear; 
         }
         .video-card-screen {
             width: 100%; height: 500px; border-radius: 24px; overflow: hidden; position: relative;
@@ -310,15 +325,14 @@
         .card-title { font-size: 1.6rem; font-weight: 800; margin-bottom: 16px; color: #ffffff; line-height: 1.2; letter-spacing: -0.5px;}
         .card-desc { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; font-weight: 400;}
 
-        /* BENTO GRID (Services) */
+        /* BENTO GRID */
         .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
         .bento-col-8 { grid-column: span 8; }
         .bento-col-4 { grid-column: span 4; }
         @media (max-width: 900px) { .bento-col-8, .bento-col-4 { grid-column: span 12; } }
 
-        /* PROCESS TIMELINE (WITH CONNECTING LINE) */
+        /* PROCESS TIMELINE */
         .process-container { position: relative; max-width: 850px; margin: 0 auto; }
-        /* The connecting vertical line requested in transcript */
         .process-container::before {
             content: ''; position: absolute; left: 60px; top: 20px; bottom: 20px; width: 2px;
             background: linear-gradient(to bottom, rgba(167, 139, 250, 0.5), rgba(129, 140, 248, 0.1));
@@ -391,7 +405,7 @@
         }
         .faq-box.open .faq-body { max-height: 200px; margin-top: 20px; opacity: 1; }
 
-        /* --- CONTACT LEAD FORM (THE "APPLE GLASS" MAIN THING) --- */
+        /* --- CONTACT LEAD FORM (APPLE GLASS) --- */
         .apple-glass-form {
             max-width: 700px; margin: 0 auto; padding: 60px 50px; text-align: center;
             background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(50px); -webkit-backdrop-filter: blur(50px);
@@ -456,13 +470,15 @@
             </button>
             <button class="btn-header">Get this Template</button>
 
+            <!-- Merged Navigation Links from both old and new code -->
             <div class="nav-dropdown" id="navDropdown">
                 <a href="#" class="dropdown-link">Home</a>
                 <a href="#services" class="dropdown-link">Capabilities</a>
-                <a href="#process" class="dropdown-link">Process</a>
+                <a href="#" class="dropdown-link">Case Studies</a>
                 <a href="#pricing" class="dropdown-link">Pricing</a>
                 <a href="#team" class="dropdown-link">Our Team</a>
                 <a href="#contact" class="dropdown-link">Contact</a>
+                <a href="#terms" class="dropdown-link">Terms & Policy</a>
             </div>
         </div>
     </header>
@@ -497,7 +513,7 @@
         </div>
     </div>
 
-    <!-- START OF MAIN DARK WRAPPER -->
+    <!-- START OF MAIN DARK WRAPPER (Now includes the old code frosted blur effect) -->
     <div class="main-dark-wrapper">
 
         <!-- 3. WHO WE ARE -->
@@ -512,14 +528,13 @@
                 <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
             </div>
 
-            <!-- 3D VIDEO CONTAINER (With requested scrolling text behind) -->
+            <!-- 3D VIDEO CONTAINER -->
             <div class="video-container-wrapper">
                 <div class="bg-bold-text-marquee">
                     MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • 
                 </div>
                 <div class="video-card glass-card reveal-on-scroll" id="3dVideoCard">
                     <div class="video-card-screen">
-                        <!-- User's 3D image placeholder restored from 2nd code -->
                         <img id="money-photo" src="images/your-3d-image.jpg" alt="Photo Placeholder" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
                     </div>
                 </div>
@@ -549,7 +564,7 @@
             </div>
         </section>
 
-        <!-- 5. OUR AI-DRIVEN SERVICES (BENTO GRID) -->
+        <!-- 5. OUR AI-DRIVEN SERVICES -->
         <section class="section" id="services">
             <span class="tag-sub reveal-on-scroll">003 • CAPABILITIES</span>
             <h2 class="heading-main reveal-on-scroll">Our AI-Driven Services</h2>
@@ -577,7 +592,7 @@
             </div>
         </section>
 
-        <!-- 6. HOW WE WORK (PROCESS WITH CONNECTING LINE) -->
+        <!-- 6. HOW WE WORK -->
         <section class="section" id="process">
             <span class="tag-sub reveal-on-scroll">004 • PROCESS</span>
             <h2 class="heading-main reveal-on-scroll">How We Work</h2>
@@ -624,7 +639,7 @@
             </div>
         </section>
 
-        <!-- 8. TEAM SECTION (Added based on transcript request) -->
+        <!-- 8. TEAM SECTION -->
         <section class="section" id="team">
             <span class="tag-sub reveal-on-scroll">006 • MINDS</span>
             <h2 class="heading-main reveal-on-scroll">Meet the Conicorn's Minds</h2>
@@ -677,7 +692,7 @@
             </div>
         </section>
 
-        <!-- 10. FAQS -->
+        <!-- 10. FAQS (Added the missing 4th FAQ from old code) -->
         <section class="section" id="faqs">
             <span class="tag-sub reveal-on-scroll">008 • FAQS</span>
             <h2 class="heading-main reveal-on-scroll">Common Questions</h2>
@@ -695,6 +710,11 @@
                     <div class="faq-head">Do we need technical knowledge? <span class="faq-icon">+</span></div>
                     <div class="faq-body">No technical knowledge is required. We handle everything from system design to backend coding and long-term maintenance.</div>
                 </div>
+                <!-- This FAQ was missing in new code, retrieved from old code -->
+                <div class="glass-card faq-box reveal-on-scroll">
+                    <div class="faq-head">Is AI automation secure? <span class="faq-icon">+</span></div>
+                    <div class="faq-body">Yes, we enforce end-to-end encryption and strict role-based access control for all API integrations.</div>
+                </div>
             </div>
         </section>
 
@@ -704,7 +724,6 @@
     <section class="section">
         <div class="glass-card card-inner reveal-on-scroll" style="max-width: 400px; margin: 0 auto; text-align: center; padding: 48px 32px;">
             <div style="width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 24px auto; background: #111; display:flex; align-items:center; justify-content:center; border: 3px solid rgba(255,255,255,0.2); box-shadow: 0 15px 30px rgba(0,0,0,0.5); overflow: hidden;">
-                <!-- User Profile Image Restored from 2nd Code -->
                 <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <h3 class="card-title" style="color:#ffffff; font-size: 1.8rem;">Your Name Here</h3>
@@ -712,9 +731,8 @@
         </div>
     </section>
 
-    <!-- 12. LEAD FORM CARD (THE HIGH-END APPLE GLASS UI) -->
+    <!-- 12. LEAD FORM CARD -->
     <section class="section" id="contact">
-        <!-- This div has the specific apple-glass-form styling requested -->
         <div class="apple-glass-form reveal-on-scroll">
             <div style="margin-bottom:24px; display: flex; justify-content: center;"><div class="spinner-gyro" style="width:40px; height:40px;"></div></div>
             <h2 style="font-size: clamp(2rem, 4vw, 3rem); font-weight:800; margin-bottom:16px; color:#ffffff; line-height: 1.1; letter-spacing:-1px;">Your Competitors Are Automating. Are You?</h2>
