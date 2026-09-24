@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conicorn - AI Automation Agency (Aesthetic Light)</title>
+    <title>Conicorn - AI Automation Agency</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
-        /* --- RESET & GLOBAL VARIABLES (PREMIUM LIGHT THEME) --- */
+        /* --- RESET & GLOBAL VARIABLES --- */
         * {
             margin: 0;
             padding: 0;
@@ -19,14 +19,13 @@
         }
 
         :root {
-            /* Muted Aesthetic Light Variables */
-            --bg-main: #f5f5f7; /* Apple style off-white */
-            --glass-bg: rgba(245, 245, 247, 0.6); /* Slightly grey glass, not pure white */
-            --glass-border: rgba(0, 0, 0, 0.06); 
-            --glass-hover: rgba(255, 255, 255, 0.8);
-            --text-main: #111111; /* Deep black for sharp contrast */
-            --text-muted: #666666; /* Elegant dark grey */
-            --accent-gradient: linear-gradient(135deg, #8b5cf6, #6366f1, #a855f7);
+            --bg-dark: #08080a;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-hover: rgba(255, 255, 255, 0.07);
+            --text-main: #ffffff;
+            --text-muted: #8e8e93;
+            --accent-gradient: linear-gradient(135deg, #d8b4fe, #818cf8, #a78bfa);
         }
 
         html {
@@ -34,7 +33,7 @@
         }
 
         body {
-            background-color: var(--bg-main);
+            background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.5;
@@ -55,7 +54,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: brightness(1.05) contrast(0.95);
+            filter: brightness(0.65) contrast(1.15);
         }
 
         .bg-overlay {
@@ -64,64 +63,86 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            /* Frosted blend so the video is subtle */
-            background: radial-gradient(circle at center, rgba(245, 245, 247, 0.5) 0%, rgba(245, 245, 247, 0.95) 100%);
+            background: radial-gradient(circle at center, rgba(8, 8, 10, 0.2) 0%, rgba(8, 8, 10, 0.85) 100%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* --- GLASSMORPHISM CARDS --- */
+        /* --- APPLE IPHONE GLASSMORPHISM (DARK BASE) --- */
         .glass-card {
             background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .glass-card:hover {
             background: var(--glass-hover);
-            border-color: rgba(0, 0, 0, 0.1);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.6);
         }
 
         .glass-pill {
-            background: rgba(245, 245, 247, 0.7);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 100px;
         }
 
-        /* --- SUBTLE 3D SPINNERS (For icons only) --- */
+        /* --- 3D ADVANCED SPINNERS & CHAKKAR ANIMATIONS --- */
         .spinner-ring {
-            width: 24px;
-            height: 24px;
-            border: 2px solid rgba(99, 102, 241, 0.2);
-            border-top: 2px solid #6366f1;
-            border-right: 2px solid #8b5cf6;
+            width: 26px;
+            height: 26px;
+            border: 2.5px solid rgba(129, 140, 248, 0.2);
+            border-top: 2.5px solid #818cf8;
+            border-right: 2.5px solid #a78bfa;
             border-radius: 50%;
             animation: spin3D 1.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            position: relative;
             display: inline-block;
+        }
+
+        .spinner-ring::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px; right: 3px; bottom: 3px;
+            border: 2px solid transparent;
+            border-bottom: 2px solid #38bdf8;
+            border-radius: 50%;
+            animation: spinReverse 0.9s linear infinite;
         }
 
         .spinner-gyro {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #8b5cf6;
+            width: 26px;
+            height: 26px;
+            border: 2px solid #a78bfa;
             border-radius: 50%;
             animation: gyroRotate 2s linear infinite;
+            position: relative;
             display: inline-block;
+            transform-style: preserve-3d;
+        }
+
+        .spinner-gyro::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed #38bdf8;
+            border-radius: 50%;
+            animation: gyroRotateInner 1.2s linear infinite reverse;
         }
 
         .spinner-orb {
-            width: 20px;
-            height: 20px;
-            background: radial-gradient(circle at 30% 30%, #a855f7, #6366f1);
+            width: 22px;
+            height: 22px;
+            background: radial-gradient(circle at 30% 30%, #a78bfa, #4f46e5);
             border-radius: 50%;
-            box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.8);
             animation: pulseOrb 2s ease-in-out infinite;
             display: inline-block;
         }
@@ -129,9 +150,9 @@
         .pulse-dot {
             width: 8px;
             height: 8px;
-            background: #6366f1;
+            background: #818cf8;
             border-radius: 50%;
-            box-shadow: 0 0 10px #6366f1;
+            box-shadow: 0 0 10px #818cf8;
             animation: miniPulse 1.5s infinite;
             display: inline-block;
             vertical-align: middle;
@@ -142,20 +163,33 @@
             50% { transform: rotate(180deg) scale(1.1); }
             100% { transform: rotate(360deg) scale(0.95); }
         }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
         @keyframes gyroRotate {
             0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
             100% { transform: rotateX(360deg) rotateY(180deg) rotateZ(360deg); }
         }
-        @keyframes pulseOrb {
-            0%, 100% { transform: scale(0.95); box-shadow: 0 0 8px rgba(139, 92, 246, 0.3); }
-            50% { transform: scale(1.1); box-shadow: 0 0 18px rgba(139, 92, 246, 0.6); }
+
+        @keyframes gyroRotateInner {
+            0% { transform: rotateX(360deg) rotateY(0deg); }
+            100% { transform: rotateX(0deg) rotateY(360deg); }
         }
+
+        @keyframes pulseOrb {
+            0%, 100% { transform: scale(0.95); box-shadow: 0 0 10px rgba(167, 139, 250, 0.5); }
+            50% { transform: scale(1.2); box-shadow: 0 0 22px rgba(167, 139, 250, 0.9); }
+        }
+
         @keyframes miniPulse {
             0%, 100% { transform: scale(1); opacity: 1; }
             50% { transform: scale(1.5); opacity: 0.5; }
         }
 
-        /* --- HEADER --- */
+        /* --- UPDATED HEADER --- */
         header {
             position: fixed;
             top: 25px;
@@ -168,74 +202,153 @@
         }
 
         .nav-logo {
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            background: rgba(245, 245, 247, 0.8);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(25, 25, 30, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-main);
+            color: #ffffff;
             font-weight: 800;
-            font-size: 18px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            font-size: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .nav-logo:hover {
-            transform: scale(1.05);
-            background: #ffffff;
+            transform: scale(1.06);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .nav-pill-group {
+            position: relative;
             display: flex;
             align-items: center;
-            background: rgba(245, 245, 247, 0.8);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(25, 25, 30, 0.65);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 100px;
-            padding: 6px;
-            gap: 6px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            position: relative;
+            padding: 8px;
+            gap: 8px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
 
         .menu-trigger-btn {
             background: transparent;
-            border: none;
-            color: var(--text-main);
-            padding: 12px 22px;
+            border: 1px solid transparent;
+            color: #ffffff;
+            padding: 12px 24px;
             border-radius: 100px;
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
-            transition: background 0.25s ease;
+            gap: 10px;
+            transition: all 0.25s ease;
         }
 
-        .menu-trigger-btn:hover { background: rgba(0, 0, 0, 0.04); }
+        .menu-trigger-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-trigger-btn.active-menu {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-trigger-btn .menu-icon {
+            font-size: 22px;
+            line-height: 1;
+            font-weight: 400;
+        }
 
         .btn-header {
-            background: var(--text-main);
-            color: #ffffff;
+            background: #ffffff;
+            color: #000000;
             border: none;
-            padding: 12px 24px;
+            padding: 14px 28px;
             border-radius: 100px;
             font-weight: 700;
-            font-size: 15px;
+            font-size: 16px;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
+            white-space: nowrap;
         }
 
         .btn-header:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            z-index: 995;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .menu-blur-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .nav-dropdown {
+            position: absolute;
+            top: calc(100% + 16px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-10px) scale(0.96);
+            width: 320px;
+            background: rgba(25, 25, 30, 0.9) !important;
+            backdrop-filter: blur(35px) !important;
+            -webkit-backdrop-filter: blur(35px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            border-radius: 24px !important;
+            padding: 24px 30px !important;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 30px;
+            row-gap: 24px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 35px 60px rgba(0, 0, 0, 0.6) !important;
+            z-index: 999;
+        }
+
+        .nav-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .dropdown-link {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.2s ease, transform 0.2s ease;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .dropdown-link:hover {
+            color: #d8b4fe;
+            transform: translateX(4px);
         }
 
         /* --- HERO SECTION --- */
@@ -253,16 +366,16 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 8px 16px;
+            padding: 8px 18px;
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1px;
-            color: var(--text-muted);
+            color: #d1d5db;
             margin-bottom: 24px;
         }
 
         .title-gradient {
-            font-size: clamp(2.8rem, 6.5vw, 5rem);
+            font-size: clamp(2.8rem, 6.5vw, 5.2rem);
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -2px;
@@ -271,25 +384,25 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .title-solid {
-            font-size: clamp(2.8rem, 6.5vw, 5rem);
+        .title-white {
+            font-size: clamp(2.8rem, 6.5vw, 5.2rem);
             font-weight: 800;
             line-height: 1.1;
             letter-spacing: -2px;
-            color: var(--text-main);
-            margin-bottom: 20px;
+            color: #ffffff;
+            margin-bottom: 24px;
         }
 
         .hero-desc {
-            font-size: clamp(1rem, 2vw, 1.15rem);
+            font-size: clamp(1rem, 2vw, 1.2rem);
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 620px;
             margin-bottom: 36px;
         }
 
         .hero-btns {
             display: flex;
-            gap: 14px;
+            gap: 16px;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -298,9 +411,9 @@
             padding: 14px 28px;
             font-weight: 700;
             font-size: 14px;
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             border-radius: 100px;
             cursor: pointer;
             display: flex;
@@ -311,35 +424,13 @@
         }
 
         .btn-glass:hover {
-            background: #ffffff;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-        }
-
-        .btn-solid-dark {
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 14px;
-            color: #ffffff;
-            background: var(--text-main);
-            border: 1px solid var(--text-main);
-            border-radius: 100px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-
-        .btn-solid-dark:hover {
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
         }
 
         /* --- MARQUEE SLIDER --- */
         .marquee-container {
-            padding: 20px 0;
+            padding: 30px 0;
             overflow: hidden;
             mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
@@ -347,15 +438,15 @@
 
         .marquee-content {
             display: flex;
-            gap: 50px;
+            gap: 60px;
             width: max-content;
-            animation: marquee 25s linear infinite;
+            animation: marquee 20s linear infinite;
         }
 
         .marquee-item {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
-            color: #999999;
+            color: #8e8e93;
             letter-spacing: 1px;
             display: flex;
             align-items: center;
@@ -367,19 +458,9 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* --- MAIN CONTENT WRAPPER --- */
-        /* FIX: This gradient ensures that as you scroll down, the background video completely disappears and gets replaced by our aesthetic solid #f5f5f7 color. No pure white, no background bleeding! */
-        .main-content-wrapper {
-            position: relative;
-            width: 100%;
-            margin: 0;
-            padding: 60px 0; 
-            z-index: 2;
-            background: linear-gradient(to bottom, transparent 0%, rgba(245, 245, 247, 0.9) 15%, #f5f5f7 25%, #f5f5f7 100%);
-        }
-
+        /* --- SECTION COMMONS --- */
         .section {
-            padding: 80px 24px;
+            padding: 90px 24px;
             max-width: 1100px;
             margin: 0 auto;
             position: relative;
@@ -387,7 +468,7 @@
         }
 
         .tag-sub {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 800;
             letter-spacing: 2px;
             color: var(--text-muted);
@@ -398,32 +479,56 @@
         }
 
         .heading-main {
-            font-size: clamp(2rem, 4.5vw, 3.2rem);
+            font-size: clamp(2.2rem, 4.5vw, 3.5rem);
             font-weight: 800;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 60px;
             letter-spacing: -1px;
-            color: var(--text-main);
+            color: #ffffff;
         }
 
-        /* TEXT REVEAL */
+        /* --- MAIN DARK WRAPPER (ADDED FROSTED WHITE EFFECT) --- */
+        .main-dark-wrapper {
+            position: relative;
+            width: 100%;
+            margin: 0;
+            padding: 60px 0; 
+            z-index: 2;
+        }
+
+        /* NEW: हल्का सा वाइट और ब्लर इफ़ेक्ट (We Help के नीचे के सेक्शन के लिए) */
+        .main-dark-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 20%; /* We help वाले हिस्से के थोड़ा नीचे से शुरू होगा */
+            left: 0;
+            width: 100%;
+            height: 80%;
+            background: linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.015) 20%, rgba(255, 255, 255, 0.035) 100%);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* TEXT REVEAL IN DARK THEME */
         .text-reveal-box {
-            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4.5vw, 3.5rem);
             font-weight: 700;
             line-height: 1.3;
             text-align: center;
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto 60px auto;
-            color: var(--text-main);
+            color: #ffffff;
         }
 
         .text-reveal-box span {
-            color: rgba(0, 0, 0, 0.12);
+            color: rgba(255, 255, 255, 0.18);
             transition: color 0.4s ease;
         }
 
         .text-reveal-box span.active-word {
-            color: var(--text-main);
+            color: #ffffff;
         }
 
         /* VIDEO MOCKUP CONTAINER */
@@ -436,26 +541,52 @@
             perspective: 1000px;
         }
 
+        /* MONEY AI BACKGROUND TEXT */
+        .bg-bold-text-marquee {
+            position: absolute;
+            top: 50%;
+            left: -20%;
+            width: 240%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            font-size: clamp(2rem, 5vw, 4rem); 
+            font-weight: 900;
+            background: linear-gradient(90deg, #818cf8 0%, #a78bfa 50%, #818cf8 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.15;
+            letter-spacing: 4px;
+            pointer-events: none;
+            z-index: 0;
+            animation: marqueeTextBg 22s linear infinite;
+        }
+
+        @keyframes marqueeTextBg {
+            0% { transform: translate(0, -50%); background-position: 0% center; }
+            100% { transform: translate(-40%, -50%); background-position: 200% center; }
+        }
+
         .video-card {
             position: relative;
             z-index: 1;
             width: 100%;
             max-width: 850px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 12px;
             transform-style: preserve-3d;
             will-change: transform;
-            transition: transform 0.1s ease-out;
-            background: rgba(255, 255, 255, 0.6);
+            transition: transform 0.15s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .video-card-screen {
             width: 100%;
             height: 450px;
-            border-radius: 18px;
+            border-radius: 20px;
             overflow: hidden;
-            background: #111;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            position: relative;
+            background: #000;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
 
         .video-card-screen video, .video-card-screen img {
@@ -467,36 +598,36 @@
         /* GRID LAYOUTS */
         .grid-3 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
         .card-inner {
-            padding: 36px 28px;
+            padding: 40px 32px;
         }
 
         .icon-box {
-            width: 52px;
-            height: 52px;
-            border-radius: 14px;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(0, 0, 0, 0.06);
+            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .card-title {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text-main);
+            margin-bottom: 12px;
+            color: #ffffff;
             line-height: 1.3;
         }
 
         .card-desc {
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
             line-height: 1.6;
         }
@@ -519,51 +650,52 @@
         .process-stack {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 20px;
             max-width: 780px;
             margin: 0 auto;
         }
 
         .process-row {
-            padding: 24px 32px;
+            padding: 28px 36px;
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
         }
 
         .process-num {
-            width: 44px;
-            height: 44px;
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: rgba(0, 0, 0, 0.04);
-            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: 16px;
+            font-size: 18px;
             flex-shrink: 0;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* TECH ECOSYSTEM */
         .ecosystem-wrap {
             text-align: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
+            position: relative;
         }
 
         .eco-center-btn {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 14px 32px;
+            gap: 12px;
+            padding: 16px 36px;
             border-radius: 100px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             font-weight: 700;
-            font-size: 1.05rem;
-            color: var(--text-main);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+            font-size: 1.1rem;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         /* PRICING */
@@ -573,44 +705,38 @@
             justify-content: center;
             gap: 16px;
             margin-bottom: 40px;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            color: var(--text-main);
+            color: #ffffff;
         }
 
         .toggle-bg {
-            width: 56px;
-            height: 30px;
-            background: #e5e5ea;
+            width: 60px;
+            height: 32px;
+            background: rgba(255, 255, 255, 0.15);
             border-radius: 100px;
             padding: 3px;
             cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .toggle-bg.active {
-            background: #8b5cf6;
         }
 
         .toggle-circle {
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             background: #ffffff;
             border-radius: 50%;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
 
         .toggle-bg.active .toggle-circle {
-            transform: translateX(26px);
+            transform: translateX(28px);
         }
 
         .price-val {
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             font-weight: 800;
-            margin: 16px 0 24px 0;
+            margin: 20px 0 28px 0;
             letter-spacing: -1.5px;
-            color: var(--text-main);
+            color: #ffffff;
         }
 
         /* FAQ ACCORDION */
@@ -619,11 +745,11 @@
             margin: 0 auto;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
         }
 
         .faq-box {
-            padding: 22px 28px;
+            padding: 26px 32px;
             cursor: pointer;
         }
 
@@ -631,107 +757,108 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
         }
 
         .faq-body {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease, margin-top 0.3s ease;
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.5;
+            color: #8e8e93;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
 
         .faq-box.open .faq-body {
             max-height: 200px;
-            margin-top: 12px;
+            margin-top: 16px;
         }
 
-        /* CONTACT FORM */
+        /* CONTACT LEAD FORM DARK INPUTS */
         .form-card {
-            max-width: 600px;
+            max-width: 620px;
             margin: 0 auto;
-            padding: 40px 32px;
+            padding: 50px 40px;
             text-align: center;
         }
 
-        .field-input-light {
+        .field-input-dark {
             width: 100%;
-            padding: 16px 20px;
+            padding: 18px 20px;
             margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            border-radius: 12px;
-            color: var(--text-main);
-            font-size: 1.05rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            color: #ffffff;
+            font-size: 1.1rem;
             outline: none;
             transition: all 0.3s ease;
         }
 
-        .field-input-light::placeholder {
-            color: #999;
+        .field-input-dark::placeholder {
+            color: #8e8e93;
         }
 
-        .field-input-light:focus {
-            border-color: #8b5cf6;
-            background: #ffffff;
-            box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+        .field-input-dark:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0.3);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .btn-submit-main {
             width: 100%;
-            padding: 16px;
-            background: var(--text-main);
-            color: #ffffff;
-            font-weight: 700;
+            padding: 18px;
+            background: var(--accent-gradient);
+            color: #08080a;
+            font-weight: 800;
             font-size: 1.1rem;
-            border-radius: 12px;
+            border-radius: 14px;
             border: none;
             cursor: pointer;
-            margin-top: 8px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            margin-top: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .btn-submit-main:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px rgba(167, 139, 250, 0.4);
         }
 
-        /* FOOTER */
+        /* FOOTER DARK */
         footer {
             padding: 60px 24px 30px 24px;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 13px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            margin-top: 20px;
+            color: #8e8e93;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            margin-top: 40px;
+            position: relative;
+            z-index: 10;
         }
 
         .footer-links {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
         }
 
         .footer-links a {
-            color: var(--text-muted);
+            color: #d1d5db;
             text-decoration: none;
             transition: color 0.2s;
-            font-weight: 500;
         }
 
         .footer-links a:hover {
-            color: var(--text-main);
+            color: #ffffff;
         }
 
-        /* SCROLL ANIMATIONS */
+        /* SCROLL ANIMATION EFFECTS */
         .reveal-on-scroll {
             opacity: 0;
-            transform: translateY(25px);
+            transform: translateY(30px);
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -743,6 +870,9 @@
 </head>
 <body>
 
+    <!-- OVERLAY FOR MENU BLUR EFFECT -->
+    <div id="menuBlurOverlay" class="menu-blur-overlay"></div>
+
     <!-- 3D BACKGROUND VIDEO -->
     <div class="bg-video-wrapper">
         <video autoplay loop muted playsinline>
@@ -753,13 +883,24 @@
 
     <!-- HEADER LAYOUT -->
     <header>
-        <div class="nav-logo" title="Conicorn AI">MB</div>
+        <div class="nav-logo" title="Conicorn AI">
+            MB
+        </div>
         <div class="nav-pill-group">
             <button class="menu-trigger-btn" id="menuToggle" aria-label="Toggle Navigation Menu">
                 <span class="menu-icon">≡</span>
                 <span>Menu</span>
             </button>
             <button class="btn-header">Get this Template</button>
+
+            <div class="nav-dropdown" id="navDropdown">
+                <a href="#" class="dropdown-link">Home</a>
+                <a href="#" class="dropdown-link">Case Studies</a>
+                <a href="#contact" class="dropdown-link">Contact</a>
+                <a href="#" class="dropdown-link">404</a>
+                <a href="#terms" class="dropdown-link">Terms</a>
+                <a href="#policy" class="dropdown-link">Policy</a>
+            </div>
         </div>
     </header>
 
@@ -769,13 +910,13 @@
             <span class="pulse-dot"></span> UNICORN AI PARTNER
         </div>
         <h1 class="title-gradient reveal-on-scroll">Intelligent Automation</h1>
-        <h1 class="title-solid reveal-on-scroll">for Modern Teams</h1>
+        <h1 class="title-white reveal-on-scroll">for Modern Teams</h1>
         <p class="hero-desc reveal-on-scroll">
             We build AI-powered automation systems that eliminate manual work, reduce costs, and multiply your business performance.
         </p>
         <div class="hero-btns reveal-on-scroll">
             <button class="btn-glass">Get this Template <span class="spinner-ring" style="width:14px; height:14px; border-width:1.5px;"></span></button>
-            <a href="#contact" class="btn-solid-dark"><span class="spinner-orb" style="width:12px; height:12px;"></span> Work with Us</a>
+            <a href="#contact" class="btn-glass"><span class="spinner-orb" style="width:12px; height:12px;"></span> Work with Us</a>
         </div>
     </section>
 
@@ -790,11 +931,13 @@
             <div class="marquee-item"><span class="spinner-ring" style="width:14px; height:14px; border-width:1.5px;"></span> LOGOIPSUM</div>
             <div class="marquee-item"><span class="spinner-gyro" style="width:14px; height:14px;"></span> IPSUM</div>
             <div class="marquee-item"><span class="spinner-orb" style="width:12px; height:12px;"></span> LOGOIPSUM FOUNDATION</div>
+            <div class="marquee-item"><span class="spinner-ring" style="width:14px; height:14px; border-width:1.5px;"></span> IPSUM</div>
+            <div class="marquee-item"><span class="spinner-gyro" style="width:14px; height:14px;"></span> LOGOIPSUM</div>
         </div>
     </div>
 
-    <!-- MAIN CONTENT WRAPPER: Here background becomes completely solid f5f5f7 to cover video -->
-    <div class="main-content-wrapper">
+    <!-- START OF MAIN DARK WRAPPER -->
+    <div class="main-dark-wrapper">
 
         <!-- 3. WHO WE ARE -->
         <section class="section">
@@ -803,12 +946,16 @@
                 We help startups, SMEs & enterprises design and deploy intelligent automation systems that streamline operations and unlock scalable growth.
             </div>
 
+            <!-- WE HELP IMAGE -->
             <div class="reveal-on-scroll" style="text-align: center; margin-bottom: 40px;">
-                <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 20px; border: 1px solid rgba(0, 0, 0, 0.06); box-shadow: 0 15px 35px rgba(0,0,0,0.04);">
+                <img src="images/we-help-image.jpg" alt="We Help Info" style="max-width: 100%; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 15px 35px rgba(0,0,0,0.4);">
             </div>
 
-            <!-- 3D VIDEO CONTAINER (Removed annoying background moving text) -->
+            <!-- 3D VIDEO CONTAINER -->
             <div class="video-container-wrapper">
+                <div class="bg-bold-text-marquee">
+                    MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • MONEY AI • 
+                </div>
                 <div class="video-card glass-card reveal-on-scroll" id="3dVideoCard">
                     <div class="video-card-screen">
                         <img id="money-photo" src="images/your-3d-image.jpg" alt="Photo Placeholder" style="width: 100%; height: 100%; object-fit: cover;">
@@ -876,31 +1023,44 @@
                 <div class="glass-card process-row reveal-on-scroll">
                     <div class="process-num">01</div>
                     <div>
-                        <h3 class="card-title" style="margin-bottom: 4px;">Discovery & Audit</h3>
-                        <p class="card-desc">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
+                        <h3 style="font-size: 1.4rem; font-weight:700; color:#ffffff; margin-bottom: 6px;">Discovery & Audit</h3>
+                        <p style="color: #8e8e93; font-size: 1.1rem; line-height: 1.5;">We analyze your business workflows, bottlenecks, and revenue opportunities.</p>
                     </div>
                 </div>
                 <div class="glass-card process-row reveal-on-scroll">
                     <div class="process-num">02</div>
                     <div>
-                        <h3 class="card-title" style="margin-bottom: 4px;">Automation Blueprint</h3>
-                        <p class="card-desc">We design a detailed automation architecture aligned with your KPIs.</p>
+                        <h3 style="font-size: 1.4rem; font-weight:700; color:#ffffff; margin-bottom: 6px;">Automation Blueprint</h3>
+                        <p style="color: #8e8e93; font-size: 1.1rem; line-height: 1.5;">We design a detailed automation architecture aligned with your KPIs.</p>
                     </div>
                 </div>
                 <div class="glass-card process-row reveal-on-scroll">
                     <div class="process-num">03</div>
                     <div>
-                        <h3 class="card-title" style="margin-bottom: 4px;">Build & Integration</h3>
-                        <p class="card-desc">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
+                        <h3 style="font-size: 1.4rem; font-weight:700; color:#ffffff; margin-bottom: 6px;">Build & Integration</h3>
+                        <p style="color: #8e8e93; font-size: 1.1rem; line-height: 1.5;">Our engineers implement AI systems and integrate seamlessly with your existing tools.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 7. PRICING SECTION -->
+        <!-- 7. TECHNOLOGY ECOSYSTEM -->
+        <section class="section">
+            <span class="tag-sub reveal-on-scroll">005 • INTEGRATIONS</span>
+            <h2 class="heading-main reveal-on-scroll">Technology Ecosystem</h2>
+            <div class="ecosystem-wrap reveal-on-scroll">
+                <div class="eco-center-btn">
+                    <div class="spinner-gyro" style="width:20px; height:20px;"></div>
+                    <span>Try with Conicorn</span>
+                </div>
+                <p style="color: #8e8e93; margin-top: 24px; font-size: 1.1rem;">Our architecture connects Salesforce, HubSpot, Zapier, Zoho, OpenAI, and Make seamlessly.</p>
+            </div>
+        </section>
+
+        <!-- 8. PRICING SECTION -->
         <section class="section" id="pricing">
-            <span class="tag-sub reveal-on-scroll">005 • PRICING</span>
-            <h2 class="heading-main reveal-on-scroll">Built for Growth</h2>
+            <span class="tag-sub reveal-on-scroll">006 • PRICING</span>
+            <h2 class="heading-main reveal-on-scroll">Built for Growth at Every Stage</h2>
             
             <div class="pricing-switch reveal-on-scroll">
                 <span>MONTHLY</span>
@@ -910,25 +1070,25 @@
                 <span>ANNUALLY (SAVE 20%)</span>
             </div>
 
-            <div class="grid-3" style="max-width: 750px; margin: 0 auto;">
+            <div class="grid-3" style="max-width: 800px; margin: 0 auto;">
                 <div class="glass-card card-inner reveal-on-scroll">
-                    <h3 class="card-title">Starter Automation</h3>
-                    <p class="card-desc">For small teams beginning their journey</p>
-                    <div class="price-val" id="p1">$499<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/mo</span></div>
-                    <button class="btn-glass" style="width: 100%; justify-content: center;">Get Starter</button>
+                    <h3 style="color:#ffffff; font-size: 1.5rem; margin-bottom: 8px;">Starter Automation</h3>
+                    <p style="color: #8e8e93; font-size:1.1rem;">For small teams beginning their journey</p>
+                    <div class="price-val" id="p1">$499<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span></div>
+                    <button class="btn-submit-main" style="background: rgba(255,255,255,0.08); color:#ffffff; border: 1px solid rgba(255,255,255,0.15);">Get Starter Package</button>
                 </div>
-                <div class="glass-card card-inner reveal-on-scroll" style="border-color: rgba(139, 92, 246, 0.4); box-shadow: 0 15px 35px rgba(139, 92, 246, 0.08);">
-                    <h3 class="card-title">Growth Automation</h3>
-                    <p class="card-desc">For scaling businesses</p>
-                    <div class="price-val" id="p2">$1199<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/mo</span></div>
-                    <button class="btn-submit-main" style="margin-top:0;">Get Growth</button>
+                <div class="glass-card card-inner reveal-on-scroll" style="border-color: rgba(168, 85, 247, 0.4); box-shadow: 0 20px 40px rgba(167, 139, 250, 0.15);">
+                    <h3 style="color:#ffffff; font-size: 1.5rem; margin-bottom: 8px;">Growth Automation</h3>
+                    <p style="color: #8e8e93; font-size:1.1rem;">For scaling businesses</p>
+                    <div class="price-val" id="p2">$1199<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span></div>
+                    <button class="btn-submit-main" style="background:#ffffff; color:#08080a;">Get Growth Package</button>
                 </div>
             </div>
         </section>
 
-        <!-- 8. FAQS -->
+        <!-- 9. FAQS -->
         <section class="section" id="faqs">
-            <span class="tag-sub reveal-on-scroll">006 • FAQS</span>
+            <span class="tag-sub reveal-on-scroll">007 • FAQS</span>
             <h2 class="heading-main reveal-on-scroll">Common Questions</h2>
             
             <div class="faq-stack">
@@ -936,25 +1096,43 @@
                     <div class="faq-head">What industries do you work with? <span>+</span></div>
                     <div class="faq-body">We work with businesses across real estate, e-commerce, finance, education, SaaS, and marketing agencies.</div>
                 </div>
-                <div class="faq-box glass-card reveal-on-scroll">
+                <div class="glass-card faq-box reveal-on-scroll">
                     <div class="faq-head">How long does implementation take? <span>+</span></div>
                     <div class="faq-body">Most standard workflows take between 2 to 4 weeks from discovery to deployment.</div>
+                </div>
+                <div class="glass-card faq-box reveal-on-scroll">
+                    <div class="faq-head">Do we need technical knowledge to work with you? <span>+</span></div>
+                    <div class="faq-body">No technical knowledge required. We handle everything from design to code and maintenance.</div>
+                </div>
+                <div class="glass-card faq-box reveal-on-scroll">
+                    <div class="faq-head">Is AI automation secure? <span>+</span></div>
+                    <div class="faq-body">Yes, we enforce end-to-end encryption and strict role-based access control for all API integrations.</div>
                 </div>
             </div>
         </section>
 
-    </div><!-- END OF MAIN LIGHT WRAPPER -->
+    </div><!-- END OF MAIN DARK WRAPPER -->
 
-    <!-- 9. LEAD FORM CARD -->
+    <!-- 10. DEVELOPER PROFILE SECTION -->
+    <section class="section">
+        <div class="glass-card card-inner reveal-on-scroll" style="max-width: 360px; margin: 0 auto; text-align: center; padding: 40px 24px;">
+            <img src="images/developer-photo.jpg" alt="Developer Profile" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; border: 3px solid rgba(255,255,255,0.2); box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+            <h3 class="card-title" style="color:#ffffff;">Your Name Here</h3>
+            <p class="card-desc" style="color: var(--text-muted); font-size: 1.1rem;">AI Automation Developer & Founder</p>
+        </div>
+    </section>
+
+    <!-- 11. LEAD FORM CARD -->
     <section class="section" id="contact">
         <div class="glass-card form-card reveal-on-scroll">
-            <div style="margin-bottom:16px; display: flex; justify-content: center;"><div class="spinner-gyro" style="width:32px; height:32px;"></div></div>
-            <h2 class="heading-main" style="margin-bottom:12px;">Start Automating Today</h2>
-            <p class="card-desc" style="margin-bottom: 32px;">Stop wasting time on manual processes.</p>
+            <div style="margin-bottom:20px; display: flex; justify-content: center;"><div class="spinner-gyro" style="width:36px; height:36px;"></div></div>
+            <h2 style="font-size: 2.5rem; font-weight:800; margin-bottom:12px; color:#ffffff; line-height: 1.2;">Your Competitors Are Automating. Are You?</h2>
+            <p style="color: var(--text-muted); margin-bottom: 36px; font-size:1.15rem;">Stop wasting time on manual processes. Start building a self-running business.</p>
             <form onsubmit="event.preventDefault(); alert('Request Sent Successfully!');">
-                <input type="text" placeholder="Your name*" class="field-input-light" required>
-                <input type="email" placeholder="Your business email*" class="field-input-light" required>
-                <textarea placeholder="Share project details*" class="field-input-light" rows="3" required style="resize:none;"></textarea>
+                <input type="text" placeholder="Your name*" class="field-input-dark" required>
+                <input type="text" placeholder="Your company name*" class="field-input-dark" required>
+                <input type="email" placeholder="Your business email*" class="field-input-dark" required>
+                <textarea placeholder="Share project details*" class="field-input-dark" rows="4" required style="resize:none;"></textarea>
                 <button type="submit" class="btn-submit-main">Send Your Request</button>
             </form>
         </div>
@@ -964,26 +1142,28 @@
     <footer>
         <div class="footer-links">
             <a href="#">LinkedIn ↗</a>
+            <a href="#">Instagram ↗</a>
+            <a href="#">Facebook ↗</a>
             <a href="#">Twitter X ↗</a>
         </div>
         <p>© 2026 Conicorn AI. All rights reserved.</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // SCROLL REVEAL EFFECT
+            // 1. SCROLL REVEAL EFFECT
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.15 });
 
             document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
-            // TEXT HIGHLIGHT WORD-BY-WORD
+            // 2. TEXT HIGHLIGHT WORD-BY-WORD SCROLL LOGIC
             const textEl = document.getElementById('scrollHighlightText');
             if (textEl) {
                 const words = textEl.innerText.split(' ');
@@ -1003,7 +1183,7 @@
                 });
             }
 
-            // 3D VIDEO CARD TILT
+            // 3. SECTION 001 VIDEO CARD 3D TILT & FLATTEN ON SCROLL
             const videoCard = document.getElementById('3dVideoCard');
             if (videoCard) {
                 window.addEventListener('scroll', () => {
@@ -1011,14 +1191,14 @@
                     const windowHeight = window.innerHeight;
                     const centerOffset = (rect.top + rect.height / 2) - (windowHeight / 2);
                     
-                    const tiltX = Math.min(Math.max((centerOffset / windowHeight) * 25, -15), 15);
-                    const scale = Math.max(0.92, 1 - Math.abs(centerOffset / windowHeight) * 0.15);
+                    const tiltX = Math.min(Math.max((centerOffset / windowHeight) * 35, -25), 25);
+                    const scale = Math.max(0.88, 1 - Math.abs(centerOffset / windowHeight) * 0.2);
 
                     videoCard.style.transform = `rotateX(${tiltX}deg) scale(${scale})`;
                 });
             }
 
-            // PRICING TOGGLE
+            // 4. PRICING TOGGLE
             const toggle = document.getElementById('priceToggle');
             const p1 = document.getElementById('p1');
             const p2 = document.getElementById('p2');
@@ -1029,16 +1209,16 @@
                     isAnnual = !isAnnual;
                     toggle.classList.toggle('active', isAnnual);
                     if (isAnnual) {
-                        p1.innerHTML = '$399<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/mo</span>';
-                        p2.innerHTML = '$1099<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/mo</span>';
+                        p1.innerHTML = '$399<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
+                        p2.innerHTML = '$1099<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
                     } else {
-                        p1.innerHTML = '$499<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/mo</span>';
-                        p2.innerHTML = '$1199<span style="font-size: 1rem; color: var(--text-muted); font-weight: 500;">/mo</span>';
+                        p1.innerHTML = '$499<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
+                        p2.innerHTML = '$1199<span style="font-size: 1.1rem; color: #8e8e93; font-weight: 500;">/mo</span>';
                     }
                 });
             }
 
-            // FAQ ACCORDION
+            // 5. FAQ ACCORDION TOGGLE
             document.querySelectorAll('.faq-box').forEach(box => {
                 box.addEventListener('click', () => {
                     const isOpen = box.classList.contains('open');
@@ -1048,8 +1228,50 @@
                     }
                 });
             });
+
+            // 6. MENU TOGGLE DROPDOWN LOGIC
+            const menuToggle = document.getElementById('menuToggle');
+            const navDropdown = document.getElementById('navDropdown');
+            const menuBlurOverlay = document.getElementById('menuBlurOverlay');
+            const menuIcon = menuToggle ? menuToggle.querySelector('.menu-icon') : null;
+
+            if (menuToggle && navDropdown && menuBlurOverlay) {
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = navDropdown.classList.toggle('open');
+                    
+                    if (isOpen) {
+                        menuBlurOverlay.classList.add('active');
+                        menuToggle.classList.add('active-menu');
+                        if(menuIcon) menuIcon.textContent = '✕';
+                    } else {
+                        menuBlurOverlay.classList.remove('active');
+                        menuToggle.classList.remove('active-menu');
+                        if(menuIcon) menuIcon.textContent = '≡';
+                    }
+                });
+
+                // CLOSE ON CLICK OUTSIDE
+                document.addEventListener('click', (e) => {
+                    if (!navDropdown.contains(e.target) && !menuToggle.contains(e.target)) {
+                        navDropdown.classList.remove('open');
+                        menuBlurOverlay.classList.remove('active');
+                        menuToggle.classList.remove('active-menu');
+                        if(menuIcon) menuIcon.textContent = '≡';
+                    }
+                });
+
+                // CLOSE ON LINK CLICK
+                navDropdown.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navDropdown.classList.remove('open');
+                        menuBlurOverlay.classList.remove('active');
+                        menuToggle.classList.remove('active-menu');
+                        if(menuIcon) menuIcon.textContent = '≡';
+                    });
+                });
+            }
         });
     </script>
 </body>
 </html>
-
